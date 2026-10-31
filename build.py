@@ -65,7 +65,6 @@ def header(root):
     <a href="{root}index.html#work">Work</a>
     <a href="{root}index.html#about">About</a>
     <a href="{root}index.html#contact">Contact</a>
-    <a href="{root}{SITE['cv']}" download>CV</a>
   </nav>
 </header>
 <div class="peek" aria-hidden="true"><img alt=""></div>
@@ -75,7 +74,7 @@ def header(root):
 def footer(root):
     return f"""<footer class="foot">
   <p>Ahmed Rabea, brand designer, Cairo</p>
-  <p><a href="mailto:{SITE['email']}">Email</a><a href="{SITE['linkedin']}">LinkedIn</a><a href="{SITE['behance']}">Behance</a><a href="{root}{SITE['cv']}" download>CV</a></p>
+  <p><a href="mailto:{SITE['email']}">Email</a><a href="{SITE['linkedin']}">LinkedIn</a><a href="{SITE['behance']}">Behance</a></p>
 </footer>
 """
 
@@ -114,8 +113,8 @@ def build_home():
     root = ""
     rows = "\n".join(row(p, root) for p in projects)
     portrait = img(meta["portrait"], root, "(max-width: 760px) 90vw, 34vw", "Portrait of Ahmed Rabea")
-    page = head("Ahmed Rabea, brand designer",
-                "Senior brand designer building Arabic-first, bilingual brand systems and campaigns for the UAE, KSA and Egypt.",
+    page = head("Ahmed Rabea, brand designer and art director",
+                "Brand designer and art director in Cairo. Brand identities, campaign systems, guidelines and presentation design for companies across the Gulf and Egypt.",
                 root, meta[projects[0]["slug"]]["cover"]["files"]["1400"]) + f"""<body class="home">
 {header(root)}
 <main id="main">
@@ -123,12 +122,12 @@ def build_home():
   <div class="wall" aria-hidden="true"><div class="wall__tilt">{wall_html(root)}</div></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__top">
-    <p>Senior brand designer<br>Cairo, working remote</p>
-    <p class="hero__open"><span class="dot" aria-hidden="true"></span>Open to art director<br>and design lead roles</p>
+    <p>Brand designer and art director<br>Based in Cairo</p>
+    <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select projects</p>
   </div>
   <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span></h1>
   <div class="hero__foot">
-    <p class="hero__lede">I build Arabic-first, bilingual brand systems and campaigns for companies in the UAE, Saudi Arabia and Egypt, and run the creative operations that keep them consistent at volume.</p>
+    <p class="hero__lede">I design brand identities, campaign systems and guidelines for companies across the Gulf and Egypt, built to hold up long after launch day.</p>
     <a class="hero__cue" href="#work">See the work</a>
   </div>
 </section>
@@ -142,18 +141,20 @@ def build_home():
 
 <section id="about" class="about" aria-labelledby="about-h">
   <h2 id="about-h" class="visually-hidden">About</h2>
-  <p class="about__statement">I design brands that have to work in two scripts at once. Arabic is never a translation tag under the English. It gets its own typography, its own reading direction and its own voice.</p>
+  <p class="about__statement">A brand is judged by its hundredth asset, not its first. I design the system behind it, so every post, deck and campaign after launch still looks like it came from the same place.</p>
   <div class="about__grid">
     <div class="about__img">{portrait}</div>
     <div class="about__body">
-      <p>For more than five years I have worked across B2B SaaS, language services, healthcare and construction. I currently design for ELIXIR MD, where I wrote the 68-page brand guidelines and the Arabic typography system that extends them. Before that I led the visual direction at mazeed, and at Bayantech I led a team of five designers across five brands at once.</p>
-      <h3>How I work</h3>
+      <p>I'm a brand designer and art director in Cairo with more than five years across B2B SaaS, healthcare, language services and consumer brands. I've run creative for five brands at once, led a team of designers, and built the guidelines and workflows that keep a brand consistent at volume. Alongside that, I take on a small number of independent projects.</p>
+      <h3>What I can help with</h3>
       <dl class="ways">
-        <div><dt>Systems before assets</dt><dd>One idea, a few hard rules, then scale. At mazeed a single campaign system reached 80 assets across two languages and five formats.</dd></div>
-        <div><dt>Arabic-first, not Arabic-also</dt><dd>English, UAE Arabic and Saudi Arabic each get their own layout, mirrored for reading direction rather than translated in place.</dd></div>
-        <div><dt>Creative operations</dt><dd>Feedback, QA and asset management that let a team ship 250+ designs a month. I built CreativeVault, which cut file retrieval time by 90%.</dd></div>
+        <div><dt>Brand identity</dt><dd>Logo, typography, colour and the rules that hold them together, in English and Arabic.</dd></div>
+        <div><dt>Campaign systems</dt><dd>One idea built to scale across formats and markets. At mazeed, a single campaign system reached 80 assets in two languages and five formats.</dd></div>
+        <div><dt>Brand guidelines</dt><dd>Guidelines teams actually use, from foundations to templates, written so the next designer can pick them up without a briefing.</dd></div>
+        <div><dt>Pitch and presentation design</dt><dd>Investor, leadership and company-profile decks that make dense information readable in seconds.</dd></div>
+        <div><dt>Creative direction and consulting</dt><dd>Brand audits, visual direction, and the feedback, QA and asset workflows that let a team ship 250+ designs a month.</dd></div>
       </dl>
-      <h3>Experience</h3>
+      <h3>Background</h3>
       <ol class="cv" role="list">
         <li><span>2026 to now</span><span>Senior Brand Designer, ELIXIR MD</span></li>
         <li><span>2025 to 2026</span><span>Senior Designer, mazeed</span></li>
@@ -161,18 +162,16 @@ def build_home():
         <li><span>2023 to 2024</span><span>Graphic Designer, ATOP Arab</span></li>
         <li><span>2021 to 2023</span><span>Graphic Designer, CORE</span></li>
       </ol>
-      <p class="about__more"><a href="{SITE['cv']}" download>Download the full CV (PDF)</a></p>
     </div>
   </div>
 </section>
 
 <section id="contact" class="contact" aria-labelledby="contact-h">
-  <h2 id="contact-h">Hiring a brand designer or art director? Let's talk.</h2>
+  <h2 id="contact-h">Have a brand, campaign or deck in mind? Tell me about it.</h2>
   <a class="contact__mail" href="mailto:{SITE['email']}">{SITE['email']}</a>
   <ul class="contact__links" role="list">
     <li><a href="{SITE['linkedin']}">LinkedIn</a></li>
     <li><a href="{SITE['behance']}">Behance</a></li>
-    <li><a href="{SITE['cv']}" download>CV (PDF)</a></li>
   </ul>
 </section>
 </main>
