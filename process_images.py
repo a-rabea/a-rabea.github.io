@@ -1,0 +1,26 @@
+import json, os, sys, shutil
+from PIL import Image
+sys.path.insert(0, os.path.dirname(__file__))
+from assets_manifest import SOURCES
+OUT = "assets/img"; meta = {}
+def save(src, dst_base, widths, q=80):
+    im = Image.open(src).convert("RGB"); W, H = im.size; res = {}
+    for w in widths:
+        w2 = min(w, W); h2 = round(H * w2 / W)
+        p = f"{dst_base}-{w}.webp"
+        if not os.path.exists(p):
+            im.resize((w2, h2), Image.LANCZOS).save(p, "WEBP", quality=q, method=6)
+        res[w] = p
+    return {"w": W, "h": H, "files": res}
+for slug, s in SOURCES.items():
+    d = f"{OUT}/{slug}"; os.makedirs(d, exist_ok=True)
+    m = {"cover": save(s["cover"], f"{d}/cover", [1400, 800]), "frames": []}
+    for i, f in enumerate(s["frames"], 1):
+        m["frames"].append(save(f, f"{d}/{i:02d}", [1800, 1000]))
+    if "video" in s:
+        os.makedirs("assets/video", exist_ok=True); v = f"assets/video/{slug}.mp4"
+        shutil.copy(s["video"], v); m["video"] = v
+    meta[slug] = m; print(slug, len(m["frames"]))
+os.makedirs(f"{OUT}/about", exist_ok=True)
+meta["portrait"] = save("/mnt/user-data/uploads/02 Portfolio/Personal Brand/Photoshoot Professional Pics Profile Ahmed Rabea Me/Quiet monochrome portrait, softly lit.png", f"{OUT}/about/portrait", [1000, 600])
+json.dump(meta, open("image_meta.json", "w"), indent=1)

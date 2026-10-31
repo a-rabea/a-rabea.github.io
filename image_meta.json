@@ -1,0 +1,2064 @@
+{
+ "mazeed": {
+  "cover": {
+   "w": 1616,
+   "h": 1264,
+   "files": {
+    "1400": "assets/img/mazeed/cover-1400.webp",
+    "800": "assets/img/mazeed/cover-800.webp"
+   }
+  },
+  "frames": [
+   {
+    "w": 2800,
+    "h": 2920,
+    "files": {
+     "1800": "assets/img/mazeed/01-1800.webp",
+     "1000": "assets/img/mazeed/01-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2240,
+    "files": {
+     "1800": "assets/img/mazeed/02-1800.webp",
+     "1000": "assets/img/mazeed/02-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2740,
+    "files": {
+     "1800": "assets/img/mazeed/03-1800.webp",
+     "1000": "assets/img/mazeed/03-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1944,
+    "files": {
+     "1800": "assets/img/mazeed/04-1800.webp",
+     "1000": "assets/img/mazeed/04-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2768,
+    "files": {
+     "1800": "assets/img/mazeed/05-1800.webp",
+     "1000": "assets/img/mazeed/05-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1800,
+    "files": {
+     "1800": "assets/img/mazeed/06-1800.webp",
+     "1000": "assets/img/mazeed/06-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1508,
+    "files": {
+     "1800": "assets/img/mazeed/07-1800.webp",
+     "1000": "assets/img/mazeed/07-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2240,
+    "files": {
+     "1800": "assets/img/mazeed/08-1800.webp",
+     "1000": "assets/img/mazeed/08-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3760,
+    "files": {
+     "1800": "assets/img/mazeed/09-1800.webp",
+     "1000": "assets/img/mazeed/09-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2992,
+    "files": {
+     "1800": "assets/img/mazeed/10-1800.webp",
+     "1000": "assets/img/mazeed/10-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3620,
+    "files": {
+     "1800": "assets/img/mazeed/11-1800.webp",
+     "1000": "assets/img/mazeed/11-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2200,
+    "files": {
+     "1800": "assets/img/mazeed/12-1800.webp",
+     "1000": "assets/img/mazeed/12-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2900,
+    "files": {
+     "1800": "assets/img/mazeed/13-1800.webp",
+     "1000": "assets/img/mazeed/13-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2562,
+    "files": {
+     "1800": "assets/img/mazeed/14-1800.webp",
+     "1000": "assets/img/mazeed/14-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2332,
+    "files": {
+     "1800": "assets/img/mazeed/15-1800.webp",
+     "1000": "assets/img/mazeed/15-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2020,
+    "files": {
+     "1800": "assets/img/mazeed/16-1800.webp",
+     "1000": "assets/img/mazeed/16-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2316,
+    "files": {
+     "1800": "assets/img/mazeed/17-1800.webp",
+     "1000": "assets/img/mazeed/17-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2316,
+    "files": {
+     "1800": "assets/img/mazeed/18-1800.webp",
+     "1000": "assets/img/mazeed/18-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 4024,
+    "files": {
+     "1800": "assets/img/mazeed/19-1800.webp",
+     "1000": "assets/img/mazeed/19-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2514,
+    "files": {
+     "1800": "assets/img/mazeed/20-1800.webp",
+     "1000": "assets/img/mazeed/20-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2170,
+    "files": {
+     "1800": "assets/img/mazeed/21-1800.webp",
+     "1000": "assets/img/mazeed/21-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2204,
+    "files": {
+     "1800": "assets/img/mazeed/22-1800.webp",
+     "1000": "assets/img/mazeed/22-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1460,
+    "files": {
+     "1800": "assets/img/mazeed/23-1800.webp",
+     "1000": "assets/img/mazeed/23-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1320,
+    "files": {
+     "1800": "assets/img/mazeed/24-1800.webp",
+     "1000": "assets/img/mazeed/24-1000.webp"
+    }
+   }
+  ]
+ },
+ "ideas-that-scale": {
+  "cover": {
+   "w": 1616,
+   "h": 1264,
+   "files": {
+    "1400": "assets/img/ideas-that-scale/cover-1400.webp",
+    "800": "assets/img/ideas-that-scale/cover-800.webp"
+   }
+  },
+  "frames": [
+   {
+    "w": 2800,
+    "h": 3000,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/01-1800.webp",
+     "1000": "assets/img/ideas-that-scale/01-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1440,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/02-1800.webp",
+     "1000": "assets/img/ideas-that-scale/02-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2962,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/03-1800.webp",
+     "1000": "assets/img/ideas-that-scale/03-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3050,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/04-1800.webp",
+     "1000": "assets/img/ideas-that-scale/04-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 4470,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/05-1800.webp",
+     "1000": "assets/img/ideas-that-scale/05-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3808,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/06-1800.webp",
+     "1000": "assets/img/ideas-that-scale/06-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1280,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/07-1800.webp",
+     "1000": "assets/img/ideas-that-scale/07-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1604,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/08-1800.webp",
+     "1000": "assets/img/ideas-that-scale/08-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1604,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/09-1800.webp",
+     "1000": "assets/img/ideas-that-scale/09-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1604,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/10-1800.webp",
+     "1000": "assets/img/ideas-that-scale/10-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1604,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/11-1800.webp",
+     "1000": "assets/img/ideas-that-scale/11-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3000,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/12-1800.webp",
+     "1000": "assets/img/ideas-that-scale/12-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2580,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/13-1800.webp",
+     "1000": "assets/img/ideas-that-scale/13-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3000,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/14-1800.webp",
+     "1000": "assets/img/ideas-that-scale/14-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1600,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/15-1800.webp",
+     "1000": "assets/img/ideas-that-scale/15-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3512,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/16-1800.webp",
+     "1000": "assets/img/ideas-that-scale/16-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/17-1800.webp",
+     "1000": "assets/img/ideas-that-scale/17-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3000,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/18-1800.webp",
+     "1000": "assets/img/ideas-that-scale/18-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2580,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/19-1800.webp",
+     "1000": "assets/img/ideas-that-scale/19-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3000,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/20-1800.webp",
+     "1000": "assets/img/ideas-that-scale/20-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1600,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/21-1800.webp",
+     "1000": "assets/img/ideas-that-scale/21-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3512,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/22-1800.webp",
+     "1000": "assets/img/ideas-that-scale/22-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/23-1800.webp",
+     "1000": "assets/img/ideas-that-scale/23-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1240,
+    "files": {
+     "1800": "assets/img/ideas-that-scale/24-1800.webp",
+     "1000": "assets/img/ideas-that-scale/24-1000.webp"
+    }
+   }
+  ]
+ },
+ "aureya": {
+  "cover": {
+   "w": 1616,
+   "h": 1264,
+   "files": {
+    "1400": "assets/img/aureya/cover-1400.webp",
+    "800": "assets/img/aureya/cover-800.webp"
+   }
+  },
+  "frames": [
+   {
+    "w": 2800,
+    "h": 3280,
+    "files": {
+     "1800": "assets/img/aureya/01-1800.webp",
+     "1000": "assets/img/aureya/01-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2260,
+    "files": {
+     "1800": "assets/img/aureya/02-1800.webp",
+     "1000": "assets/img/aureya/02-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2200,
+    "files": {
+     "1800": "assets/img/aureya/03-1800.webp",
+     "1000": "assets/img/aureya/03-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3500,
+    "files": {
+     "1800": "assets/img/aureya/04-1800.webp",
+     "1000": "assets/img/aureya/04-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2660,
+    "files": {
+     "1800": "assets/img/aureya/05-1800.webp",
+     "1000": "assets/img/aureya/05-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2700,
+    "files": {
+     "1800": "assets/img/aureya/06-1800.webp",
+     "1000": "assets/img/aureya/06-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2380,
+    "files": {
+     "1800": "assets/img/aureya/07-1800.webp",
+     "1000": "assets/img/aureya/07-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2800,
+    "files": {
+     "1800": "assets/img/aureya/08-1800.webp",
+     "1000": "assets/img/aureya/08-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2600,
+    "files": {
+     "1800": "assets/img/aureya/09-1800.webp",
+     "1000": "assets/img/aureya/09-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1800,
+    "files": {
+     "1800": "assets/img/aureya/10-1800.webp",
+     "1000": "assets/img/aureya/10-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 4240,
+    "files": {
+     "1800": "assets/img/aureya/11-1800.webp",
+     "1000": "assets/img/aureya/11-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3580,
+    "files": {
+     "1800": "assets/img/aureya/12-1800.webp",
+     "1000": "assets/img/aureya/12-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 4070,
+    "files": {
+     "1800": "assets/img/aureya/13-1800.webp",
+     "1000": "assets/img/aureya/13-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2446,
+    "files": {
+     "1800": "assets/img/aureya/14-1800.webp",
+     "1000": "assets/img/aureya/14-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2060,
+    "files": {
+     "1800": "assets/img/aureya/15-1800.webp",
+     "1000": "assets/img/aureya/15-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2840,
+    "files": {
+     "1800": "assets/img/aureya/16-1800.webp",
+     "1000": "assets/img/aureya/16-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2840,
+    "files": {
+     "1800": "assets/img/aureya/17-1800.webp",
+     "1000": "assets/img/aureya/17-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2840,
+    "files": {
+     "1800": "assets/img/aureya/18-1800.webp",
+     "1000": "assets/img/aureya/18-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 3070,
+    "files": {
+     "1800": "assets/img/aureya/19-1800.webp",
+     "1000": "assets/img/aureya/19-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2248,
+    "files": {
+     "1800": "assets/img/aureya/20-1800.webp",
+     "1000": "assets/img/aureya/20-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1800,
+    "files": {
+     "1800": "assets/img/aureya/21-1800.webp",
+     "1000": "assets/img/aureya/21-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 2360,
+    "files": {
+     "1800": "assets/img/aureya/22-1800.webp",
+     "1000": "assets/img/aureya/22-1000.webp"
+    }
+   },
+   {
+    "w": 2800,
+    "h": 1760,
+    "files": {
+     "1800": "assets/img/aureya/23-1800.webp",
+     "1000": "assets/img/aureya/23-1000.webp"
+    }
+   }
+  ],
+  "video": "assets/video/aureya.mp4"
+ },
+ "pizza-rush": {
+  "cover": {
+   "w": 1616,
+   "h": 1264,
+   "files": {
+    "1400": "assets/img/pizza-rush/cover-1400.webp",
+    "800": "assets/img/pizza-rush/cover-800.webp"
+   }
+  },
+  "frames": [
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/01-1800.webp",
+     "1000": "assets/img/pizza-rush/01-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/02-1800.webp",
+     "1000": "assets/img/pizza-rush/02-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/03-1800.webp",
+     "1000": "assets/img/pizza-rush/03-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/04-1800.webp",
+     "1000": "assets/img/pizza-rush/04-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/05-1800.webp",
+     "1000": "assets/img/pizza-rush/05-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/06-1800.webp",
+     "1000": "assets/img/pizza-rush/06-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/07-1800.webp",
+     "1000": "assets/img/pizza-rush/07-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/08-1800.webp",
+     "1000": "assets/img/pizza-rush/08-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/09-1800.webp",
+     "1000": "assets/img/pizza-rush/09-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/10-1800.webp",
+     "1000": "assets/img/pizza-rush/10-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/11-1800.webp",
+     "1000": "assets/img/pizza-rush/11-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/12-1800.webp",
+     "1000": "assets/img/pizza-rush/12-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/13-1800.webp",
+     "1000": "assets/img/pizza-rush/13-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/14-1800.webp",
+     "1000": "assets/img/pizza-rush/14-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/15-1800.webp",
+     "1000": "assets/img/pizza-rush/15-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/16-1800.webp",
+     "1000": "assets/img/pizza-rush/16-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/17-1800.webp",
+     "1000": "assets/img/pizza-rush/17-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/18-1800.webp",
+     "1000": "assets/img/pizza-rush/18-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/19-1800.webp",
+     "1000": "assets/img/pizza-rush/19-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/20-1800.webp",
+     "1000": "assets/img/pizza-rush/20-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/21-1800.webp",
+     "1000": "assets/img/pizza-rush/21-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/22-1800.webp",
+     "1000": "assets/img/pizza-rush/22-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/23-1800.webp",
+     "1000": "assets/img/pizza-rush/23-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/24-1800.webp",
+     "1000": "assets/img/pizza-rush/24-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/25-1800.webp",
+     "1000": "assets/img/pizza-rush/25-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/26-1800.webp",
+     "1000": "assets/img/pizza-rush/26-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/27-1800.webp",
+     "1000": "assets/img/pizza-rush/27-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/pizza-rush/28-1800.webp",
+     "1000": "assets/img/pizza-rush/28-1000.webp"
+    }
+   }
+  ]
+ },
+ "aywa": {
+  "cover": {
+   "w": 1616,
+   "h": 1264,
+   "files": {
+    "1400": "assets/img/aywa/cover-1400.webp",
+    "800": "assets/img/aywa/cover-800.webp"
+   }
+  },
+  "frames": [
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/01-1800.webp",
+     "1000": "assets/img/aywa/01-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/02-1800.webp",
+     "1000": "assets/img/aywa/02-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/03-1800.webp",
+     "1000": "assets/img/aywa/03-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/04-1800.webp",
+     "1000": "assets/img/aywa/04-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/05-1800.webp",
+     "1000": "assets/img/aywa/05-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/06-1800.webp",
+     "1000": "assets/img/aywa/06-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/07-1800.webp",
+     "1000": "assets/img/aywa/07-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/08-1800.webp",
+     "1000": "assets/img/aywa/08-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/09-1800.webp",
+     "1000": "assets/img/aywa/09-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/10-1800.webp",
+     "1000": "assets/img/aywa/10-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/11-1800.webp",
+     "1000": "assets/img/aywa/11-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/12-1800.webp",
+     "1000": "assets/img/aywa/12-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/13-1800.webp",
+     "1000": "assets/img/aywa/13-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/14-1800.webp",
+     "1000": "assets/img/aywa/14-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/15-1800.webp",
+     "1000": "assets/img/aywa/15-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/16-1800.webp",
+     "1000": "assets/img/aywa/16-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/17-1800.webp",
+     "1000": "assets/img/aywa/17-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/18-1800.webp",
+     "1000": "assets/img/aywa/18-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/19-1800.webp",
+     "1000": "assets/img/aywa/19-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/20-1800.webp",
+     "1000": "assets/img/aywa/20-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/21-1800.webp",
+     "1000": "assets/img/aywa/21-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/22-1800.webp",
+     "1000": "assets/img/aywa/22-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/23-1800.webp",
+     "1000": "assets/img/aywa/23-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/24-1800.webp",
+     "1000": "assets/img/aywa/24-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/25-1800.webp",
+     "1000": "assets/img/aywa/25-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/26-1800.webp",
+     "1000": "assets/img/aywa/26-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/27-1800.webp",
+     "1000": "assets/img/aywa/27-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/28-1800.webp",
+     "1000": "assets/img/aywa/28-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/29-1800.webp",
+     "1000": "assets/img/aywa/29-1000.webp"
+    }
+   },
+   {
+    "w": 3840,
+    "h": 2160,
+    "files": {
+     "1800": "assets/img/aywa/30-1800.webp",
+     "1000": "assets/img/aywa/30-1000.webp"
+    }
+   }
+  ]
+ },
+ "vult": {
+  "cover": {
+   "w": 1616,
+   "h": 1264,
+   "files": {
+    "1400": "assets/img/vult/cover-1400.webp",
+    "800": "assets/img/vult/cover-800.webp"
+   }
+  },
+  "frames": [
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/01-1800.webp",
+     "1000": "assets/img/vult/01-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/02-1800.webp",
+     "1000": "assets/img/vult/02-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/03-1800.webp",
+     "1000": "assets/img/vult/03-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/04-1800.webp",
+     "1000": "assets/img/vult/04-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/05-1800.webp",
+     "1000": "assets/img/vult/05-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/06-1800.webp",
+     "1000": "assets/img/vult/06-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/07-1800.webp",
+     "1000": "assets/img/vult/07-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/08-1800.webp",
+     "1000": "assets/img/vult/08-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/09-1800.webp",
+     "1000": "assets/img/vult/09-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/10-1800.webp",
+     "1000": "assets/img/vult/10-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/11-1800.webp",
+     "1000": "assets/img/vult/11-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/12-1800.webp",
+     "1000": "assets/img/vult/12-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/13-1800.webp",
+     "1000": "assets/img/vult/13-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/14-1800.webp",
+     "1000": "assets/img/vult/14-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/15-1800.webp",
+     "1000": "assets/img/vult/15-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/16-1800.webp",
+     "1000": "assets/img/vult/16-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/17-1800.webp",
+     "1000": "assets/img/vult/17-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/18-1800.webp",
+     "1000": "assets/img/vult/18-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/19-1800.webp",
+     "1000": "assets/img/vult/19-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/20-1800.webp",
+     "1000": "assets/img/vult/20-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/21-1800.webp",
+     "1000": "assets/img/vult/21-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/22-1800.webp",
+     "1000": "assets/img/vult/22-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/23-1800.webp",
+     "1000": "assets/img/vult/23-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/24-1800.webp",
+     "1000": "assets/img/vult/24-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/25-1800.webp",
+     "1000": "assets/img/vult/25-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/26-1800.webp",
+     "1000": "assets/img/vult/26-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/27-1800.webp",
+     "1000": "assets/img/vult/27-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/28-1800.webp",
+     "1000": "assets/img/vult/28-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/29-1800.webp",
+     "1000": "assets/img/vult/29-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/vult/30-1800.webp",
+     "1000": "assets/img/vult/30-1000.webp"
+    }
+   }
+  ],
+  "video": "assets/video/vult.mp4"
+ },
+ "qinwan": {
+  "cover": {
+   "w": 1616,
+   "h": 1264,
+   "files": {
+    "1400": "assets/img/qinwan/cover-1400.webp",
+    "800": "assets/img/qinwan/cover-800.webp"
+   }
+  },
+  "frames": [
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/01-1800.webp",
+     "1000": "assets/img/qinwan/01-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/02-1800.webp",
+     "1000": "assets/img/qinwan/02-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/03-1800.webp",
+     "1000": "assets/img/qinwan/03-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/04-1800.webp",
+     "1000": "assets/img/qinwan/04-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/05-1800.webp",
+     "1000": "assets/img/qinwan/05-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/06-1800.webp",
+     "1000": "assets/img/qinwan/06-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/07-1800.webp",
+     "1000": "assets/img/qinwan/07-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/08-1800.webp",
+     "1000": "assets/img/qinwan/08-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/09-1800.webp",
+     "1000": "assets/img/qinwan/09-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/10-1800.webp",
+     "1000": "assets/img/qinwan/10-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/11-1800.webp",
+     "1000": "assets/img/qinwan/11-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/12-1800.webp",
+     "1000": "assets/img/qinwan/12-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/13-1800.webp",
+     "1000": "assets/img/qinwan/13-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/14-1800.webp",
+     "1000": "assets/img/qinwan/14-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/15-1800.webp",
+     "1000": "assets/img/qinwan/15-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/16-1800.webp",
+     "1000": "assets/img/qinwan/16-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/17-1800.webp",
+     "1000": "assets/img/qinwan/17-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/18-1800.webp",
+     "1000": "assets/img/qinwan/18-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/19-1800.webp",
+     "1000": "assets/img/qinwan/19-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/20-1800.webp",
+     "1000": "assets/img/qinwan/20-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/21-1800.webp",
+     "1000": "assets/img/qinwan/21-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/22-1800.webp",
+     "1000": "assets/img/qinwan/22-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/23-1800.webp",
+     "1000": "assets/img/qinwan/23-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/24-1800.webp",
+     "1000": "assets/img/qinwan/24-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/25-1800.webp",
+     "1000": "assets/img/qinwan/25-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/26-1800.webp",
+     "1000": "assets/img/qinwan/26-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/27-1800.webp",
+     "1000": "assets/img/qinwan/27-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/28-1800.webp",
+     "1000": "assets/img/qinwan/28-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/29-1800.webp",
+     "1000": "assets/img/qinwan/29-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/30-1800.webp",
+     "1000": "assets/img/qinwan/30-1000.webp"
+    }
+   },
+   {
+    "w": 1920,
+    "h": 1080,
+    "files": {
+     "1800": "assets/img/qinwan/31-1800.webp",
+     "1000": "assets/img/qinwan/31-1000.webp"
+    }
+   }
+  ]
+ },
+ "sheikh-khalifa-hospital": {
+  "cover": {
+   "w": 1616,
+   "h": 1264,
+   "files": {
+    "1400": "assets/img/sheikh-khalifa-hospital/cover-1400.webp",
+    "800": "assets/img/sheikh-khalifa-hospital/cover-800.webp"
+   }
+  },
+  "frames": [
+   {
+    "w": 3200,
+    "h": 2000,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/01-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/01-1000.webp"
+    }
+   },
+   {
+    "w": 3200,
+    "h": 1700,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/02-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/02-1000.webp"
+    }
+   },
+   {
+    "w": 3528,
+    "h": 1719,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/03-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/03-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/04-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/04-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/05-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/05-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/06-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/06-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/07-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/07-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/08-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/08-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/09-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/09-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/10-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/10-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/11-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/11-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/12-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/12-1000.webp"
+    }
+   },
+   {
+    "w": 3200,
+    "h": 2133,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/13-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/13-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/14-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/14-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/15-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/15-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/16-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/16-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/17-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/17-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/18-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/18-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/19-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/19-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/20-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/20-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/21-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/21-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/22-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/22-1000.webp"
+    }
+   },
+   {
+    "w": 3200,
+    "h": 2134,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/23-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/23-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/24-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/24-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/25-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/25-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/26-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/26-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/27-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/27-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/28-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/28-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/29-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/29-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/30-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/30-1000.webp"
+    }
+   },
+   {
+    "w": 3200,
+    "h": 2134,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/31-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/31-1000.webp"
+    }
+   },
+   {
+    "w": 3200,
+    "h": 2134,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/32-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/32-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/33-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/33-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/34-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/34-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/35-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/35-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/36-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/36-1000.webp"
+    }
+   },
+   {
+    "w": 2400,
+    "h": 1350,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/37-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/37-1000.webp"
+    }
+   },
+   {
+    "w": 3200,
+    "h": 2000,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/38-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/38-1000.webp"
+    }
+   },
+   {
+    "w": 3200,
+    "h": 2000,
+    "files": {
+     "1800": "assets/img/sheikh-khalifa-hospital/39-1800.webp",
+     "1000": "assets/img/sheikh-khalifa-hospital/39-1000.webp"
+    }
+   }
+  ]
+ },
+ "roava": {
+  "cover": {
+   "w": 1616,
+   "h": 1264,
+   "files": {
+    "1400": "assets/img/roava/cover-1400.webp",
+    "800": "assets/img/roava/cover-800.webp"
+   }
+  },
+  "frames": [
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/01-1800.webp",
+     "1000": "assets/img/roava/01-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/02-1800.webp",
+     "1000": "assets/img/roava/02-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/03-1800.webp",
+     "1000": "assets/img/roava/03-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/04-1800.webp",
+     "1000": "assets/img/roava/04-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/05-1800.webp",
+     "1000": "assets/img/roava/05-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/06-1800.webp",
+     "1000": "assets/img/roava/06-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/07-1800.webp",
+     "1000": "assets/img/roava/07-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/08-1800.webp",
+     "1000": "assets/img/roava/08-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/09-1800.webp",
+     "1000": "assets/img/roava/09-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/10-1800.webp",
+     "1000": "assets/img/roava/10-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/11-1800.webp",
+     "1000": "assets/img/roava/11-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/12-1800.webp",
+     "1000": "assets/img/roava/12-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/13-1800.webp",
+     "1000": "assets/img/roava/13-1000.webp"
+    }
+   },
+   {
+    "w": 2880,
+    "h": 1620,
+    "files": {
+     "1800": "assets/img/roava/14-1800.webp",
+     "1000": "assets/img/roava/14-1000.webp"
+    }
+   }
+  ]
+ },
+ "portrait": {
+  "w": 1254,
+  "h": 1254,
+  "files": {
+   "1000": "assets/img/about/portrait-1000.webp",
+   "600": "assets/img/about/portrait-600.webp"
+  }
+ }
+}
