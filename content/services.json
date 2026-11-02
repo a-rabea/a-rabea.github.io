@@ -1,0 +1,69 @@
+{
+  "title": "Brand design services",
+  "intro": "Brand identity, campaign systems, guidelines and presentation design for companies across the Gulf and Egypt, in English and Arabic. Built so the hundredth asset still looks like the first.",
+  "services": [
+    {
+      "id": "brand-identity",
+      "icon": "identity",
+      "name": "Brand identity",
+      "summary": "A logo and a visual system with clear rules, so your brand looks the same in every hand that uses it.",
+      "includes": ["Logo and logo system", "Colour palette and typography, in English and Arabic", "Core brand assets and patterns", "Starter templates for social and print"],
+      "for": "New brands, rebrands, and products that have outgrown their first logo.",
+      "proof": ["aywa", "pizza-rush", "vult"]
+    },
+    {
+      "id": "campaign-systems",
+      "icon": "campaign",
+      "name": "Campaign systems",
+      "summary": "One strong idea built to scale across formats, markets and languages, without losing itself along the way.",
+      "includes": ["Key visual and layout rules", "Templates for social, paid and out-of-home", "Size and language versions", "Production-ready handoff for your team"],
+      "for": "Launches, seasonal campaigns and always-on social.",
+      "proof": ["mazeed", "ideas-that-scale", "aureya"]
+    },
+    {
+      "id": "brand-guidelines",
+      "icon": "guidelines",
+      "name": "Brand guidelines",
+      "summary": "Guidelines your team will actually open: foundations, usage rules and templates, written so the next designer needs no briefing.",
+      "includes": ["Guidelines document, from foundations to usage", "Arabic typography rules alongside English", "Do and don't examples", "Template library for everyday assets"],
+      "for": "Growing teams working with several designers, agencies or markets.",
+      "proof": ["aureya", "roava", "mazeed"]
+    },
+    {
+      "id": "presentation-design",
+      "icon": "deck",
+      "name": "Pitch and presentation design",
+      "summary": "Decks that make dense information readable in seconds, for investors, leadership, tenders and sales.",
+      "includes": ["Investor and leadership decks", "Company profiles", "Sales and tender presentations", "Master templates your team can reuse"],
+      "for": "Fundraising, government and enterprise pitches, and company profiles.",
+      "proof": ["sheikh-khalifa-hospital", "qinwan"]
+    },
+    {
+      "id": "creative-direction",
+      "icon": "direction",
+      "name": "Creative direction and consulting",
+      "summary": "A senior eye on your brand: where it stands, where it should go, and how your team gets it there.",
+      "includes": ["Brand and competitor audit", "Visual direction for the year ahead", "Design feedback and QA", "Workflows and asset management for in-house teams"],
+      "for": "Founders and in-house teams who need direction more than extra hands.",
+      "proof": ["mazeed", "ideas-that-scale"]
+    }
+  ],
+  "process": [
+    ["Brief", "We talk through the goal, the audience and what already exists. I come back with questions, scope and a proposal."],
+    ["Direction", "One or two clear directions, shown on real applications rather than a logo on a white page."],
+    ["Design", "The chosen direction built into a full system, with your feedback at set checkpoints."],
+    ["Handoff", "Final files, templates and guidance your team can use from day one."]
+  ],
+  "ways": [
+    ["A defined project", "A new identity, a campaign, a guidelines document or a deck, with a clear scope and end date."],
+    ["Ongoing design support", "A set amount of design time each month for teams that need steady, on-brand output."],
+    ["A review or consultation", "A focused session or written audit when you need direction rather than production."]
+  ],
+  "faq": [
+    ["Do you design in Arabic as well as English?", "Yes. Most of my work ships in both, and the Arabic version gets its own layout and typography rather than a translation dropped into the English design."],
+    ["Do you work with clients outside Egypt?", "Yes. Most of my work has been for companies in the UAE and Saudi Arabia, working remotely."],
+    ["What will I receive at the end?", "Final files in the formats your team needs, the editable source files, and clear guidance on how to use them."],
+    ["How much does a project cost?", "It depends on scope. Share a rough budget range in the enquiry form and I'll tell you what fits it."],
+    ["How do we start?", "Fill in the short form below. It writes an email for you, and I reply with questions or a proposal."]
+  ]
+}

@@ -99,3 +99,45 @@
   });
   dlg.addEventListener('close', () => { pic.removeAttribute('src'); opener && opener.focus(); });
 })();
+
+// "Show all frames" on long slide case studies.
+(() => {
+  const b = document.querySelector('[data-more]');
+  if (!b) return;
+  b.addEventListener('click', () => {
+    const wrap = document.querySelector('.frames.is-folded');
+    const first = wrap.querySelector('.is-extra');
+    wrap.classList.remove('is-folded');
+    b.parentElement.remove();
+    first && first.querySelector('button').focus({ preventScroll: true });
+  });
+})();
+
+// Enquiry form: writes the email for the client, nothing is stored or sent from here.
+(() => {
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copied'; }
+    catch { b.textContent = 'Select and copy'; }
+    setTimeout(() => (b.textContent = 'Copy'), 2000);
+  }));
+  document.querySelectorAll('.start__form').forEach(f => f.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const d = new FormData(f);
+    const needs = d.getAll('need');
+    const name = (d.get('name') || '').trim();
+    const company = (d.get('company') || '').trim();
+    const lines = [
+      'Hi Ahmed,', '',
+      `I'm ${name}${company ? ' from ' + company : ''}.`, '',
+      'What I need: ' + (needs.length ? needs.join(', ') : 'Not sure yet'),
+      'Timeline: ' + (d.get('timeline') || 'Not decided'),
+      'Budget range: ' + ((d.get('budget') || '').trim() || 'Not decided'), '',
+      'About the project:', (d.get('message') || '').trim() || '-', '',
+      'Thanks,', name
+    ];
+    const subject = `New project: ${needs[0] && needs[0] !== 'Not sure yet' ? needs[0] : 'enquiry'}${company ? ' for ' + company : ''}`;
+    const url = `mailto:${f.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+    (window.__mailto || (u => { location.href = u; }))(url);
+    f.querySelector('.start__note').textContent = "Your email app should open now. If nothing happened, use the Copy button next to my email address.";
+  }));
+})();

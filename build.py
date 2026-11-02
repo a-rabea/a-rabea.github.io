@@ -1,34 +1,37 @@
-"""Builds the static site from content/projects.json + image_meta.json.
+"""Builds the static site from content/*.json + image_meta.json.
 
 Run:  python3 build.py
-To add a project: add its images in assets_manifest.py, run process_images.py,
-add an entry to content/projects.json, then run build.py.
+To add a project: add its images in assets_manifest.py, run process_images.py and
+make_extras.py, add an entry to content/projects.json, then run build.py.
+Services page text lives in content/services.json.
 """
 import json, html, os
 
 SITE = {
     "name": "Ahmed Rabea",
-    "arabic": "أحمد ربيع",
     "url": ("https://" + open("CNAME").read().strip()) if os.path.exists("CNAME") else "https://a-rabea.github.io",
     "email": "ahmed.r.bisher@gmail.com",
     "linkedin": "https://www.linkedin.com/in/a-rabea",
     "behance": "https://www.behance.net/a-rabea",
-    "cv": "assets/Ahmed-Rabea-CV.pdf",
 }
 projects = json.load(open("content/projects.json", encoding="utf-8"))
+services = json.load(open("content/services.json", encoding="utf-8"))
 by_slug = {p["slug"]: p for p in projects}
-CLIENTS = ["mazeed", "Bayantech", "ATOP Arab", "Sheikh Khalifa Hospital Fujairah", "Reefer Zone", "CORE"]
-SERVICES = [
-    ("Brand identity", "Logo, typography, colour and the rules that hold them together, in English and Arabic.", ["aywa", "pizza-rush"]),
-    ("Campaign systems", "One idea built to scale across formats and markets. At mazeed, a single campaign system reached 80 assets in two languages and five formats.", ["mazeed", "ideas-that-scale"]),
-    ("Brand guidelines", "Guidelines teams actually use, from foundations to templates, written so the next designer can pick them up without a briefing.", ["aureya", "roava"]),
-    ("Pitch and presentation design", "Investor, leadership and company-profile decks that make dense information readable in seconds.", ["sheikh-khalifa-hospital", "qinwan"]),
-    ("Creative direction and consulting", "Brand audits, visual direction, and the feedback, QA and asset workflows that let a team ship 250+ designs a month.", ["ideas-that-scale", "vult"]),
-]
-BRIEF = ("mailto:{email}?subject=" + "New%20project%20enquiry" + "&body="
-         + "Hi Ahmed,%0D%0A%0D%0AWhat I need:%0D%0A%0D%0ATimeline:%0D%0A%0D%0ABudget range:%0D%0A%0D%0AAnything else:%0D%0A")
 meta = json.load(open("image_meta.json"))
 e = lambda s: html.escape(s, quote=True)
+FOLD = 12  # slide-format case studies show this many frames before "Show all"
+
+# Line icons, drawn for this site (24px grid, 1.5 stroke)
+ICONS = {
+    "identity": '<circle cx="9.5" cy="12" r="6"/><rect x="11" y="6" width="9" height="12" rx="1"/>',
+    "campaign": '<rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1" fill="currentColor"/>',
+    "guidelines": '<path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14c-3-.5-6 0-8 1.5z"/><path d="M12 6v14"/>',
+    "deck": '<rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4M7 12V10M11 12V8M15 12V9"/>',
+    "direction": '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+}
+def icon(name, cls="icon"):
+    return (f'<svg class="{cls}" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" '
+            f'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICONS[name]}</svg>')
 
 
 def img(m, root, sizes, alt, cls="", eager=False):
@@ -46,18 +49,19 @@ def cover_small(slug, root):
     return f"{root}{meta[slug]['cover']['files']['800']}"
 
 
-def head(title, desc, root, og, path=""):
+def head(title, desc, root, og, path="", ld=None):
     url = f"{SITE['url']}/{path}"
     og_url = f"{SITE['url']}/assets/og/{og}.jpg"
+    lds = "".join(f'\n<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (ld or []))
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="p:domain_verify" content="021ae1545cf424912b139af6310727fe"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <meta name="theme-color" content="#0D100F">
+<meta name="p:domain_verify" content="021ae1545cf424912b139af6310727fe"/>
 <link rel="canonical" href="{url}">
 <meta property="og:site_name" content="Ahmed Rabea">
 <meta property="og:title" content="{e(title)}">
@@ -75,19 +79,21 @@ def head(title, desc, root, og, path=""):
 <link rel="apple-touch-icon" href="{root}assets/apple-touch-icon.png">
 <link rel="preload" href="{root}assets/fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{root}assets/site.css">
-<script src="{root}assets/site.js" defer></script>
+<script src="{root}assets/site.js" defer></script>{lds}
 </head>
 """
 
 
-def header(root):
+def header(root, here=""):
+    cur = lambda k: ' aria-current="page"' if here == k else ""
     return f"""<a class="skip" href="#main">Skip to content</a>
 <header class="bar">
   <a class="bar__name" href="{root}index.html">Ahmed Rabea</a>
   <nav class="bar__nav" aria-label="Main">
-    <a href="{root}index.html#work">Work</a>
+    <a href="{root}index.html#work"{cur('work')}>Work</a>
+    <a href="{root}services/index.html"{cur('services')}>Services</a>
     <a href="{root}index.html#about">About</a>
-    <a href="{root}index.html#contact">Contact</a>
+    <a class="bar__cta" href="{root}services/index.html#start">Start a project</a>
   </nav>
 </header>
 <div class="peek" aria-hidden="true"><img alt=""></div>
@@ -96,10 +102,44 @@ def header(root):
 
 def footer(root):
     return f"""<footer class="foot">
-  <p>Ahmed Rabea, brand designer, Cairo</p>
-  <p><a href="mailto:{SITE['email']}">Email</a><a href="{SITE['linkedin']}">LinkedIn</a><a href="{SITE['behance']}">Behance</a></p>
+  <p>Ahmed Rabea, brand designer and art director, Cairo</p>
+  <p><a href="{root}services/index.html">Services</a><a href="mailto:{SITE['email']}">Email</a><a href="{SITE['linkedin']}">LinkedIn</a><a href="{SITE['behance']}">Behance</a></p>
 </footer>
 """
+
+
+def enquiry(root, heading="Start a project", lead=None):
+    """A short form that writes the enquiry email for the client. No server needed."""
+    lead = lead or "Tell me a little about what you need. Pressing the button opens your email app with everything filled in, ready to send."
+    boxes = "".join(f'<label class="chip"><input type="checkbox" name="need" value="{e(s["name"])}"><span>{e(s["name"])}</span></label>' for s in services["services"])
+    return f"""<section id="start" class="start" aria-labelledby="start-h">
+  <div class="start__intro">
+    <h2 id="start-h">{e(heading)}</h2>
+    <p>{e(lead)}</p>
+    <p class="start__alt">Prefer to write it yourself? Email <a href="mailto:{SITE['email']}">{SITE['email']}</a> <button type="button" class="copy" data-copy="{SITE['email']}">Copy</button></p>
+  </div>
+  <form class="start__form" data-email="{SITE['email']}">
+    <fieldset>
+      <legend>What do you need?</legend>
+      <div class="chips">{boxes}<label class="chip"><input type="checkbox" name="need" value="Not sure yet"><span>Not sure yet</span></label></div>
+    </fieldset>
+    <div class="start__row">
+      <label>Your name<input name="name" autocomplete="name" required></label>
+      <label>Company<input name="company" autocomplete="organization"></label>
+    </div>
+    <div class="start__row">
+      <label>Timeline
+        <select name="timeline"><option value="">Choose one</option><option>As soon as possible</option><option>Within a month</option><option>In 1 to 3 months</option><option>Just exploring</option></select>
+      </label>
+      <label>Budget range<input name="budget" placeholder="Optional"></label>
+    </div>
+    <label>About the project<textarea name="message" rows="4" placeholder="What are you making, and who is it for?"></textarea></label>
+    <div class="start__send">
+      <button class="btn btn--big" type="submit">Write my email</button>
+      <p class="start__note" aria-live="polite">Opens your email app. Nothing is sent until you press send there.</p>
+    </div>
+  </form>
+</section>"""
 
 
 def row(p, root):
@@ -117,7 +157,6 @@ def row(p, root):
 
 def wall_html(root):
     items = json.load(open("wall.json"))
-    # interleave projects so neighbours differ, then deal into 5 columns
     by = {}
     for it in items: by.setdefault(it[3], []).append(it)
     order = []
@@ -126,28 +165,29 @@ def wall_html(root):
             if by[k]: order.append(by[k].pop(0))
     cols = [order[i::5] for i in range(5)]
     out = []
-    for c, col in enumerate(cols):
-        imgs = "".join(f'<img src="{root}{p}" width="{w}" height="{h}" alt="" decoding="async">' for n, (p, w, h, _) in enumerate(col))
+    for col in cols:
+        imgs = "".join(f'<img src="{root}{p}" width="{w}" height="{h}" alt="" decoding="async">' for p, w, h, _ in col)
         out.append(f'<div class="wall__col"><div class="wall__run">{imgs}{imgs}</div></div>')
     return "".join(out)
 
 
-def services_html(root):
-    out = []
-    for t, d, slugs in SERVICES:
-        links = " and ".join(f'<a href="{root}work/{x}/index.html">{e(by_slug[x]["title"])}</a>' for x in slugs)
-        out.append(f'        <div><dt>{e(t)}</dt><dd>{e(d)}<span class="ways__see">See {links}</span></dd></div>')
-    return "\n".join(out)
+def person_ld():
+    return {"@context": "https://schema.org", "@type": "Person", "name": "Ahmed Rabea",
+            "jobTitle": "Brand designer and art director",
+            "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
+            "url": SITE["url"] + "/", "email": "mailto:" + SITE["email"],
+            "knowsAbout": [s["name"] for s in services["services"]] + ["Arabic typography", "Bilingual design"],
+            "sameAs": [SITE["linkedin"], SITE["behance"]]}
 
 
 def build_home():
     root = ""
     rows = "\n".join(row(p, root) for p in projects)
     portrait = img(meta["portrait"], root, "(max-width: 760px) 90vw, 34vw", "Portrait of Ahmed Rabea")
-    page = head("Ahmed Rabea, brand designer and art director",
-                "Brand designer and art director in Cairo. Brand identities, campaign systems, guidelines and presentation design for companies across the Gulf and Egypt.",
-                root, "home") + f"""<body class="home">
-<script type="application/ld+json">{json.dumps({"@context": "https://schema.org", "@type": "Person", "name": "Ahmed Rabea", "jobTitle": "Brand designer and art director", "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"}, "url": SITE["url"], "email": "mailto:" + SITE["email"], "sameAs": [SITE["linkedin"], SITE["behance"]]})}</script>
+    svc = "\n".join(f'<li><a href="services/index.html#{s["id"]}">{icon(s["icon"])}<span class="svc__name">{e(s["name"])}</span><span class="svc__sum">{e(s["summary"])}</span></a></li>' for s in services["services"])
+    page = head("Ahmed Rabea | Brand identity designer and art director, Cairo",
+                "Brand designer and art director in Cairo. Brand identity, campaign systems, brand guidelines and pitch deck design for companies in the UAE, Saudi Arabia and Egypt, in English and Arabic.",
+                root, "home", "", [person_ld()]) + f"""<body class="home">
 {header(root)}
 <main id="main">
 <section class="hero" aria-labelledby="hero-name">
@@ -160,19 +200,25 @@ def build_home():
   <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span></h1>
   <div class="hero__foot">
     <p class="hero__lede">I design brand identities, campaign systems and guidelines for companies across the Gulf and Egypt, built to hold up long after launch day.</p>
-    <a class="hero__cue" href="#work">See the work</a>
+    <div class="hero__ctas">
+      <a class="btn btn--big" href="services/index.html#start">Start a project</a>
+      <a class="hero__cue" href="#work">See the work</a>
+    </div>
   </div>
 </section>
 
 <section id="work" class="work" aria-labelledby="work-h">
-  <div class="sec-head"><h2 id="work-h">Selected work</h2><p>{len(projects)} projects, client work first</p></div>
+  <div class="sec-head"><h2 id="work-h">Selected work</h2><p>{len(projects)} projects</p></div>
   <ul class="rows" role="list">
 {rows}
   </ul>
-  <div class="clients">
-    <h2 class="clients__h">Brands I've worked with</h2>
-    <ul class="clients__list" role="list">{"".join(f"<li>{e(c)}</li>" for c in CLIENTS)}</ul>
-  </div>
+</section>
+
+<section class="svc" aria-labelledby="svc-h">
+  <div class="sec-head"><h2 id="svc-h">Services</h2><p><a href="services/index.html">All services and how I work</a></p></div>
+  <ul class="svc__list" role="list">
+{svc}
+  </ul>
 </section>
 
 <section id="about" class="about" aria-labelledby="about-h">
@@ -182,10 +228,6 @@ def build_home():
     <div class="about__img">{portrait}</div>
     <div class="about__body">
       <p>I'm a brand designer and art director in Cairo with more than five years across B2B SaaS, healthcare, language services and consumer brands. I've run creative for five brands at once, led a team of designers, and built the guidelines and workflows that keep a brand consistent at volume. Alongside that, I take on a small number of independent projects.</p>
-      <h3>What I can help with</h3>
-      <dl class="ways">
-{services_html(root)}
-      </dl>
       <h3>Background</h3>
       <ol class="cv" role="list">
         <li><span>2026 to now</span><span>Senior Brand Designer, ELIXIR MD</span></li>
@@ -198,18 +240,7 @@ def build_home():
   </div>
 </section>
 
-<section id="contact" class="contact" aria-labelledby="contact-h">
-  <h2 id="contact-h">Have a brand, campaign or deck in mind? Tell me about it.</h2>
-  <a class="contact__mail" href="mailto:{SITE['email']}">{SITE['email']}</a>
-  <div class="contact__start">
-    <a class="btn" href="{BRIEF.format(email=SITE['email'])}">Start a project</a>
-    <p>Opens an email with three quick questions: what you need, your timeline and your budget range. I reply within two working days.</p>
-  </div>
-  <ul class="contact__links" role="list">
-    <li><a href="{SITE['linkedin']}">LinkedIn</a></li>
-    <li><a href="{SITE['behance']}">Behance</a></li>
-  </ul>
-</section>
+{enquiry(root, "Have a brand, campaign or deck in mind?")}
 </main>
 {footer(root)}
 </body>
@@ -218,12 +249,88 @@ def build_home():
     open("index.html", "w", encoding="utf-8").write(page)
 
 
-def frame_html(p, n, f, root):
+def build_services():
+    root = "../"
+    S = services
+    blocks = []
+    for s in S["services"]:
+        proof = "".join(f"""<a class="proof" href="{root}work/{x}/index.html">{img(meta[x]['cover'], root, '(max-width: 860px) 45vw, 220px', by_slug[x]['title'] + ' cover')}<span>{e(by_slug[x]['title'])}</span></a>""" for x in s["proof"])
+        inc = "".join(f"<li>{e(i)}</li>" for i in s["includes"])
+        blocks.append(f"""<article class="service" id="{s['id']}">
+  <div class="service__head">{icon(s['icon'], 'icon icon--big')}<h2>{e(s['name'])}</h2></div>
+  <div class="service__body">
+    <p class="service__sum">{e(s['summary'])}</p>
+    <div class="service__cols">
+      <div><h3>What you get</h3><ul class="ticks">{inc}</ul></div>
+      <div><h3>Good for</h3><p>{e(s['for'])}</p></div>
+    </div>
+    <div class="service__proof"><h3>See it in practice</h3><div class="proofs">{proof}</div></div>
+  </div>
+</article>""")
+    steps = "".join(f"<li><span class='step__n'>{n}</span><h3>{e(t)}</h3><p>{e(d)}</p></li>" for n, (t, d) in enumerate(S["process"], 1))
+    ways = "".join(f"<li><h3>{e(t)}</h3><p>{e(d)}</p></li>" for t, d in S["ways"])
+    faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in S["faq"])
+    jump = "".join(f'<li><a href="#{s["id"]}">{icon(s["icon"])}<span>{e(s["name"])}</span></a></li>' for s in S["services"])
+    ld = [
+        {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Ahmed Rabea, brand design",
+         "url": SITE["url"] + "/services/", "image": SITE["url"] + "/assets/og/home.jpg", "email": SITE["email"],
+         "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
+         "areaServed": ["United Arab Emirates", "Saudi Arabia", "Egypt"], "availableLanguage": ["English", "Arabic"],
+         "founder": {"@type": "Person", "name": "Ahmed Rabea"},
+         "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Brand design services", "itemListElement": [
+             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": s["name"], "description": s["summary"]}} for s in S["services"]]}},
+        {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in S["faq"]]},
+    ]
+    page = head("Brand design services: identity, campaigns, guidelines and pitch decks | Ahmed Rabea",
+                "Freelance brand identity design, campaign systems, brand guidelines and pitch deck design for companies in the UAE, Saudi Arabia and Egypt, in English and Arabic. Based in Cairo.",
+                root, "home", "services/", ld) + f"""<body class="services-page">
+{header(root, 'services')}
+<main id="main">
+<section class="s-hero">
+  <h1 class="s-hero__title">Brand design<br>services</h1>
+  <div class="s-hero__foot">
+    <p class="s-hero__lede">{e(S['intro'])}</p>
+    <div class="hero__ctas"><a class="btn btn--big" href="#start">Start a project</a><a class="hero__cue" href="{root}index.html#work">See the work</a></div>
+  </div>
+  <ul class="jump" role="list">{jump}</ul>
+</section>
+
+<div class="services">
+{chr(10).join(blocks)}
+</div>
+
+<section class="process" aria-labelledby="process-h">
+  <div class="sec-head"><h2 id="process-h">How a project runs</h2></div>
+  <ol class="steps" role="list">{steps}</ol>
+</section>
+
+<section class="ways-sec" aria-labelledby="ways-h">
+  <div class="sec-head"><h2 id="ways-h">Ways to work together</h2></div>
+  <ul class="ways3" role="list">{ways}</ul>
+</section>
+
+<section class="faq" aria-labelledby="faq-h">
+  <div class="sec-head"><h2 id="faq-h">Questions</h2></div>
+  <div class="faq__list">{faq}</div>
+</section>
+
+{enquiry(root)}
+</main>
+{footer(root)}
+</body>
+</html>
+"""
+    os.makedirs("services", exist_ok=True)
+    open("services/index.html", "w", encoding="utf-8").write(page)
+
+
+def frame_html(p, n, f, root, cls):
     light = " frame--light" if f.get("light") else ""
     full = f"{root}{f['files']['1800']}"
-    return (f'<figure class="frame{light}"><button class="frame__zoom" type="button" data-full="{full}" '
+    return (f'<figure class="frame{light}{cls}"><button class="frame__zoom" type="button" data-full="{full}" '
             f'aria-label="Enlarge frame {n} of {e(p["title"])}">'
-            f'{img(f, root, "(max-width: 1600px) 100vw, 1600px", p["title"] + " case study, frame " + str(n))}</button></figure>')
+            f'{img(f, root, "(max-width: 860px) 100vw, 50vw" if "grid" in cls else "(max-width: 1160px) 100vw, 1160px", p["title"] + ", " + p["kind"].lower() + ", frame " + str(n))}</button></figure>')
 
 
 def nav_row(q, root, label):
@@ -243,18 +350,24 @@ def build_case(i, p):
     m = meta[p["slug"]]
     nxt = projects[(i + 1) % len(projects)]
     prv = projects[i - 1]
-    frames = []
-    v = p.get("video")
     skip = set(p.get("skip_frames", []))
-    for n, f in enumerate(m["frames"], 1):
-        if n in skip: continue
-        frames.append(frame_html(p, n, f, root))
+    fr = [(n, f) for n, f in enumerate(m["frames"], 1) if n not in skip]
+    # Slide decks (wide frames) read better two-up; tall Behance modules stay single, narrower
+    wide = sum(f["w"] / f["h"] >= 1.6 for _, f in fr) > len(fr) / 2
+    folding = len(fr) > FOLD + 4
+    frames, v, shown = [], p.get("video"), 0
+    for n, f in fr:
+        shown += 1
+        extra = " is-extra" if folding and shown > FOLD else ""
+        span = " frame--span" if wide and shown == 1 else ""
+        frames.append(frame_html(p, n, f, root, (" frame--grid" if wide else "") + span + extra))
         if v and n == v["after"]:
             cls = "film film--vertical" if v["vertical"] else "film"
             frames.append(f"""<figure class="{cls}">
   <video controls playsinline preload="none" poster="{root}assets/img/{p['slug']}/poster.webp" src="{root}{m['video']}"></video>
   <figcaption>{e(v['caption'])}</figcaption>
 </figure>""")
+    more = f'<div class="more"><button class="btn" type="button" data-more>Show all {len(fr)} frames</button></div>' if folding else ""
     ar = f'<span class="case__ar" lang="ar" dir="rtl">{e(p["arabic"])}</span>' if p["arabic"] else ""
     intro = "\n".join(f"<p>{e(x)}</p>" for x in p["intro"])
     dl = "\n".join(f"<div><dt>{e(k)}</dt><dd>{e(val)}</dd></div>" for k, val in p["meta"])
@@ -263,9 +376,12 @@ def build_case(i, p):
         nums = '<ul class="nums" role="list" aria-label="In numbers">' + "".join(
             f'<li><span class="nums__n">{e(n)}</span><span class="nums__l">{e(l)}</span></li>' for n, l in p["numbers"]) + "</ul>"
     cover = img(m["cover"], root, "(max-width: 1680px) 100vw, 1680px", p["title"] + " cover", cls="case__cover", eager=True)
-    page = head(f"{p['title']}, by Ahmed Rabea", p["line"], root, p["slug"], f"work/{p['slug']}/") + f"""<body class="case-page">
+    ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": p["title"], "about": p["kind"],
+           "description": p["line"], "creator": {"@type": "Person", "name": "Ahmed Rabea"},
+           "image": f"{SITE['url']}/assets/og/{p['slug']}.jpg", "url": f"{SITE['url']}/work/{p['slug']}/"}]
+    page = head(f"{p['title']}: {p['kind'].lower()} | Ahmed Rabea", p["line"], root, p["slug"], f"work/{p['slug']}/", ld) + f"""<body class="case-page">
 <div class="progress" aria-hidden="true"></div>
-{header(root)}
+{header(root, 'work')}
 <main id="main">
 <article class="case">
   <header class="case__head">
@@ -282,10 +398,15 @@ def build_case(i, p):
     <dl class="case__meta">{dl}</dl>
   </div>
   {nums}
-  <div class="frames">
+  <div class="frames{' frames--grid' if wide else ''}{' is-folded' if folding else ''}">
 {chr(10).join(frames)}
   </div>
+  {more}
 </article>
+<section class="cta-band" aria-label="Start a project">
+  <p>Need something like {e(p['title'])} for your brand?</p>
+  <a class="btn btn--big" href="{root}services/index.html#start">Start a project</a>
+</section>
 <nav class="pn" aria-label="More projects">
   {nav_row(prv, root, "Previous project")}
   {nav_row(nxt, root, "Next project")}
@@ -309,14 +430,15 @@ def build_case(i, p):
 
 
 def build_meta_files():
-    urls = [""] + [f"work/{p['slug']}/" for p in projects]
+    urls = ["", "services/"] + [f"work/{p['slug']}/" for p in projects]
     sm = "\n".join(f"  <url><loc>{SITE['url']}/{u}</loc></url>" for u in urls)
     open("sitemap.xml", "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sm}\n</urlset>\n')
     open("robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE['url']}/sitemap.xml\n")
 
 
 build_home()
+build_services()
 for i, p in enumerate(projects):
     build_case(i, p)
 build_meta_files()
-print("built", 1 + len(projects), "pages")
+print("built", 2 + len(projects), "pages")
