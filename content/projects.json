@@ -104,6 +104,9 @@
     "tags": [
       "social",
       "campaign"
+    ],
+    "skip_frames": [
+      24
     ]
   },
   {
