@@ -72,6 +72,12 @@ TAGS = {  # id: (label, icon)
 }
 
 
+def kind_html(p, cls):
+    """Project category, with a quiet marker on self-initiated concepts so they're never mistaken for client work."""
+    mark = ' <span class="si">Self-initiated</span>' if p.get("self_initiated") else ""
+    return f'<span class="{cls}">{e(p["kind"])}{mark}</span>'
+
+
 def tag_chips(p, cls="tag"):
     return "".join(f'<span class="{cls}">{icon(TAGS[t][1])}{e(TAGS[t][0])}</span>' for t in p["tags"])
 
@@ -175,6 +181,13 @@ def enquiry(root, heading="Start a project", lead=None):
   <div class="start__intro">
     <h2 id="start-h">{e(heading)}</h2>
     <p>{e(lead)}</p>
+    <p class="start__steps-h" id="next-h">What happens next</p>
+    <ol class="start__steps" role="list" aria-labelledby="next-h">
+      <li>Send this by email or WhatsApp.</li>
+      <li>We talk through the goal, the audience and what already exists.</li>
+      <li>I come back with questions, scope and a proposal.</li>
+      <li>Work starts once you approve the proposal.</li>
+    </ol>
     <ul class="start__alt" role="list">
       <li>Email <a href="mailto:{SITE['email']}"{track("contact-email", "Email link, contact section")}>{SITE['email']}</a> <button type="button" class="copy" data-copy="{SITE['email']}"{track("contact-email-copy", "Copied email address")}>Copy</button></li>
       <li>WhatsApp <a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, contact section")}>Message me on WhatsApp</a></li>
@@ -215,7 +228,7 @@ def row(p, root):
   <a class="row" href="{root}work/{p['slug']}/index.html">
     {thumb}
     <span class="row__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
-    <span class="row__info"><span class="row__kind">{e(p['kind'])}</span>{e(p['line'])}<span class="tags">{tag_chips(p)}</span></span>
+    <span class="row__info">{kind_html(p, 'row__kind')}{e(p['line'])}<span class="tags">{tag_chips(p)}</span></span>
     {ar}
     <span class="row__go" aria-hidden="true">{icon('arrow')}</span>
   </a>
@@ -234,7 +247,7 @@ def feature_card(p, root, big=False):
     <span class="feat__media">{pic}</span>
     <span class="feat__body">
       <span class="feat__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
-      <span class="feat__kind">{e(p['kind'])}</span>
+      {kind_html(p, 'feat__kind')}
       <span class="feat__line">{e(p['line'])}</span>
     </span>
     <span class="row__go" aria-hidden="true">{icon('arrow')}</span>
@@ -323,7 +336,7 @@ def build_home():
   <div class="wall" aria-hidden="true"><div class="wall__tilt">{wall_html(root)}</div></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__top">
-    <p>Hi, I'm Ahmed.<br>Senior brand designer and art director, Cairo</p>
+    <p class="hero__role">Hi, I'm Ahmed.<br><strong>Senior brand designer and art director</strong>, Cairo</p>
     <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select freelance projects</p>
   </div>
   <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span><span class="visually-hidden">, {ROLE}</span></h1>
@@ -463,14 +476,16 @@ def build_services():
   <ul class="jump" role="list">{jump}</ul>
 </section>
 
-<div class="services">
-{chr(10).join(blocks)}
-</div>
-
 <section id="quick" class="quick" aria-labelledby="quick-h">
   <div class="sec-head"><h2 id="quick-h">Ways to start</h2><p>Pick the size that fits. Not sure? Start with a review.</p></div>
   <ul class="quick__list" role="list">{starts}</ul>
 </section>
+
+<div class="services">
+{chr(10).join(blocks)}
+</div>
+
+
 
 <section class="process" aria-labelledby="process-h">
   <div class="sec-head"><h2 id="process-h">How a project runs</h2></div>
@@ -521,7 +536,7 @@ def nav_row(q, root, label):
     <p class="next__label">{label}</p>
     <a class="row row--next" href="{root}work/{q['slug']}/index.html" data-peek="{cover_small(q['slug'], root)}">
       <span class="row__title"><img class="logo" src="{root}assets/img/logos/{q['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(q['title'])}</span>
-      <span class="row__info"><span class="row__kind">{e(q['kind'])}</span>{e(q['line'])}</span>
+      <span class="row__info">{kind_html(q, 'row__kind')}{e(q['line'])}</span>
       {ar}
     </a>
   </div>"""
@@ -557,10 +572,14 @@ def build_case(i, p):
 
     # Chapters: everything else, grouped and collapsed, so nobody has to scroll past 30 slides
     chapters, nav = [], []
-    for c, (title, nums) in enumerate(C["chapters"], 1):
+    picks_all = C.get("picks") or [[] for _ in C["chapters"]]
+    for c, ((title, nums), pk) in enumerate(zip(C["chapters"], picks_all), 1):
         nums = [n for n in nums if n not in skip]
         if not nums: continue
         cid = f"ch-{c}"
+        # Picks: the two or three strongest images of the chapter, visible without opening it
+        pk = [n for n in pk if n in nums]
+        pick_html = "".join(frame_html(p, n, frame_of(p["slug"], n), root, "(max-width: 860px) 50vw, 300px", "frame pick") for n in pk)
         thumbs = "".join(f'<img src="{root}{frame_of(p["slug"], n)["thumb"]}" width="160" height="{round(160 * frame_of(p["slug"], n)["h"] / frame_of(p["slug"], n)["w"])}" alt="" loading="lazy">' for n in nums[:4])
         body = []
         for n in nums:
@@ -569,10 +588,15 @@ def build_case(i, p):
             if v and n == v["after"]:
                 body.append(film_html(p, root, v, m))
         count = f"{len(nums)} image{'s' if len(nums) > 1 else ''}" + (" and a film" if v and v["after"] in nums else "")
-        chapters.append(f"""<details class="chapter" id="{cid}">
-  <summary><span class="chapter__n">{c:02d}</span><span class="chapter__t">{e(title)}</span><span class="chapter__count">{count}</span><span class="chapter__thumbs" aria-hidden="true">{thumbs}</span><span class="chapter__toggle" aria-hidden="true">{icon('plus')}</span></summary>
+        thumbs_html = "" if pk else f'<span class="chapter__thumbs" aria-hidden="true">{thumbs}</span>'
+        more = len(nums) - len(pk)
+        picks_block = (f'<div class="chapter__picks picks--{"wide" if wide_set else "tall"}">{pick_html}'
+                       f'<button type="button" class="chapter__more" data-open-ch="{cid}">Show all {len(nums)}</button></div>') if pk and more > 0 else (
+                       f'<div class="chapter__picks picks--{"wide" if wide_set else "tall"}">{pick_html}</div>' if pk else "")
+        chapters.append(f"""<div class="chapter-block"><details class="chapter" id="{cid}">
+  <summary><span class="chapter__n">{c:02d}</span><span class="chapter__t">{e(title)}</span><span class="chapter__count">{count}</span>{thumbs_html}<span class="chapter__toggle" aria-hidden="true">{icon('plus')}</span></summary>
   <div class="chapter__body">{''.join(body)}</div>
-</details>""")
+</details>{picks_block}</div>""")
         nav.append(f'<li><a href="#{cid}" data-open="{cid}"><span>{c:02d}</span>{e(title)}</a></li>')
 
     # Outcome: real results only. Numbers already in the project are scale facts, shown with it.
@@ -612,7 +636,7 @@ def build_case(i, p):
 
   <section class="case__intro" aria-labelledby="ov-h">
     <div class="case__text">
-      <h2 id="ov-h" class="case__kind">{e(p['kind'])}</h2>
+      <h2 id="ov-h" class="case__kind">{e(p['kind'])}{' <span class="si">Self-initiated</span>' if p.get('self_initiated') else ''}</h2>
       <p class="tags tags--case">{tag_chips(p)}</p>
       <p class="case__line">{e(p['line'])}</p>
       <div class="story">{story}</div>

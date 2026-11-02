@@ -88,9 +88,13 @@
     dlg.querySelector('.viewer__scroll').scrollTo(0, 0);
   };
   all.forEach(b => b.addEventListener('click', () => {
-    const group = b.closest('.bento, .chapter__body');
+    // A pick opens the viewer on its whole chapter, starting at that image
+    const block = b.closest('.chapter__picks') && b.closest('.chapter-block');
+    const group = block ? block.querySelector('.chapter__body') : b.closest('.bento, .chapter__body');
     btns = group ? [...group.querySelectorAll('.frame__zoom')] : all;
-    opener = b; show(btns.indexOf(b)); dlg.showModal();
+    let at = btns.indexOf(b);
+    if (at < 0) at = Math.max(0, btns.findIndex(x => x.dataset.full === b.dataset.full));
+    opener = b; show(at); dlg.showModal();
   }));
   dlg.addEventListener('click', ev => {
     const v = ev.target.dataset && ev.target.dataset.v;
@@ -110,6 +114,11 @@
 (() => {
   const chapters = [...document.querySelectorAll('.chapter')];
   if (!chapters.length) return;
+  document.querySelectorAll('[data-open-ch]').forEach(btn => btn.addEventListener('click', () => {
+    const d = document.getElementById(btn.dataset.openCh); if (!d) return;
+    d.open = true; d.querySelector('summary').focus({ preventScroll: true });
+    d.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }));
   document.querySelectorAll('[data-open]').forEach(a => a.addEventListener('click', () => {
     const d = document.getElementById(a.dataset.open); if (d) d.open = true;
   }));

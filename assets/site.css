@@ -448,7 +448,7 @@ p { margin: 0 0 1em; }
 }
 @media (max-width: 860px) {
   .bar__name span { display: none; }
-  .bar__nav a:nth-child(1), .bar__nav a:nth-child(3) { display: none; }
+  .bar__nav a:nth-child(3) { display: none; }
   .bar__nav { gap: 12px; align-items: center; }
   .start, .service, .service__cols, .start__row { grid-template-columns: 1fr; }
   .service__head { position: static; grid-template-columns: auto 1fr; align-items: center; }
@@ -668,3 +668,45 @@ p { margin: 0 0 1em; }
   .sv__name { font-size: clamp(1.7rem, 8vw, 2.3rem); }
 }
 .service__range { margin: 4px 0 0; color: var(--muted); font-size: var(--step--1); }
+
+/* Self-initiated marker: present everywhere a project is listed, but quiet */
+.si { color: var(--muted); font-weight: 400; white-space: nowrap; }
+.si::before { content: "· "; }
+.feat__kind .si { display: block; margin-top: 2px; }
+.feat__kind .si::before { content: none; }
+@media (max-width: 860px) { .row__kind .si { display: block; } .row__kind .si::before { content: none; } }
+
+/* Hero role line: readable over the work wall without changing the hero */
+.hero__role, .hero__open { padding: 10px 14px; border-radius: 10px; background: rgba(13,16,15,.78); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--fg); line-height: 1.4; }
+.hero__role { font-size: clamp(1rem, 1.2vw, 1.2rem); }
+.hero__role strong { font-weight: 700; }
+.hero__open { align-self: start; }
+@media (max-width: 860px) { .hero__top { gap: 10px; } .hero__role, .hero__open { padding: 8px 11px; } .hero__open { font-size: .82rem; } }
+/* Enquiry steps */
+.start__steps-h { margin: 20px 0 0; font-size: var(--step--1); font-weight: 600; color: var(--fg); }
+.start__steps { margin: 10px 0 22px; padding: 0; list-style: none; counter-reset: st; display: grid; gap: 8px; color: #C6CCC8; font-size: var(--step--1); }
+.start__steps li { counter-increment: st; display: grid; grid-template-columns: 26px 1fr; }
+.start__steps li::before { content: counter(st, decimal-leading-zero); color: var(--teal); font-variant-numeric: tabular-nums; }
+/* Narrow phones: keep Work, Services and the CTA on one line */
+@media (max-width: 400px) { .bar__nav { gap: 10px; } .bar__nav a { font-size: .85rem; } .bar__cta { padding: 7px 11px; } .bar__name { font-size: 1rem; } }
+.bar__name, .bar__cta { white-space: nowrap; }
+@media (max-width: 340px) { .bar__nav a:nth-child(1) { display: none; } }
+
+/* Chapter picks: the strongest images of each chapter, visible without opening it */
+.chapter-block { border-top: 1px solid var(--line); }
+.chapter-block:last-child { border-bottom: 1px solid var(--line); }
+.chapter-block .chapter, .chapter-block .chapter:last-child { border: 0; }
+.chapter__picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding-bottom: clamp(20px, 2.6vw, 32px); }
+.chapter[open] + .chapter__picks { display: none; }
+.chapter__picks .frame { margin: 0; padding: 0; overflow: hidden; border-radius: 8px; background: var(--bg-2); }
+.picks--wide .frame { aspect-ratio: 16 / 10; }
+.picks--tall .frame { aspect-ratio: 4 / 3; }
+.chapter__picks .frame__zoom { height: 100%; }
+.chapter__picks .frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 0; transition: transform .7s var(--ease); }
+.chapter__picks .frame:hover img { transform: scale(1.03); }
+.chapter__more { grid-column: 1 / -1; justify-self: start; font: inherit; font-size: var(--step--1); color: var(--fg); background: none; border: 0; padding: 2px 0; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--c); cursor: pointer; }
+.chapter__more:hover { color: var(--c); }
+@media (max-width: 860px) {
+  .chapter__picks { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .chapter__picks .frame:nth-of-type(3) { display: none; }
+}

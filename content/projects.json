@@ -45,7 +45,7 @@
       "client": "mazeed",
       "industry": "B2B accounting and e-invoicing software",
       "year": "2025 to 2026",
-      "engagement": null,
+      "engagement": "In-house, as Senior Designer",
       "context": "mazeed sells accounting, tax and e-invoicing software to small and mid-size businesses in the UAE and Saudi Arabia.",
       "challenge": "It had to look as trustworthy as a bank and move as fast as a startup.",
       "direction": "I inherited the wordmark and the core colours. My job was everything around them: how the purple, the mint and the chevron behave across hundreds of assets in English and Arabic. That meant a creative direction for 2026 built on a competitive read of QuickBooks, Xero and Zoho Books, one layout for three products, a 16-icon service system, and bilingual ads that are mirrored for right-to-left reading rather than translated. Single campaign systems reached 80 assets across two languages and five formats.",
@@ -109,6 +109,32 @@
             24
           ]
         ]
+      ],
+      "picks": [
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          6,
+          10,
+          8
+        ],
+        [
+          16,
+          17,
+          13
+        ],
+        [
+          21,
+          20,
+          22
+        ],
+        [
+          23,
+          24
+        ]
       ]
     }
   },
@@ -117,7 +143,7 @@
     "title": "AYWA",
     "arabic": "أيوة",
     "kind": "Brand identity for a fintech app",
-    "line": "Identity for a card and money app for Egypt's 16 to 28 year olds. Aywa is the loud Egyptian yes.",
+    "line": "An identity concept for a card and money app aimed at Egypt's 16 to 28 year olds. Aywa is the loud Egyptian yes.",
     "meta": [
       [
         "Role",
@@ -147,11 +173,11 @@
       "client": null,
       "industry": "Fintech, Gen Z banking",
       "year": "TODO: year or years of the project",
-      "engagement": null,
+      "engagement": "Self-initiated brand concept",
       "context": "TODO: optional. Who the client is and the situation before you started.",
-      "challenge": "Give a card and money app for Egypt's 16 to 28 year olds an identity as quick and direct as the product itself: four minutes to open an account, one tap to pay, send or split a bill.",
+      "challenge": "A self-set brief: an identity for a Gen Z money app that feels as quick and direct as the product it imagines, with four minutes to open an account and one tap to pay, send or split a bill.",
       "direction": "The idea is money in colour. Your money splits into five pockets, and the colours from the photography become those pockets: pink for going out, volt for main, orange for food, blue for saving and chrome for bills. Each pocket gets its own virtual card, so you always see where your money goes.",
-      "system": "AYWA opens an account in four minutes with no branch, then lets you tap to pay, send in seconds and split a bill in one tap. The identity runs on one rule, the Lean: everything tilts 10° forward. The custom wordmark has no vertical strokes, and the centre of the W breaks the cap line by 18%. That peak becomes the app symbol and the hero of the card.",
+      "system": "In the concept, AYWA opens an account in four minutes with no branch, then lets you tap to pay, send in seconds and split a bill in one tap. The identity runs on one rule, the Lean: everything tilts 10° forward. The custom wordmark has no vertical strokes, and the centre of the W breaks the cap line by 18%. That peak becomes the app symbol and the hero of the card.",
       "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
       "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
       "highlights": [
@@ -225,15 +251,45 @@
       ],
       "drafts": [
         "challenge"
+      ],
+      "picks": [
+        [
+          1,
+          3,
+          6
+        ],
+        [
+          12,
+          9,
+          10
+        ],
+        [
+          16,
+          15
+        ],
+        [
+          19,
+          20,
+          17
+        ],
+        [
+          22
+        ],
+        [
+          25,
+          26,
+          29
+        ]
       ]
-    }
+    },
+    "self_initiated": true
   },
   {
     "slug": "vult",
     "title": "VULT",
     "arabic": "ڤولت",
     "kind": "Brand identity and packaging",
-    "line": "An Arabic identity for an energy drink named after a unit of voltage.",
+    "line": "An Arabic identity concept for an energy drink named after a unit of voltage.",
     "meta": [
       [
         "Role",
@@ -268,11 +324,11 @@
       "client": null,
       "industry": "Energy drinks",
       "year": "TODO: year or years of the project",
-      "engagement": null,
+      "engagement": "Self-initiated brand concept",
       "context": "TODO: optional. Who the client is and the situation before you started.",
-      "challenge": "Replace a generic Latin wordmark and gradient with an identity that works first in Arabic and could only belong to this name, from the can to the poster to the feed.",
+      "challenge": "A self-set brief: an energy drink identity that works first in Arabic and could only belong to this name, from the can to the poster to the feed.",
       "direction": "In Arabic, jahd (جهد) means both electrical voltage and human effort. VULT sits exactly between the two, and the whole identity is built on that coincidence.",
-      "system": "The old Latin wordmark with its gradient was replaced by an Arabic wordmark: four letters carried on a single wire, with a spark drawn into the lam. Six flat colours, no gradients, and a set of single-word Arabic headlines carry it from can to poster to the feed. The case study itself is written in Arabic, on purpose.",
+      "system": "Instead of a Latin wordmark with a gradient, the identity is built on an Arabic wordmark: four letters carried on a single wire, with a spark drawn into the lam. Six flat colours, no gradients, and a set of single-word Arabic headlines carry it from can to poster to the feed. The case study itself is written in Arabic, on purpose.",
       "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
       "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
       "highlights": [
@@ -346,8 +402,41 @@
       ],
       "drafts": [
         "challenge"
+      ],
+      "picks": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          7,
+          8,
+          5
+        ],
+        [
+          11,
+          10,
+          14
+        ],
+        [
+          16,
+          15,
+          18
+        ],
+        [
+          19,
+          23,
+          21
+        ],
+        [
+          30,
+          24,
+          28
+        ]
       ]
-    }
+    },
+    "self_initiated": true
   },
   {
     "slug": "aureya",
@@ -385,7 +474,7 @@
       "client": null,
       "industry": "Luxury skincare",
       "year": "TODO: year or years of the project",
-      "engagement": null,
+      "engagement": "Client brand, reimagined",
       "context": "Aureya is a skincare house for the modern Gulf woman: rooted in ritual, quiet in its confidence, fluent in two languages.",
       "challenge": "The complete visual world, from identity and product architecture to art direction, a campaign and a social system that can run every week without losing its poise.",
       "direction": "The idea is golden hour, kept. The palette is the product line: three colours for three collections, so a customer can read the shelf and the feed by colour alone. Arabic leads, in one weight and without stretched kashida.",
@@ -453,6 +542,33 @@
             23
           ]
         ]
+      ],
+      "picks": [
+        [
+          1,
+          3,
+          2
+        ],
+        [
+          4,
+          6,
+          7
+        ],
+        [
+          11,
+          9,
+          10
+        ],
+        [],
+        [
+          16,
+          17,
+          20
+        ],
+        [
+          22,
+          23
+        ]
       ]
     }
   },
@@ -506,7 +622,7 @@
       "client": "mazeed, Bayantech, ATOP, Aureya, Reefer Zone and others",
       "industry": "SaaS, language services, healthcare, beauty, refrigeration",
       "year": "2023 to 2026",
-      "engagement": null,
+      "engagement": "Client work, plus self-initiated campaign ideas",
       "context": "The first half is shipped work for mazeed, Bayantech, ATOP, Aureya and Reefer Zone, from a single SaaS idea built once and shipped in UAE English, UAE Arabic and Saudi Arabic, to refrigeration posts where the spec a buyer cares about is the headline. The second half is the ideas: four campaigns built on bilingual wordplay and two brands made from scratch.",
       "challenge": "Keep nine brands recognisable across three markets, two languages and every format, at weekly volume, without each post turning into a one-off.",
       "direction": "TODO: the core idea behind the visual direction.",
@@ -567,6 +683,28 @@
       ],
       "drafts": [
         "challenge"
+      ],
+      "picks": [
+        [
+          1,
+          5,
+          2
+        ],
+        [
+          9,
+          10,
+          8
+        ],
+        [
+          12,
+          15,
+          17
+        ],
+        [
+          18,
+          19,
+          21
+        ]
       ]
     }
   },
@@ -616,7 +754,7 @@
       "client": "Sheikh Khalifa Hospital Fujairah (Mubadarat)",
       "industry": "Healthcare",
       "year": "TODO: year or years of the project",
-      "engagement": null,
+      "engagement": "Client project",
       "context": "TODO: optional. Who the client is and the situation before you started.",
       "challenge": "A dense brief, made readable in seconds: 222 beds, 31 specialties and three centres of excellence for Sheikh Khalifa Hospital Fujairah.",
       "direction": "The Clinical Light direction uses cool whites, deep forest green and one emerald accent. A filled medical icon system and big-number layouts carry the facts, and a chapter rail in the footer replaces the usual page counter. Nothing was invented: the new slides re-present the client's own facts.",
@@ -625,7 +763,7 @@
       "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
       "highlights": [
         3,
-        13,
+        6,
         39,
         32,
         38
@@ -694,6 +832,33 @@
             37
           ]
         ]
+      ],
+      "picks": [
+        [
+          2,
+          23,
+          31
+        ],
+        [
+          4,
+          7,
+          10
+        ],
+        [
+          16,
+          17,
+          22
+        ],
+        [
+          25,
+          29,
+          26
+        ],
+        [
+          36,
+          34,
+          35
+        ]
       ]
     }
   },
@@ -702,7 +867,7 @@
     "title": "roava",
     "arabic": "",
     "kind": "Brand identity and packaging",
-    "line": "A specialty coffee brand that is calm and loud at once: soft lavender, broken by one lime accent.",
+    "line": "A specialty coffee brand concept that is calm and loud at once: soft lavender, broken by one lime accent.",
     "meta": [
       [
         "Role",
@@ -728,9 +893,9 @@
       "client": null,
       "industry": "Specialty coffee",
       "year": "TODO: year or years of the project",
-      "engagement": null,
+      "engagement": "Self-initiated brand concept",
       "context": "TODO: optional. Who the client is and the situation before you started.",
-      "challenge": "A coffee brand that feels calm and loud at once.",
+      "challenge": "A self-set brief: a specialty coffee brand that feels calm and loud at once.",
       "direction": "The answer was a system of restraint. Three soft purples do the quiet work, ink carries the type, and lime appears once per composition, never twice.",
       "system": "The rounded wordmark hides a coffee bean inside the o, with three strokes of steam above it. An arcade pattern borrowed from the shopfront is built from one module and always rises from the bottom edge, across cups, pouches, bags, signage and the feed.",
       "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
@@ -782,15 +947,37 @@
             14
           ]
         ]
+      ],
+      "drafts": [
+        "challenge"
+      ],
+      "picks": [
+        [
+          1,
+          4,
+          2
+        ],
+        [],
+        [
+          9
+        ],
+        [
+          11
+        ],
+        [
+          13,
+          14
+        ]
       ]
-    }
+    },
+    "self_initiated": true
   },
   {
     "slug": "qinwan",
     "title": "Qinwan",
     "arabic": "قنوان",
     "kind": "Brand identity and company profile",
-    "line": "Brand identity and a 31-page company profile for a family house of dates and coffee.",
+    "line": "A brand identity and 31-page company profile for an imagined family house of dates and coffee.",
     "meta": [
       [
         "Role",
@@ -816,9 +1003,9 @@
       "client": null,
       "industry": "Dates, coffee and gifting",
       "year": "TODO: year or years of the project",
-      "engagement": null,
-      "context": "Qinwan is a house of dates, coffee and gifting, presented the way a family business in the Gulf would present itself: as a company profile.",
-      "challenge": "Present a house of dates, coffee and gifting with the weight of an established Gulf family business, carried from the family letter through corporate gifting, hospitality, retail and the app.",
+      "engagement": "Self-initiated brand concept",
+      "context": "Qinwan is an imagined house of dates, coffee and gifting, presented the way a family business in the Gulf would present itself: as a company profile.",
+      "challenge": "A self-set brief: show how a Gulf family business of dates, coffee and gifting would present itself, from the family letter through corporate gifting, hospitality, retail and the app.",
       "direction": "The profile walks from the family letter and the collection to corporate gifting, hospitality, the seasons, the boutique and the app, and closes with the construction of the Arabic wordmark and brandmark. The identity is red, ink and paper, with a woven Sadu band and a seal you can stamp on a box.",
       "system": "TODO: optional. The rules that make this a system: what stays fixed, what flexes.",
       "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
@@ -895,8 +1082,39 @@
       ],
       "drafts": [
         "challenge"
+      ],
+      "picks": [
+        [
+          1,
+          4,
+          5
+        ],
+        [
+          12,
+          13,
+          11
+        ],
+        [
+          18,
+          19,
+          17
+        ],
+        [
+          23,
+          22,
+          24
+        ],
+        [
+          25,
+          28
+        ],
+        [
+          31,
+          30
+        ]
       ]
-    }
+    },
+    "self_initiated": true
   },
   {
     "slug": "pizza-rush",
@@ -930,7 +1148,7 @@
       "client": null,
       "industry": "Food and delivery",
       "year": "2026",
-      "engagement": null,
+      "engagement": "Self-initiated brand concept",
       "context": "Pizza Rush started as one of my earliest portfolio pieces. In 2026 I took it apart and rebuilt it, and the case study shows that jump from version one to version two.",
       "challenge": "Take one of my earliest portfolio pieces apart and rebuild it into an identity loud and fast enough for the box, the delivery bag, the storefront, the app and the feed.",
       "direction": "TODO: the core idea behind the visual direction.",
@@ -1006,7 +1224,39 @@
       ],
       "drafts": [
         "challenge"
+      ],
+      "picks": [
+        [
+          1,
+          4,
+          6
+        ],
+        [
+          7,
+          9,
+          10
+        ],
+        [
+          13,
+          12
+        ],
+        [
+          17,
+          16,
+          15
+        ],
+        [
+          22,
+          21,
+          24
+        ],
+        [
+          25,
+          27,
+          28
+        ]
       ]
-    }
+    },
+    "self_initiated": true
   }
 ]
