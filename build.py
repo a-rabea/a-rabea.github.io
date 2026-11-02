@@ -37,6 +37,7 @@ ICONS.update({
     "mascot": '<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1.8 2 5.2 2 7 0"/><path d="M9 9.5h.01M15 9.5h.01" stroke-width="2.4"/>',
     "lettering": '<path d="M4 20c4-1 6-4 7-8s3-8 9-8"/><path d="M14 20h6"/><circle cx="6" cy="7" r="1.6"/>',
     "arrow": '<path d="M7 17L17 7M9 7h8v8"/>',
+    "audit": '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M8 10.5l2 2 3.5-4"/>',
 })
 TAGS = {  # id: (label, icon)
     "identity": ("Brand identity", "identity"), "campaign": ("Campaigns", "campaign"), "social": ("Social media", "social"),
@@ -144,7 +145,7 @@ def enquiry(root, heading="Start a project", lead=None):
   <form class="start__form" data-email="{SITE['email']}">
     <fieldset>
       <legend>What do you need?</legend>
-      <div class="chips">{boxes}<label class="chip"><input type="checkbox" name="need" value="Not sure yet"><span>Not sure yet</span></label></div>
+      <div class="chips">{boxes}<label class="chip"><input type="checkbox" name="need" value="A quick start (audit, template kit or deck refresh)"><span>A quick start</span></label><label class="chip"><input type="checkbox" name="need" value="Not sure yet"><span>Not sure yet</span></label></div>
     </fieldset>
     <div class="start__row">
       <label>Your name<input name="name" autocomplete="name" required></label>
@@ -217,7 +218,7 @@ def build_home():
     portrait = img(meta["portrait"], root, "(max-width: 760px) 90vw, 34vw", "Portrait of Ahmed Rabea")
     svc = "\n".join(f'<li><a href="services/index.html#{s["id"]}">{icon(s["icon"])}<span class="svc__name">{e(s["name"])}</span><span class="svc__sum">{e(s["summary"])}</span></a></li>' for s in services["services"])
     page = head("Ahmed Rabea | Brand identity designer and art director, Cairo",
-                "Brand designer and art director in Cairo. Brand identity, campaign systems, brand guidelines and pitch deck design for companies in the UAE, Saudi Arabia and Egypt, in English and Arabic.",
+                "Brand designer and art director in Cairo. Brand identity, social media design, campaigns, brand guidelines and pitch deck design for companies in the UAE, Saudi Arabia and Egypt, in English and Arabic.",
                 root, "home", "", [person_ld()]) + f"""<body class="home">
 {header(root)}
 <main id="main">
@@ -251,6 +252,7 @@ def build_home():
   <ul class="svc__list" role="list">
 {svc}
   </ul>
+  <p class="svc__quick">Want to start small? Try a <a href="services/index.html#quick">brand audit, a social media template kit or a deck refresh</a>.</p>
 </section>
 
 <section id="about" class="about" aria-labelledby="about-h">
@@ -302,6 +304,7 @@ def build_services():
     steps = "".join(f"<li><span class='step__n'>{n}</span><h3>{e(t)}</h3><p>{e(d)}</p></li>" for n, (t, d) in enumerate(S["process"], 1))
     ways = "".join(f"<li><h3>{e(t)}</h3><p>{e(d)}</p></li>" for t, d in S["ways"])
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in S["faq"])
+    quick = "".join(f'<li id="{q["id"]}">{icon(q["icon"])}<h3>{e(q["name"])}</h3><p>{e(q["summary"])}</p><p class="quick__get">{e(q["get"])}</p><a class="quick__cta" href="#start">Ask about this</a></li>' for q in S["quick"])
     jump = "".join(f'<li><a href="#{s["id"]}">{icon(s["icon"])}<span>{e(s["name"])}</span></a></li>' for s in S["services"])
     ld = [
         {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Ahmed Rabea, brand design",
@@ -310,12 +313,12 @@ def build_services():
          "areaServed": ["United Arab Emirates", "Saudi Arabia", "Egypt"], "availableLanguage": ["English", "Arabic"],
          "founder": {"@type": "Person", "name": "Ahmed Rabea"},
          "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Brand design services", "itemListElement": [
-             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": s["name"], "description": s["summary"]}} for s in S["services"]]}},
+             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": s["name"], "description": s["summary"]}} for s in S["services"] + S["quick"]]}},
         {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in S["faq"]]},
     ]
     page = head("Brand design services: identity, campaigns, guidelines and pitch decks | Ahmed Rabea",
-                "Freelance brand identity design, campaign systems, brand guidelines and pitch deck design for companies in the UAE, Saudi Arabia and Egypt, in English and Arabic. Based in Cairo.",
+                "Freelance brand identity design, social media design and campaigns, brand guidelines and pitch deck design for companies in the UAE, Saudi Arabia and Egypt, in English and Arabic. Based in Cairo.",
                 root, "home", "services/", ld) + f"""<body class="services-page">
 {header(root, 'services')}
 <main id="main">
@@ -331,6 +334,11 @@ def build_services():
 <div class="services">
 {chr(10).join(blocks)}
 </div>
+
+<section id="quick" class="quick" aria-labelledby="quick-h">
+  <div class="sec-head"><h2 id="quick-h">Quick starts</h2><p>Smaller, fixed-scope ways to work together</p></div>
+  <ul class="quick__list" role="list">{quick}</ul>
+</section>
 
 <section class="process" aria-labelledby="process-h">
   <div class="sec-head"><h2 id="process-h">How a project runs</h2></div>
