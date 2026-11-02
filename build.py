@@ -659,6 +659,7 @@ def build_checklist():
         todo = [k for k in ("client", "industry", "engagement", "year", "context", "challenge", "direction", "system", "outcome", "credits")
                 if not filled(C.get(k))]
         lines.append(f"## {p['title']}")
+        lines += [f"- [ ] `{k}` is a draft I wrote from your existing copy. Review or replace: \"{C[k]}\"" for k in C.get("drafts", [])]
         lines += [f"- [ ] `{k}`" + (f": {C[k][6:]}" if C.get(k) else ": optional, leave null to hide") for k in todo] or ["- Nothing missing"]
         lines.append("")
     open("content/CONTENT-TODO.md", "w", encoding="utf-8").write("\n".join(lines))

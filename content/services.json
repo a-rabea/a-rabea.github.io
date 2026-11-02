@@ -20,7 +20,7 @@
         "vult"
       ],
       "price": "From USD 3,000",
-      "timeline": "4 to 6 weeks"
+      "timeline": "3 to 4 weeks"
     },
     {
       "id": "brand-guidelines",
@@ -40,7 +40,7 @@
         "mazeed"
       ],
       "price": "From USD 1,500",
-      "timeline": "2 to 4 weeks"
+      "timeline": "2 to 3 weeks"
     },
     {
       "id": "social-media",
@@ -60,7 +60,7 @@
         "aureya"
       ],
       "price": "From USD 1,200",
-      "timeline": "2 to 3 weeks for the system, then monthly"
+      "timeline": "2 weeks for the system, then monthly"
     },
     {
       "id": "presentation-design",
@@ -79,7 +79,7 @@
         "qinwan"
       ],
       "price": "From USD 900",
-      "timeline": "1 to 3 weeks"
+      "timeline": "1 week for a presentation, 1 to 2 weeks for a company profile"
     },
     {
       "id": "creative-direction",
@@ -162,7 +162,7 @@
       "name": "Brand audit",
       "summary": "A written review of how your brand shows up today, with clear fixes in order of impact.",
       "get": "A short report and a call to walk through it.",
-      "price": "From USD 400, about 1 week"
+      "price": "From USD 400, 3 to 5 days"
     },
     {
       "id": "social-kit",
@@ -170,7 +170,7 @@
       "name": "Social media template kit",
       "summary": "A set of on-brand, editable post and story templates your team can fill in every week.",
       "get": "Editable templates and a one-page usage guide.",
-      "price": "From USD 700, about 2 weeks"
+      "price": "From USD 700, about 10 days"
     },
     {
       "id": "deck-refresh",
@@ -178,7 +178,7 @@
       "name": "Deck refresh",
       "summary": "Your existing pitch or company deck, redesigned so it reads in seconds.",
       "get": "A redesigned deck plus a reusable master template.",
-      "price": "From USD 500, about 1 week"
+      "price": "From USD 500, 3 to 5 days"
     }
   ],
   "price_note": "Pricing and timelines: put text in any service's \"price\" or \"timeline\" (e.g. \"From USD 2,500\", \"4 to 6 weeks\") to show it. null hides it.",

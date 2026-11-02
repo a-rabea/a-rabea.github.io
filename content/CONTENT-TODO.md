@@ -10,20 +10,20 @@ Anything starting with TODO is hidden on the site until you replace it.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
 ## AYWA
+- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "Give a card and money app for Egypt's 16 to 28 year olds an identity as quick and direct as the product itself: four minutes to open an account, one tap to pay, send or split a bill."
 - [ ] `client`: optional, leave null to hide
 - [ ] `engagement`: optional, leave null to hide
 - [ ] `year`: year or years of the project
 - [ ] `context`: optional. Who the client is and the situation before you started.
-- [ ] `challenge`: the brief in one or two sentences. What problem did the client (or you) need solved?
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
 ## VULT
+- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "Replace a generic Latin wordmark and gradient with an identity that works first in Arabic and could only belong to this name, from the can to the poster to the feed."
 - [ ] `client`: optional, leave null to hide
 - [ ] `engagement`: optional, leave null to hide
 - [ ] `year`: year or years of the project
 - [ ] `context`: optional. Who the client is and the situation before you started.
-- [ ] `challenge`: the brief in one or two sentences. What problem did the client (or you) need solved?
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
@@ -36,8 +36,8 @@ Anything starting with TODO is hidden on the site until you replace it.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
 ## Ideas that scale
+- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "Keep nine brands recognisable across three markets, two languages and every format, at weekly volume, without each post turning into a one-off."
 - [ ] `engagement`: optional, leave null to hide
-- [ ] `challenge`: the brief in one or two sentences. What problem did the client (or you) need solved?
 - [ ] `direction`: the core idea behind the visual direction.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
@@ -59,18 +59,18 @@ Anything starting with TODO is hidden on the site until you replace it.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
 ## Qinwan
+- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "Present a house of dates, coffee and gifting with the weight of an established Gulf family business, carried from the family letter through corporate gifting, hospitality, retail and the app."
 - [ ] `client`: optional, leave null to hide
 - [ ] `engagement`: optional, leave null to hide
 - [ ] `year`: year or years of the project
-- [ ] `challenge`: the brief in one or two sentences. What problem did the client (or you) need solved?
 - [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
 ## Pizza Rush
+- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "Take one of my earliest portfolio pieces apart and rebuild it into an identity loud and fast enough for the box, the delivery bag, the storefront, the app and the feed."
 - [ ] `client`: optional, leave null to hide
 - [ ] `engagement`: optional, leave null to hide
-- [ ] `challenge`: the brief in one or two sentences. What problem did the client (or you) need solved?
 - [ ] `direction`: the core idea behind the visual direction.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
