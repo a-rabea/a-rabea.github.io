@@ -377,6 +377,16 @@ def build_home():
     open("index.html", "w", encoding="utf-8").write(page)
 
 
+def offer_ld(s):
+    """Schema.org Offer; adds the starting price when the service has one ("From USD 3,000")."""
+    o = {"@type": "Offer", "itemOffered": {"@type": "Service", "name": s["name"], "description": s["summary"]}}
+    import re
+    m = re.search(r"USD ([\d,]+)", s.get("price") or "")
+    if m:
+        o["priceSpecification"] = {"@type": "PriceSpecification", "minPrice": int(m.group(1).replace(",", "")), "priceCurrency": "USD"}
+    return o
+
+
 def build_services():
     root = "../"
     S = services
@@ -414,9 +424,9 @@ def build_services():
          "url": SITE["url"] + "/services/", "image": SITE["url"] + "/assets/og/home.jpg", "email": SITE["email"], "telephone": SITE["tel"],
          "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
          "areaServed": ["United Arab Emirates", "Saudi Arabia", "Egypt"], "availableLanguage": ["English", "Arabic"],
-         "founder": {"@id": PERSON_ID}, "provider": {"@id": PERSON_ID}, "priceRange": None,
+         "founder": {"@id": PERSON_ID}, "provider": {"@id": PERSON_ID}, "priceRange": "From USD 400",
          "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Brand design services", "itemListElement": [
-             {"@type": "Offer", "itemOffered": {"@type": "Service", "name": s["name"], "description": s["summary"]}} for s in S["services"] + S["quick"]]}},
+             offer_ld(s) for s in S["services"] + S["quick"]]}},
         {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in S["faq"]]},
         person_ld(), crumbs_ld(("Home", ""), ("Services", "services/")),

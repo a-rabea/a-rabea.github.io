@@ -5,7 +5,6 @@ Anything starting with TODO is hidden on the site until you replace it.
 
 ## mazeed
 - [ ] `engagement`: optional, leave null to hide
-- [ ] `challenge`: the brief in one or two sentences. What problem did the client (or you) need solved?
 - [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
@@ -32,7 +31,6 @@ Anything starting with TODO is hidden on the site until you replace it.
 - [ ] `client`: optional, leave null to hide
 - [ ] `engagement`: optional, leave null to hide
 - [ ] `year`: year or years of the project
-- [ ] `challenge`: the brief in one or two sentences. What problem did the client (or you) need solved?
 - [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
@@ -47,7 +45,7 @@ Anything starting with TODO is hidden on the site until you replace it.
 ## Sheikh Khalifa Hospital
 - [ ] `engagement`: optional, leave null to hide
 - [ ] `year`: year or years of the project
-- [ ] `challenge`: the brief in one or two sentences. What problem did the client (or you) need solved?
+- [ ] `context`: optional. Who the client is and the situation before you started.
 - [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
@@ -56,8 +54,7 @@ Anything starting with TODO is hidden on the site until you replace it.
 - [ ] `client`: optional, leave null to hide
 - [ ] `engagement`: optional, leave null to hide
 - [ ] `year`: year or years of the project
-- [ ] `challenge`: the brief in one or two sentences. What problem did the client (or you) need solved?
-- [ ] `direction`: the core idea behind the visual direction.
+- [ ] `context`: optional. Who the client is and the situation before you started.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 

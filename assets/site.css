@@ -638,3 +638,4 @@ p { margin: 0 0 1em; }
 .start-opt__ex b { display: block; color: var(--fg); font-weight: 600; margin-bottom: 2px; }
 .start-opt__ex .quick__get { display: block; margin-top: 2px; }
 .start-opt .quick__cta { align-self: end; }
+.service__cols p + h3 { margin-top: 18px; }

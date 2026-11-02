@@ -19,8 +19,8 @@
         "pizza-rush",
         "vult"
       ],
-      "price": null,
-      "timeline": null
+      "price": "From USD 3,000",
+      "timeline": "4 to 6 weeks"
     },
     {
       "id": "brand-guidelines",
@@ -39,8 +39,8 @@
         "roava",
         "mazeed"
       ],
-      "price": null,
-      "timeline": null
+      "price": "From USD 1,500",
+      "timeline": "2 to 4 weeks"
     },
     {
       "id": "social-media",
@@ -59,8 +59,8 @@
         "mazeed",
         "aureya"
       ],
-      "price": null,
-      "timeline": null
+      "price": "From USD 1,200",
+      "timeline": "2 to 3 weeks for the system, then monthly"
     },
     {
       "id": "presentation-design",
@@ -78,8 +78,8 @@
         "sheikh-khalifa-hospital",
         "qinwan"
       ],
-      "price": null,
-      "timeline": null
+      "price": "From USD 900",
+      "timeline": "1 to 3 weeks"
     },
     {
       "id": "creative-direction",
@@ -97,8 +97,8 @@
         "mazeed",
         "ideas-that-scale"
       ],
-      "price": null,
-      "timeline": null
+      "price": "From USD 1,200 a month",
+      "timeline": "Monthly, or a one-off review"
     }
   ],
   "process": [
@@ -148,7 +148,7 @@
     ],
     [
       "How much does a project cost?",
-      "It depends on scope. Share a rough budget range in the enquiry form and I'll tell you what fits it."
+      "Each service shows a starting price. The final quote depends on scope, languages and how many assets you need. Share a rough budget in the form and I'll tell you what fits it."
     ],
     [
       "How do we start?",
@@ -162,7 +162,7 @@
       "name": "Brand audit",
       "summary": "A written review of how your brand shows up today, with clear fixes in order of impact.",
       "get": "A short report and a call to walk through it.",
-      "price": null
+      "price": "From USD 400, about 1 week"
     },
     {
       "id": "social-kit",
@@ -170,7 +170,7 @@
       "name": "Social media template kit",
       "summary": "A set of on-brand, editable post and story templates your team can fill in every week.",
       "get": "Editable templates and a one-page usage guide.",
-      "price": null
+      "price": "From USD 700, about 2 weeks"
     },
     {
       "id": "deck-refresh",
@@ -178,7 +178,7 @@
       "name": "Deck refresh",
       "summary": "Your existing pitch or company deck, redesigned so it reads in seconds.",
       "get": "A redesigned deck plus a reusable master template.",
-      "price": null
+      "price": "From USD 500, about 1 week"
     }
   ],
   "price_note": "Pricing and timelines: put text in any service's \"price\" or \"timeline\" (e.g. \"From USD 2,500\", \"4 to 6 weeks\") to show it. null hides it.",
