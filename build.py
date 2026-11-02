@@ -58,7 +58,6 @@ def head(title, desc, root, og, path=""):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <meta name="theme-color" content="#0D100F">
-<meta name="p:domain_verify" content="021ae1545cf424912b139af6310727fe"/>
 <link rel="canonical" href="{url}">
 <meta property="og:site_name" content="Ahmed Rabea">
 <meta property="og:title" content="{e(title)}">
