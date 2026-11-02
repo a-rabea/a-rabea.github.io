@@ -27,7 +27,8 @@
         4
       ],
       "label": "Brand identity",
-      "timeline_short": "3–4 weeks"
+      "timeline_short": "3–4 weeks",
+      "range": "Most projects USD 3,000 to 6,000, depending on scope and languages"
     },
     {
       "id": "brand-guidelines",
@@ -54,7 +55,8 @@
         6
       ],
       "label": "Guidelines & systems",
-      "timeline_short": "2–3 weeks"
+      "timeline_short": "2–3 weeks",
+      "range": null
     },
     {
       "id": "social-media",
@@ -81,7 +83,8 @@
         3
       ],
       "label": "Social & campaigns",
-      "timeline_short": "2 weeks, then monthly"
+      "timeline_short": "2 weeks, then monthly",
+      "range": null
     },
     {
       "id": "presentation-design",
@@ -107,7 +110,8 @@
         6
       ],
       "label": "Decks & profiles",
-      "timeline_short": "1–2 weeks"
+      "timeline_short": "1–2 weeks",
+      "range": null
     },
     {
       "id": "creative-direction",
@@ -133,7 +137,8 @@
         4
       ],
       "label": "Creative direction",
-      "timeline_short": "Monthly or one-off"
+      "timeline_short": "Monthly or one-off",
+      "range": null
     }
   ],
   "process": [

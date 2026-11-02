@@ -409,6 +409,8 @@ def build_services():
     for s in S["services"]:
         proof = "".join(f"""<a class="proof" style="--c:{by_slug[x]['color']}" href="{root}work/{x}/index.html">{img(meta[x]['cover'], root, '(max-width: 860px) 45vw, 220px', '')}<span>{e(by_slug[x]['title'])}</span></a>""" for x in s["proof"])
         price = f'<p class="service__price">{e(s["price"])}</p>' if s.get("price") else ""
+        if s.get("range"):  # optional "most projects" range shown under the starting price
+            price += f'<p class="service__range">{e(s["range"])}</p>'
         inc = "".join(f"<li>{e(i)}</li>" for i in s["includes"])
         blocks.append(f"""<article class="service" id="{s['id']}">
   <div class="service__head">{icon(s['icon'], 'icon icon--big')}<h2>{e(s['name'])}</h2></div>

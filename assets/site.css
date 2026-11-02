@@ -667,3 +667,4 @@ p { margin: 0 0 1em; }
   .sv .row__go { display: none; }
   .sv__name { font-size: clamp(1.7rem, 8vw, 2.3rem); }
 }
+.service__range { margin: 4px 0 0; color: var(--muted); font-size: var(--step--1); }

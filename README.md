@@ -25,7 +25,7 @@ Fonts: Archivo and Readex Pro (SIL Open Font License), self-hosted in `assets/fo
 ## Pricing and timelines (off until approved)
 Every service in `content/services.json` has `"price"` and `"timeline"` set to `null`, which hides them. Quick starts have `"price"` too.
 Put text in them (for example `"From USD 2,500"`, `"4 to 6 weeks"`) and run `python3 build.py` to show them on the services page.
-The three "Ways to start" cards are the `start` list in the same file.
+The three "Ways to start" cards are the `start` list in the same file. A service can also have a `"range"` (for example "Most projects USD 3,000 to 6,000") shown under its starting price.
 
 ## Analytics
 - GoatCounter (cookie-free page views and click events) and Cloudflare Web Analytics (cookie-free visits and Core Web Vitals).
