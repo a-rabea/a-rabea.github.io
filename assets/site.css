@@ -471,3 +471,15 @@ p { margin: 0 0 1em; }
 
 .row__ar { white-space: nowrap; font-size: clamp(1.6rem, 3vw, 3.2rem); }
 .bar { align-items: center; }
+
+/* Project logo tiles */
+.logo { width: .78em; height: .78em; border-radius: .2em; flex: none; object-fit: cover; margin-inline-end: .1em;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 6px 18px rgba(0,0,0,.35); transition: transform .45s var(--ease), box-shadow .3s; }
+.row__title { gap: .28em; }
+.row:hover .logo { transform: rotate(-6deg) scale(1.06); box-shadow: 0 0 0 2px var(--c), 0 10px 26px color-mix(in srgb, var(--c) 35%, transparent); }
+.case__title > span:first-child { display: inline-flex; align-items: center; gap: .14em; }
+.logo--case { width: .62em; height: .62em; }
+.start__alt { list-style: none; padding: 0; display: grid; gap: 8px; margin-top: 28px; }
+.start__alt li { color: var(--muted); }
+.foot p:last-child { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.foot a { margin-inline-start: 0; }

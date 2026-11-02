@@ -13,12 +13,18 @@ SITE = {
     "email": "ahmed.r.bisher@gmail.com",
     "linkedin": "https://www.linkedin.com/in/a-rabea",
     "behance": "https://www.behance.net/a-rabea",
+    "phone": "+20 101 057 9844",
+    "tel": "+201010579844",
+    "whatsapp": "https://wa.me/201010579844",
 }
 projects = json.load(open("content/projects.json", encoding="utf-8"))
 services = json.load(open("content/services.json", encoding="utf-8"))
 by_slug = {p["slug"]: p for p in projects}
 meta = json.load(open("image_meta.json"))
 e = lambda s: html.escape(s, quote=True)
+import hashlib
+# Changes whenever the CSS or JS changes, so browsers never mix new pages with old styles
+VER = hashlib.md5(open("assets/site.css", "rb").read() + open("assets/site.js", "rb").read()).hexdigest()[:8]
 FOLD = 12  # slide-format case studies show this many frames before "Show all"
 
 # Line icons, drawn for this site (24px grid, 1.5 stroke)
@@ -99,8 +105,8 @@ def head(title, desc, root, og, path="", ld=None):
 <link rel="icon" href="{root}assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{root}assets/apple-touch-icon.png">
 <link rel="preload" href="{root}assets/fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{root}assets/site.css">
-<script src="{root}assets/site.js" defer></script>{lds}
+<link rel="stylesheet" href="{root}assets/site.css?v={VER}">
+<script src="{root}assets/site.js?v={VER}" defer></script>{lds}
 </head>
 """
 
@@ -127,7 +133,7 @@ def footer(root):
 </a>
 <footer class="foot">
   <p>Ahmed Rabea, brand designer and art director, Cairo</p>
-  <p><a href="{root}services/index.html">Services</a><a href="mailto:{SITE['email']}">Email</a><a href="{SITE['linkedin']}">LinkedIn</a><a href="{SITE['behance']}">Behance</a></p>
+  <p><a href="{root}services/index.html">Services</a><a href="mailto:{SITE['email']}">Email</a><a href="{SITE['whatsapp']}">WhatsApp</a><a href="tel:{SITE['tel']}">{SITE['phone']}</a><a href="{SITE['linkedin']}">LinkedIn</a><a href="{SITE['behance']}">Behance</a></p>
 </footer>
 """
 
@@ -140,7 +146,11 @@ def enquiry(root, heading="Start a project", lead=None):
   <div class="start__intro">
     <h2 id="start-h">{e(heading)}</h2>
     <p>{e(lead)}</p>
-    <p class="start__alt">Prefer to write it yourself? Email <a href="mailto:{SITE['email']}">{SITE['email']}</a> <button type="button" class="copy" data-copy="{SITE['email']}">Copy</button></p>
+    <ul class="start__alt" role="list">
+      <li>Email <a href="mailto:{SITE['email']}">{SITE['email']}</a> <button type="button" class="copy" data-copy="{SITE['email']}">Copy</button></li>
+      <li>WhatsApp <a href="{SITE['whatsapp']}">Message me on WhatsApp</a></li>
+      <li>Phone <a href="tel:{SITE['tel']}">{SITE['phone']}</a></li>
+    </ul>
   </div>
   <form class="start__form" data-email="{SITE['email']}">
     <fieldset>
@@ -172,7 +182,7 @@ def row(p, root):
     return f"""<li class="item" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
   <a class="row" href="{root}work/{p['slug']}/index.html" data-peek="{cover_small(p['slug'], root)}" aria-label="{e(p['title'])}: {e(p['kind'])}. View case study">
     {thumb}
-    <span class="row__title"><span class="row__dot" aria-hidden="true"></span>{e(p['title'])}</span>
+    <span class="row__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
     <span class="row__info"><span class="row__kind">{e(p['kind'])}</span>{e(p['line'])}<span class="tags">{tag_chips(p)}</span></span>
     {ar}
     <span class="row__go" aria-hidden="true">{icon('arrow')}</span>
@@ -207,7 +217,7 @@ def person_ld():
     return {"@context": "https://schema.org", "@type": "Person", "name": "Ahmed Rabea",
             "jobTitle": "Brand designer and art director",
             "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
-            "url": SITE["url"] + "/", "email": "mailto:" + SITE["email"],
+            "url": SITE["url"] + "/", "email": "mailto:" + SITE["email"], "telephone": SITE["tel"],
             "knowsAbout": [s["name"] for s in services["services"]] + ["Arabic typography", "Bilingual design"],
             "sameAs": [SITE["linkedin"], SITE["behance"]]}
 
@@ -308,7 +318,7 @@ def build_services():
     jump = "".join(f'<li><a href="#{s["id"]}">{icon(s["icon"])}<span>{e(s["name"])}</span></a></li>' for s in S["services"])
     ld = [
         {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Ahmed Rabea, brand design",
-         "url": SITE["url"] + "/services/", "image": SITE["url"] + "/assets/og/home.jpg", "email": SITE["email"],
+         "url": SITE["url"] + "/services/", "image": SITE["url"] + "/assets/og/home.jpg", "email": SITE["email"], "telephone": SITE["tel"],
          "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
          "areaServed": ["United Arab Emirates", "Saudi Arabia", "Egypt"], "availableLanguage": ["English", "Arabic"],
          "founder": {"@type": "Person", "name": "Ahmed Rabea"},
@@ -378,7 +388,7 @@ def nav_row(q, root, label):
     return f"""<div class="pn__item">
     <p class="next__label">{label}</p>
     <a class="row row--next" href="{root}work/{q['slug']}/index.html" data-peek="{cover_small(q['slug'], root)}">
-      <span class="row__title">{e(q['title'])}</span>
+      <span class="row__title"><img class="logo" src="{root}assets/img/logos/{q['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(q['title'])}</span>
       <span class="row__info"><span class="row__kind">{e(q['kind'])}</span>{e(q['line'])}</span>
       {ar}
     </a>
@@ -426,7 +436,7 @@ def build_case(i, p):
 <article class="case">
   <header class="case__head">
     <p class="case__back"><a href="{root}index.html#work">All work</a></p>
-    <h1 class="case__title"><span>{e(p['title'])}</span>{ar}</h1>
+    <h1 class="case__title"><span><img class="logo logo--case" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="">{e(p['title'])}</span>{ar}</h1>
   </header>
   <div class="case__coverwrap">{cover}</div>
   <div class="case__intro">
