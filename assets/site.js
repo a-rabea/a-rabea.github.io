@@ -38,6 +38,7 @@
   rows.forEach(r => {
     r.addEventListener('mouseenter', ev => {
       pic.src = r.dataset.peek;
+      const li = r.closest('[style*="--c"]'); peek.style.setProperty('--c', li ? getComputedStyle(li).getPropertyValue('--c') : '');
       if (!on) { cx = x = ev.clientX; cy = y = ev.clientY; }
       on = true; peek.classList.add('is-on');
       if (!raf) raf = requestAnimationFrame(loop);
@@ -140,4 +141,45 @@
     (window.__mailto || (u => { location.href = u; }))(url);
     f.querySelector('.start__note').textContent = "Your email app should open now. If nothing happened, use the Copy button next to my email address.";
   }));
+})();
+
+// Work filters: tap a label to see only that kind of project.
+(() => {
+  const chips = [...document.querySelectorAll('.fchip')];
+  if (!chips.length) return;
+  const items = [...document.querySelectorAll('.rows .item')];
+  const status = document.querySelector('.filters__status');
+  chips.forEach(c => c.addEventListener('click', () => {
+    const f = c.dataset.filter;
+    chips.forEach(x => x.setAttribute('aria-pressed', String(x === c)));
+    let n = 0;
+    items.forEach(it => {
+      const show = f === 'all' || it.dataset.tags.split(' ').includes(f);
+      it.classList.toggle('is-hidden', !show);
+      it.classList.remove('is-in');
+      if (show) { n++; void it.offsetWidth; it.classList.add('is-in'); }
+    });
+    if (status) status.textContent = f === 'all' ? `${n} projects` : `${n} of ${items.length} projects`;
+  }));
+})();
+
+// Floating "Start a project": shows once you're past the top, hides near the form.
+(() => {
+  const fl = document.querySelector('.float');
+  if (!fl) return;
+  const form = document.querySelector('#start');
+  let formVisible = false;
+  if (form && 'IntersectionObserver' in window)
+    new IntersectionObserver(([en]) => { formVisible = en.isIntersecting; tick(); }, { threshold: 0.05 }).observe(form);
+  const tick = () => fl.classList.toggle('is-on', scrollY > innerHeight * 0.7 && !formVisible);
+  addEventListener('scroll', tick, { passive: true });
+  tick();
+})();
+
+// Top bar turns solid once the page scrolls, so it stays readable over any image.
+(() => {
+  const bar = document.querySelector('.bar');
+  if (!bar) return;
+  const set = () => bar.classList.toggle('is-solid', scrollY > 40);
+  addEventListener('scroll', set, { passive: true }); set();
 })();

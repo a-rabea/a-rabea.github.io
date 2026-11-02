@@ -29,6 +29,26 @@ ICONS = {
     "deck": '<rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4M7 12V10M11 12V8M15 12V9"/>',
     "direction": '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
 }
+ICONS.update({
+    "social": '<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 18.5h4"/><path d="M9 8.5h6v5H9z"/>',
+    "packaging": '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
+    "app": '<rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="3.75"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="3.75"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/>',
+    "icons": '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+    "mascot": '<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1.8 2 5.2 2 7 0"/><path d="M9 9.5h.01M15 9.5h.01" stroke-width="2.4"/>',
+    "lettering": '<path d="M4 20c4-1 6-4 7-8s3-8 9-8"/><path d="M14 20h6"/><circle cx="6" cy="7" r="1.6"/>',
+    "arrow": '<path d="M7 17L17 7M9 7h8v8"/>',
+})
+TAGS = {  # id: (label, icon)
+    "identity": ("Brand identity", "identity"), "campaign": ("Campaigns", "campaign"), "social": ("Social media", "social"),
+    "packaging": ("Packaging", "packaging"), "deck": ("Decks and profiles", "deck"), "app": ("App and digital", "app"),
+    "lettering": ("Custom lettering", "lettering"), "icons": ("Icon systems", "icons"), "mascot": ("Mascot", "mascot"),
+}
+
+
+def tag_chips(p, cls="tag"):
+    return "".join(f'<span class="{cls}">{icon(TAGS[t][1])}{e(TAGS[t][0])}</span>' for t in p["tags"])
+
+
 def icon(name, cls="icon"):
     return (f'<svg class="{cls}" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" '
             f'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICONS[name]}</svg>')
@@ -101,7 +121,10 @@ def header(root, here=""):
 
 
 def footer(root):
-    return f"""<footer class="foot">
+    return f"""<a class="float" href="{root}services/index.html#start" aria-label="Start a project with Ahmed">
+  <img src="{root}assets/img/about/avatar.webp" width="36" height="36" alt=""><span>Start a project</span>
+</a>
+<footer class="foot">
   <p>Ahmed Rabea, brand designer and art director, Cairo</p>
   <p><a href="{root}services/index.html">Services</a><a href="mailto:{SITE['email']}">Email</a><a href="{SITE['linkedin']}">LinkedIn</a><a href="{SITE['behance']}">Behance</a></p>
 </footer>
@@ -145,14 +168,22 @@ def enquiry(root, heading="Start a project", lead=None):
 def row(p, root):
     ar = f'<span class="row__ar" lang="ar" dir="rtl">{e(p["arabic"])}</span>' if p["arabic"] else '<span class="row__ar"></span>'
     thumb = img(meta[p["slug"]]["cover"], root, "100vw", "", cls="row__thumb")
-    return f"""<li>
-  <a class="row" href="{root}work/{p['slug']}/index.html" data-peek="{cover_small(p['slug'], root)}">
+    return f"""<li class="item" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
+  <a class="row" href="{root}work/{p['slug']}/index.html" data-peek="{cover_small(p['slug'], root)}" aria-label="{e(p['title'])}: {e(p['kind'])}. View case study">
     {thumb}
-    <span class="row__title">{e(p['title'])}</span>
-    <span class="row__info"><span class="row__kind">{e(p['kind'])}</span>{e(p['line'])}</span>
+    <span class="row__title"><span class="row__dot" aria-hidden="true"></span>{e(p['title'])}</span>
+    <span class="row__info"><span class="row__kind">{e(p['kind'])}</span>{e(p['line'])}<span class="tags">{tag_chips(p)}</span></span>
     {ar}
+    <span class="row__go" aria-hidden="true">{icon('arrow')}</span>
   </a>
 </li>"""
+
+
+def filter_bar():
+    counts = {t: sum(t in p["tags"] for p in projects) for t in TAGS}
+    order = sorted((t for t in TAGS if counts[t] >= 2), key=lambda t: -counts[t])
+    chips = "".join(f'<button type="button" class="fchip" data-filter="{t}" aria-pressed="false">{icon(TAGS[t][1])}{e(TAGS[t][0])}<span class="fchip__n">{counts[t]}</span></button>' for t in order)
+    return f'<div class="filters" role="group" aria-label="Filter projects"><button type="button" class="fchip" data-filter="all" aria-pressed="true">All work<span class="fchip__n">{len(projects)}</span></button>{chips}</div>'
 
 
 def wall_html(root):
@@ -194,7 +225,7 @@ def build_home():
   <div class="wall" aria-hidden="true"><div class="wall__tilt">{wall_html(root)}</div></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__top">
-    <p>Brand designer and art director<br>Based in Cairo</p>
+    <p class="hello"><img class="hello__face" src="assets/img/about/avatar.webp" width="40" height="40" alt="">Hi, I'm Ahmed.<br>Brand designer and art director in Cairo</p>
     <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select projects</p>
   </div>
   <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span></h1>
@@ -208,7 +239,8 @@ def build_home():
 </section>
 
 <section id="work" class="work" aria-labelledby="work-h">
-  <div class="sec-head"><h2 id="work-h">Selected work</h2><p>{len(projects)} projects</p></div>
+  <div class="sec-head"><h2 id="work-h">Selected work</h2><p class="filters__status" aria-live="polite">{len(projects)} projects</p></div>
+  {filter_bar()}
   <ul class="rows" role="list">
 {rows}
   </ul>
@@ -254,7 +286,7 @@ def build_services():
     S = services
     blocks = []
     for s in S["services"]:
-        proof = "".join(f"""<a class="proof" href="{root}work/{x}/index.html">{img(meta[x]['cover'], root, '(max-width: 860px) 45vw, 220px', by_slug[x]['title'] + ' cover')}<span>{e(by_slug[x]['title'])}</span></a>""" for x in s["proof"])
+        proof = "".join(f"""<a class="proof" style="--c:{by_slug[x]['color']}" href="{root}work/{x}/index.html">{img(meta[x]['cover'], root, '(max-width: 860px) 45vw, 220px', by_slug[x]['title'] + ' cover')}<span>{e(by_slug[x]['title'])}</span></a>""" for x in s["proof"])
         inc = "".join(f"<li>{e(i)}</li>" for i in s["includes"])
         blocks.append(f"""<article class="service" id="{s['id']}">
   <div class="service__head">{icon(s['icon'], 'icon icon--big')}<h2>{e(s['name'])}</h2></div>
@@ -379,7 +411,7 @@ def build_case(i, p):
     ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": p["title"], "about": p["kind"],
            "description": p["line"], "creator": {"@type": "Person", "name": "Ahmed Rabea"},
            "image": f"{SITE['url']}/assets/og/{p['slug']}.jpg", "url": f"{SITE['url']}/work/{p['slug']}/"}]
-    page = head(f"{p['title']}: {p['kind'].lower()} | Ahmed Rabea", p["line"], root, p["slug"], f"work/{p['slug']}/", ld) + f"""<body class="case-page">
+    page = head(f"{p['title']}: {p['kind'].lower()} | Ahmed Rabea", p["line"], root, p["slug"], f"work/{p['slug']}/", ld) + f"""<body class="case-page" style="--c:{p['color']}">
 <div class="progress" aria-hidden="true"></div>
 {header(root, 'work')}
 <main id="main">
@@ -392,6 +424,7 @@ def build_case(i, p):
   <div class="case__intro">
     <div class="case__text">
       <p class="case__kind">{e(p['kind'])}</p>
+      <p class="tags tags--case">{tag_chips(p)}</p>
       <p class="case__line">{e(p['line'])}</p>
       {intro}
     </div>

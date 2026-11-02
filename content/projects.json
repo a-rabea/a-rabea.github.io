@@ -44,6 +44,14 @@
         "16",
         "icons in the service system"
       ]
+    ],
+    "color": "#8B5CF6",
+    "tags": [
+      "identity",
+      "campaign",
+      "social",
+      "app",
+      "icons"
     ]
   },
   {
@@ -91,6 +99,11 @@
         "6",
         "formats per post"
       ]
+    ],
+    "color": "#3CCFAE",
+    "tags": [
+      "social",
+      "campaign"
     ]
   },
   {
@@ -121,7 +134,14 @@
       "after": 20,
       "caption": "Brand in motion: four story editions cut into one reel.",
       "vertical": true
-    }
+    },
+    "color": "#D4A85A",
+    "tags": [
+      "identity",
+      "campaign",
+      "social",
+      "packaging"
+    ]
   },
   {
     "slug": "pizza-rush",
@@ -146,6 +166,14 @@
         "Type",
         "Arabic wordmark customised from Marhey, with Readex Pro and Bricolage Grotesque"
       ]
+    ],
+    "color": "#FF5A36",
+    "tags": [
+      "identity",
+      "mascot",
+      "packaging",
+      "app",
+      "campaign"
     ]
   },
   {
@@ -175,6 +203,13 @@
         "Type",
         "Unbounded, Inter Tight, JetBrains Mono"
       ]
+    ],
+    "color": "#D7FF3A",
+    "tags": [
+      "identity",
+      "app",
+      "campaign",
+      "social"
     ]
   },
   {
@@ -209,7 +244,14 @@
       "after": 1,
       "caption": "Brand in motion: the identity system animated.",
       "vertical": false
-    }
+    },
+    "color": "#FF3FD0",
+    "tags": [
+      "identity",
+      "lettering",
+      "packaging",
+      "campaign"
+    ]
   },
   {
     "slug": "qinwan",
@@ -234,6 +276,13 @@
         "Market",
         "Gulf"
       ]
+    ],
+    "color": "#E5483F",
+    "tags": [
+      "identity",
+      "lettering",
+      "packaging",
+      "deck"
     ]
   },
   {
@@ -280,6 +329,11 @@
     ],
     "skip_frames": [
       1
+    ],
+    "color": "#2BD49A",
+    "tags": [
+      "deck",
+      "icons"
     ]
   },
   {
@@ -305,6 +359,13 @@
         "Type",
         "Roketto, Archivo Expanded"
       ]
+    ],
+    "color": "#9C97FF",
+    "tags": [
+      "identity",
+      "packaging",
+      "campaign",
+      "social"
     ]
   }
 ]
