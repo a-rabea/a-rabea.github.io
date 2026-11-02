@@ -25,6 +25,7 @@ FEATURED = ["mazeed", "aywa", "ideas-that-scale", "aureya"]
 e = lambda s: html.escape(s, quote=True)
 VER = hashlib.md5(open("assets/site.css", "rb").read() + open("assets/site.js", "rb").read()).hexdigest()[:8]
 NOINDEX = os.environ.get("PREVIEW") == "1"
+LITE = NOINDEX  # preview host has a file limit: one image size per frame
 
 # ---------- icons (24px grid, drawn for this site) ----------
 ICONS = {
@@ -66,8 +67,10 @@ def tag_chips(p):
 
 def img(m, root, sizes, alt, cls="", eager=False, max_w=None):
     f = dict(m["files"])
-    if m.get("thumb"):
+    if m.get("thumb") and not LITE:
         f["480"] = m["thumb"]
+    if LITE:
+        f = {k: v for k, v in f.items() if k in ("1000", "800", "1400", "600")}
     k = sorted((w for w in f if not max_w or int(w) <= max_w), key=int)
     srcset = ", ".join(f"{root}{f[w]} {min(int(w), m['w'])}w" for w in k)
     w = min(int(k[-1]), m["w"]); h = round(m["h"] * w / m["w"])
@@ -470,7 +473,7 @@ def build_services():
 def frame_btn(p, n, f, root, sizes, cls="frame"):
     light = " frame--light" if f.get("light") else ""
     wide = " frame--wide" if f["w"] / f["h"] >= 1.6 else " frame--tall"
-    return (f'<figure class="{cls}{light}{wide}"><button class="frame__zoom" type="button" data-full="{root}{f["files"]["1800"]}" '
+    return (f'<figure class="{cls}{light}{wide}"><button class="frame__zoom" type="button" data-full="{root}{f["files"]["1000" if LITE else "1800"]}" '
             f'data-cursor="Zoom" aria-label="Enlarge frame {n} of {e(p["title"])}">'
             f'{img(f, root, sizes, p["title"] + ", frame " + str(n))}</button></figure>')
 
@@ -503,7 +506,7 @@ def build_case(i, p):
         nums = [n for n in nums if n not in skip]
         if not nums: continue
         cid = f"ch-{c}"
-        thumbs = "".join(f'<img src="{root}{frame_of(p["slug"], n)["thumb"]}" width="160" height="{round(160 * frame_of(p["slug"], n)["h"] / frame_of(p["slug"], n)["w"])}" alt="" loading="lazy">' for n in nums[:4])
+        thumbs = "".join(f'<img src="{root}{frame_of(p["slug"], n)["files"]["1000"] if LITE else frame_of(p["slug"], n)["thumb"]}" width="160" height="{round(160 * frame_of(p["slug"], n)["h"] / frame_of(p["slug"], n)["w"])}" alt="" loading="lazy">' for n in nums[:4])
         body = []
         for n in nums:
             f = frame_of(p["slug"], n)
