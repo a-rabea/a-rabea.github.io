@@ -54,7 +54,16 @@ home.save("assets/og/home.jpg", quality=84, optimize=True)
 
 # Home-screen icon
 ic = Image.new("RGB", (180, 180), BG)
-ImageDraw.Draw(ic).text((90, 96), "AR", font=font(96), fill=TEAL, anchor="mm")
+mask = Image.new("L", (180, 180), 0)
+ImageDraw.Draw(mask).text((90, 96), "AR", font=font(96), fill=255, anchor="mm")
+grad = Image.new("RGB", (180, 180))
+for y in range(180):
+    for x in range(180):
+        t = (x + y) / 358
+        a, b = ((184, 255, 228), (60, 207, 174)) if t < .5 else ((60, 207, 174), (42, 127, 214))
+        k = t * 2 if t < .5 else (t - .5) * 2
+        grad.putpixel((x, y), tuple(round(a[i] + (b[i] - a[i]) * k) for i in range(3)))
+ic.paste(grad, (0, 0), mask)
 ic.save("assets/apple-touch-icon.png")
 
 # Flag frames that are mostly white so the page can frame them instead of glaring

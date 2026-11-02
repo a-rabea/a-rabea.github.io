@@ -111,6 +111,7 @@ def head(title, desc, root, og, path="", ld=None):
 """
 
 
+
 def header(root, here=""):
     cur = lambda k: ' aria-current="page"' if here == k else ""
     return f"""<a class="skip" href="#main">Skip to content</a>
@@ -129,7 +130,7 @@ def header(root, here=""):
 
 def footer(root):
     return f"""<a class="float" href="{root}services/index.html#start" aria-label="Start a project with Ahmed">
-  <img src="{root}assets/img/about/avatar.webp" width="36" height="36" alt=""><span>Start a project</span>
+  <span class="float__mark">AR</span><span>Start a project</span><span class="float__arrow" aria-hidden="true">&rarr;</span>
 </a>
 <footer class="foot">
   <p>Ahmed Rabea, brand designer and art director, Cairo</p>
