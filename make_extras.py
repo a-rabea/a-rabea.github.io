@@ -49,7 +49,7 @@ home = Image.composite(shade, home, mask)
 d = ImageDraw.Draw(home)
 d.text((40, 300), "AHMED", font=font(170), fill=FG)
 d.text((40, 450), "RABEA", font=font(170), fill=TEAL)
-d.text((1160, 590), "Brand design and art direction", font=font(28, 90, 500), fill=FG, anchor="rs")
+d.text((1160, 590), "Senior Brand Designer & Art Director", font=font(30, 90, 500), fill=FG, anchor="rs")
 home.save("assets/og/home.jpg", quality=84, optimize=True)
 
 # Home-screen icon
