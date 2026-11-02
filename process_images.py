@@ -16,7 +16,13 @@ for slug, s in SOURCES.items():
     d = f"{OUT}/{slug}"; os.makedirs(d, exist_ok=True)
     m = {"cover": save(s["cover"], f"{d}/cover", [1400, 800]), "frames": []}
     for i, f in enumerate(s["frames"], 1):
-        m["frames"].append(save(f, f"{d}/{i:02d}", [1800, 1000]))
+        fr = save(f, f"{d}/{i:02d}", [1800, 1000])
+        # small thumbnail for chapter previews in the case-study template
+        t = f"{d}/{i:02d}-480.webp"
+        if not os.path.exists(t):
+            im = Image.open(fr["files"][1000]); im.resize((480, round(480 * im.height / im.width)), Image.LANCZOS).save(t, "WEBP", quality=78, method=6)
+        fr["thumb"] = t
+        m["frames"].append(fr)
     if "video" in s:
         os.makedirs("assets/video", exist_ok=True); v = f"assets/video/{slug}.mp4"
         shutil.copy(s["video"], v); m["video"] = v

@@ -35,6 +35,7 @@ def track(name, title=""):
 
 
 ROLE = "Senior Brand Designer & Art Director"
+FEATURED = ["mazeed", "aywa", "vult"]  # led on the home page, in this order
 BUILD_DATE = __import__("datetime").date.today().isoformat()
 projects = json.load(open("content/projects.json", encoding="utf-8"))
 services = json.load(open("content/services.json", encoding="utf-8"))
@@ -44,7 +45,6 @@ e = lambda s: html.escape(s, quote=True)
 import hashlib
 # Changes whenever the CSS or JS changes, so browsers never mix new pages with old styles
 VER = hashlib.md5(open("assets/site.css", "rb").read() + open("assets/site.js", "rb").read()).hexdigest()[:8]
-FOLD = 12  # slide-format case studies show this many frames before "Show all"
 
 # Line icons, drawn for this site (24px grid, 1.5 stroke)
 ICONS = {
@@ -62,6 +62,7 @@ ICONS.update({
     "mascot": '<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1.8 2 5.2 2 7 0"/><path d="M9 9.5h.01M15 9.5h.01" stroke-width="2.4"/>',
     "lettering": '<path d="M4 20c4-1 6-4 7-8s3-8 9-8"/><path d="M14 20h6"/><circle cx="6" cy="7" r="1.6"/>',
     "arrow": '<path d="M7 17L17 7M9 7h8v8"/>',
+    "plus": '<path d="M12 5v14M5 12h14"/>',
     "audit": '<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M8 10.5l2 2 3.5-4"/>',
 })
 TAGS = {  # id: (label, icon)
@@ -160,7 +161,7 @@ def footer(root):
     <span class="float__mark" aria-hidden="true">AR</span><span>Start a project</span><span class="float__arrow" aria-hidden="true">&rarr;</span>
   </a>
   <p>Ahmed Rabea, senior brand designer and art director, Cairo. Taking on select freelance projects.</p>
-  <p><a href="{root}services/index.html">Services</a><a href="mailto:{SITE['email']}"{track("contact-email", "Email link, footer")}>Email</a><a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, footer")}>WhatsApp</a><a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, footer")}>{SITE['phone']}</a><a href="{SITE['linkedin']}"{track("out-linkedin", "LinkedIn")}>LinkedIn</a><a href="{SITE['behance']}"{track("out-behance", "Behance")}>Behance</a></p>
+  <p class="foot__links"><a href="{root}services/index.html">Services</a><a href="mailto:{SITE['email']}"{track("contact-email", "Email link, footer")}>Email</a><a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, footer")}>WhatsApp</a><a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, footer")}>{SITE['phone']}</a><a href="{SITE['linkedin']}"{track("out-linkedin", "LinkedIn")}>LinkedIn</a><a href="{SITE['behance']}"{track("out-behance", "Behance")}>Behance</a></p>
   <p class="foot__small">Visits are counted anonymously, without cookies.</p>
 </footer>
 """
@@ -183,7 +184,7 @@ def enquiry(root, heading="Start a project", lead=None):
   <form class="start__form" data-email="{SITE['email']}" data-wa="{SITE['tel'].lstrip('+')}">
     <fieldset>
       <legend>What do you need?</legend>
-      <div class="chips">{boxes}<label class="chip"><input type="checkbox" name="need" value="A quick start (audit, template kit or deck refresh)"><span>A quick start</span></label><label class="chip"><input type="checkbox" name="need" value="Not sure yet"><span>Not sure yet</span></label></div>
+      <div class="chips">{boxes}<label class="chip"><input type="checkbox" name="need" value="A review or small project"><span>A review or small project</span></label><label class="chip"><input type="checkbox" name="need" value="Not sure yet"><span>Not sure yet</span></label></div>
     </fieldset>
     <div class="start__row">
       <label>Your name<input name="name" autocomplete="name" required></label>
@@ -216,6 +217,22 @@ def row(p, root):
     <span class="row__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
     <span class="row__info"><span class="row__kind">{e(p['kind'])}</span>{e(p['line'])}<span class="tags">{tag_chips(p)}</span></span>
     {ar}
+    <span class="row__go" aria-hidden="true">{icon('arrow')}</span>
+  </a>
+</li>"""
+
+
+def feature_card(p, root, big=False):
+    sizes = "(max-width: 860px) 100vw, (max-width: 1100px) 50vw, 33vw"
+    pic = img(meta[p["slug"]]["cover"], root, sizes, "", cls="feat__img")
+    return f"""<li class="item feat{' feat--big' if big else ''}" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
+  <a class="feat__link" href="{root}work/{p['slug']}/index.html">
+    <span class="feat__media">{pic}</span>
+    <span class="feat__body">
+      <span class="feat__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
+      <span class="feat__kind">{e(p['kind'])}</span>
+      <span class="feat__line">{e(p['line'])}</span>
+    </span>
     <span class="row__go" aria-hidden="true">{icon('arrow')}</span>
   </a>
 </li>"""
@@ -278,7 +295,8 @@ def services_for(slug):
 
 def build_home():
     root = ""
-    rows = "\n".join(row(p, root) for p in projects)
+    feats = "\n".join(feature_card(by_slug[s], root, k == 0) for k, s in enumerate(FEATURED))
+    rows = "\n".join(row(p, root) for p in projects if p["slug"] not in FEATURED)
     portrait = img(meta["portrait"], root, "(max-width: 760px) 90vw, 34vw", "Portrait of Ahmed Rabea, brand designer and art director in Cairo")
     svc = "\n".join(f'<li><a href="services/index.html#{s["id"]}">{icon(s["icon"])}<span class="svc__name">{e(s["name"])}</span><span class="svc__sum">{e(s["summary"])}</span></a></li>' for s in services["services"])
     page = head(f"Ahmed Rabea | {ROLE}, Cairo",
@@ -306,7 +324,12 @@ def build_home():
 
 <section id="work" class="work" aria-labelledby="work-h">
   <div class="sec-head"><h2 id="work-h">Selected work</h2><p class="filters__status" aria-live="polite">{len(projects)} projects</p></div>
+  <p class="work__thesis">A brand is judged by its hundredth asset, not its first. I design the system behind it.</p>
   {filter_bar()}
+  <ul class="feats" role="list">
+{feats}
+  </ul>
+  <h3 class="work__more">More work</h3>
   <ul class="rows" role="list">
 {rows}
   </ul>
@@ -322,7 +345,13 @@ def build_home():
 
 <section id="about" class="about" aria-labelledby="about-h">
   <h2 id="about-h" class="visually-hidden">About</h2>
-  <p class="about__statement">A brand is judged by its hundredth asset, not its first. I design the system behind it, so every post, deck and campaign after launch still looks like it came from the same place.</p>
+  <p class="about__statement">I design the system behind a brand, so every post, deck and campaign after launch still looks like it came from the same place.</p>
+  <ul class="own" role="list" aria-label="What I've owned">
+    <li><span class="own__n">5</span><span class="own__l">brands run at once as Creative Lead at Bayantech</span></li>
+    <li><span class="own__n">250+</span><span class="own__l">designs a month overseen under one set of standards</span></li>
+    <li><span class="own__n">1,000+</span><span class="own__l">clients served by mazeed, where I owned the brand's visual output</span></li>
+    <li><span class="own__n">EN · AR</span><span class="own__l">Most of my work ships in both, with Arabic designed, not translated</span></li>
+  </ul>
   <div class="about__grid">
     <div class="about__img">{portrait}</div>
     <div class="about__body">
@@ -362,15 +391,23 @@ def build_services():
     <p class="service__sum">{e(s['summary'])}</p>{price}
     <div class="service__cols">
       <div><h3>What you get</h3><ul class="ticks">{inc}</ul></div>
-      <div><h3>Good for</h3><p>{e(s['for'])}</p></div>
+      <div><h3>Good for</h3><p>{e(s['for'])}</p>{f'<h3>Typical timeline</h3><p>{e(s["timeline"])}</p>' if s.get("timeline") else ""}</div>
     </div>
     <div class="service__proof"><h3>See it in practice</h3><div class="proofs">{proof}</div></div>
   </div>
 </article>""")
     steps = "".join(f"<li><span class='step__n'>{n}</span><h3>{e(t)}</h3><p>{e(d)}</p></li>" for n, (t, d) in enumerate(S["process"], 1))
-    ways = "".join(f"<li><h3>{e(t)}</h3><p>{e(d)}</p></li>" for t, d in S["ways"])
+    qby = {q["id"]: q for q in S["quick"]}
+    def start_card(o):
+        items = []
+        for q in (qby[x] for x in o["examples"]):
+            price = f' <span class="service__price">{e(q["price"])}</span>' if q.get("price") else ""
+            items.append(f'<li id="{q["id"]}"><b>{e(q["name"])}</b> {e(q["summary"])} <span class="quick__get">{e(q["get"])}</span>{price}</li>')
+        ex = f'<ul class="start-opt__ex" role="list">{"".join(items)}</ul>' if items else ""
+        return (f'<li class="start-opt" id="{o["id"]}">{icon(o["icon"])}<h3>{e(o["name"])}</h3><p>{e(o["summary"])}</p>{ex}'
+                f'<a class="quick__cta" href="#start" data-need="{e(o["need"])}">Ask about this</a></li>')
+    starts = "".join(start_card(o) for o in S["start"])
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in S["faq"])
-    quick = "".join(f'<li id="{q["id"]}">{icon(q["icon"])}<h3>{e(q["name"])}</h3><p>{e(q["summary"])}</p><p class="quick__get">{e(q["get"])}</p>{f'<p class="service__price">{e(q["price"])}</p>' if q.get("price") else ""}<a class="quick__cta" href="#start">Ask about this</a></li>' for q in S["quick"])
     jump = "".join(f'<li><a href="#{s["id"]}">{icon(s["icon"])}<span>{e(s["name"])}</span></a></li>' for s in S["services"])
     ld = [
         {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Ahmed Rabea, brand design",
@@ -404,18 +441,13 @@ def build_services():
 </div>
 
 <section id="quick" class="quick" aria-labelledby="quick-h">
-  <div class="sec-head"><h2 id="quick-h">Quick starts</h2><p>Smaller, fixed-scope ways to work together</p></div>
-  <ul class="quick__list" role="list">{quick}</ul>
+  <div class="sec-head"><h2 id="quick-h">Ways to start</h2><p>Pick the size that fits. Not sure? Start with a review.</p></div>
+  <ul class="quick__list" role="list">{starts}</ul>
 </section>
 
 <section class="process" aria-labelledby="process-h">
   <div class="sec-head"><h2 id="process-h">How a project runs</h2></div>
   <ol class="steps" role="list">{steps}</ol>
-</section>
-
-<section class="ways-sec" aria-labelledby="ways-h">
-  <div class="sec-head"><h2 id="ways-h">Ways to work together</h2></div>
-  <ul class="ways3" role="list">{ways}</ul>
 </section>
 
 <section class="faq" aria-labelledby="faq-h">
@@ -433,13 +465,27 @@ def build_services():
     open("services/index.html", "w", encoding="utf-8").write(page)
 
 
-def frame_html(p, n, f, root, cls):
+def filled(v):
+    """Case-study fields starting with TODO are placeholders: kept in the JSON, never shown on the site."""
+    return bool(v) and not str(v).startswith("TODO")
+
+
+def frame_of(slug, n):
+    return meta[slug]["frames"][n - 1]
+
+
+def frame_html(p, n, f, root, sizes, cls="frame"):
     light = " frame--light" if f.get("light") else ""
-    full = f"{root}{f['files']['1800']}"
+    shape = " frame--wide" if f["w"] / f["h"] >= 1.6 else " frame--tall"
     alt = f"{p['title']} {p['kind'].lower()}, image {n}"
-    sizes = "(max-width: 860px) 100vw, 50vw" if "grid" in cls else "(max-width: 1160px) 100vw, 1160px"
-    return (f'<figure class="frame{light}{cls}"><button class="frame__zoom" type="button" data-full="{full}" '
+    return (f'<figure class="{cls}{light}{shape}"><button class="frame__zoom" type="button" data-full="{root}{f["files"]["1800"]}" '
             f'aria-label="Enlarge {e(alt)}">{img(f, root, sizes, alt)}</button></figure>')
+
+
+def film_html(p, root, v, m):
+    cls = "film film--vertical" if v["vertical"] else "film"
+    return (f'<figure class="{cls}"><video controls playsinline preload="none" poster="{root}assets/img/{p["slug"]}/poster.webp" '
+            f'src="{root}{m["video"]}"></video><figcaption>{e(v["caption"])}</figcaption></figure>')
 
 
 def nav_row(q, root, label):
@@ -455,35 +501,65 @@ def nav_row(q, root, label):
 
 
 def build_case(i, p):
+    """One template for every case study. Content comes from p["case"] in content/projects.json:
+    facts strip, context / challenge / direction / system, five highlights, chapters, outcome, credits."""
     root = "../../"
     m = meta[p["slug"]]
-    nxt = projects[(i + 1) % len(projects)]
-    prv = projects[i - 1]
+    C = p["case"]
+    nxt, prv = projects[(i + 1) % len(projects)], projects[i - 1]
     skip = set(p.get("skip_frames", []))
-    fr = [(n, f) for n, f in enumerate(m["frames"], 1) if n not in skip]
-    # Slide decks (wide frames) read better two-up; tall Behance modules stay single, narrower
-    wide = sum(f["w"] / f["h"] >= 1.6 for _, f in fr) > len(fr) / 2
-    folding = len(fr) > FOLD + 4
-    frames, v, shown = [], p.get("video"), 0
-    for n, f in fr:
-        shown += 1
-        extra = " is-extra" if folding and shown > FOLD else ""
-        span = " frame--span" if wide and shown == 1 else ""
-        frames.append(frame_html(p, n, f, root, (" frame--grid" if wide else "") + span + extra))
-        if v and n == v["after"]:
-            cls = "film film--vertical" if v["vertical"] else "film"
-            frames.append(f"""<figure class="{cls}">
-  <video controls playsinline preload="none" poster="{root}assets/img/{p['slug']}/poster.webp" src="{root}{m['video']}"></video>
-  <figcaption>{e(v['caption'])}</figcaption>
-</figure>""")
-    more = f'<div class="more"><button class="btn" type="button" data-more>Show all {len(fr)} frames</button></div>' if folding else ""
-    ar = f'<span class="case__ar" lang="ar" dir="rtl">{e(p["arabic"])}</span>' if p["arabic"] else ""
-    intro = "\n".join(f"<p>{e(x)}</p>" for x in p["intro"])
-    dl = "\n".join(f"<div><dt>{e(k)}</dt><dd>{e(val)}</dd></div>" for k, val in p["meta"])
+    v = p.get("video")
+
+    # Facts strip: client and industry first, then role/scope/market/type, then year. Empty fields drop out.
+    facts = [("Client", C.get("client")), ("Industry", C.get("industry")), ("Engagement", C.get("engagement"))]
+    facts += [(k, val) for k, val in p["meta"]]
+    facts += [("Year", C.get("year"))]
+    facts_html = "".join(f"<div><dt>{e(k)}</dt><dd>{e(val)}</dd></div>" for k, val in facts if filled(val))
+
+    # Story: short labelled blocks rather than one long essay
+    blocks = [("Context", C.get("context")), ("The challenge", C.get("challenge")),
+              ("Creative direction", C.get("direction")), ("The system", C.get("system"))]
+    story = "".join(f'<div class="story__b"><h3>{e(k)}</h3><p>{e(val)}</p></div>' for k, val in blocks if filled(val))
+
+    # Highlights: one large frame and four supporting ones
+    wide_set = sum(f["w"] / f["h"] >= 1.6 for f in m["frames"]) > len(m["frames"]) / 2
+    hl = [n for n in C["highlights"] if n not in skip]
+    bento = "".join(frame_html(p, n, frame_of(p["slug"], n), root,
+                               "(max-width: 860px) 100vw, 60vw" if k == 0 else "(max-width: 860px) 50vw, 25vw",
+                               "frame bento__" + ("big" if k == 0 else "sm")) for k, n in enumerate(hl))
+
+    # Chapters: everything else, grouped and collapsed, so nobody has to scroll past 30 slides
+    chapters, nav = [], []
+    for c, (title, nums) in enumerate(C["chapters"], 1):
+        nums = [n for n in nums if n not in skip]
+        if not nums: continue
+        cid = f"ch-{c}"
+        thumbs = "".join(f'<img src="{root}{frame_of(p["slug"], n)["thumb"]}" width="160" height="{round(160 * frame_of(p["slug"], n)["h"] / frame_of(p["slug"], n)["w"])}" alt="" loading="lazy">' for n in nums[:4])
+        body = []
+        for n in nums:
+            f = frame_of(p["slug"], n)
+            body.append(frame_html(p, n, f, root, "(max-width: 860px) 100vw, 45vw" if f["w"] / f["h"] >= 1.6 else "(max-width: 860px) 100vw, 70vw"))
+            if v and n == v["after"]:
+                body.append(film_html(p, root, v, m))
+        count = f"{len(nums)} image{'s' if len(nums) > 1 else ''}" + (" and a film" if v and v["after"] in nums else "")
+        chapters.append(f"""<details class="chapter" id="{cid}">
+  <summary><span class="chapter__n">{c:02d}</span><span class="chapter__t">{e(title)}</span><span class="chapter__count">{count}</span><span class="chapter__thumbs" aria-hidden="true">{thumbs}</span><span class="chapter__toggle" aria-hidden="true">{icon('plus')}</span></summary>
+  <div class="chapter__body">{''.join(body)}</div>
+</details>""")
+        nav.append(f'<li><a href="#{cid}" data-open="{cid}"><span>{c:02d}</span>{e(title)}</a></li>')
+
+    # Outcome: real results only. Numbers already in the project are scale facts, shown with it.
     nums = ""
     if p.get("numbers"):
-        nums = '<ul class="nums" role="list" aria-label="In numbers">' + "".join(
+        nums = '<ul class="nums" role="list">' + "".join(
             f'<li><span class="nums__n">{e(n)}</span><span class="nums__l">{e(l)}</span></li>' for n, l in p["numbers"]) + "</ul>"
+    outcome = ""
+    if filled(C.get("outcome")) or nums:
+        txt = f'<p class="outcome__p">{e(C["outcome"])}</p>' if filled(C.get("outcome")) else ""
+        outcome = f'<section class="outcome" aria-labelledby="out-h"><h2 id="out-h" class="case-h">{"Outcome" if txt else "In numbers"}</h2>{txt}{nums}</section>'
+    credits = f'<p class="credits"><span>Credits</span> {e(C["credits"])}</p>' if filled(C.get("credits")) else ""
+
+    ar = f'<span class="case__ar" lang="ar" dir="rtl">{e(p["arabic"])}</span>' if p["arabic"] else ""
     cover = img(m["cover"], root, "(max-width: 1680px) 100vw, 1680px", f"{p['title']} cover: {p['line']}", cls="case__cover", eager=True)
     svc = services_for(p["slug"])
     svc_links = "".join(f'<a href="{root}services/index.html#{s["id"]}">{icon(s["icon"])}{e(s["name"])}</a>' for s in svc)
@@ -493,6 +569,7 @@ def build_case(i, p):
            "keywords": ", ".join(TAGS[t][0] for t in p["tags"]), "inLanguage": "en",
            "image": f"{SITE['url']}/assets/og/{p['slug']}.jpg", "url": f"{SITE['url']}/work/{p['slug']}/"},
           crumbs_ld(("Home", ""), ("Work", "#work"), (p["title"], f"work/{p['slug']}/"))]
+    if filled(C.get("year")): ld[0]["dateCreated"] = C["year"][:4]
     desc = f"{p['line']} Case study by Ahmed Rabea, senior brand designer and art director."
     page = head(f"{p['title']}: {p['kind'].lower()} | Ahmed Rabea", desc, root, p["slug"], f"work/{p['slug']}/", ld,
                 kind="article", og_alt=f"{p['title']} {p['kind'].lower()} by Ahmed Rabea") + f"""<body class="case-page" style="--c:{p['color']}">
@@ -505,22 +582,33 @@ def build_case(i, p):
     <h1 class="case__title"><span><img class="logo logo--case" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="">{e(p['title'])}</span>{ar}</h1>
   </header>
   <div class="case__coverwrap">{cover}</div>
-  <h2 class="visually-hidden">Overview</h2>
-  <div class="case__intro">
+
+  <section class="case__intro" aria-labelledby="ov-h">
     <div class="case__text">
-      <p class="case__kind">{e(p['kind'])}</p>
+      <h2 id="ov-h" class="case__kind">{e(p['kind'])}</h2>
       <p class="tags tags--case">{tag_chips(p)}</p>
       <p class="case__line">{e(p['line'])}</p>
-      {intro}
+      <div class="story">{story}</div>
     </div>
-    <div class="case__side"><dl class="case__meta">{dl}</dl>{svc_block}</div>
-  </div>
-  {nums}
-  <h2 class="visually-hidden">Project images</h2>
-  <div class="frames{' frames--grid' if wide else ''}{' is-folded' if folding else ''}">
-{chr(10).join(frames)}
-  </div>
-  {more}
+    <div class="case__side"><dl class="case__meta">{facts_html}</dl>{svc_block}</div>
+  </section>
+
+  <section class="glance" aria-labelledby="glance-h">
+    <h2 id="glance-h" class="case-h">Highlights</h2>
+    <div class="bento bento--{'wide' if wide_set else 'tall'}">{bento}</div>
+  </section>
+
+  {outcome}
+
+  <section class="chapters" aria-labelledby="chapters-h">
+    <nav class="chapters__nav" aria-labelledby="chapters-h">
+      <h2 id="chapters-h" class="case-h">The full project</h2>
+      <ol role="list">{''.join(nav)}</ol>
+      <button type="button" class="btn btn--ghost" data-all aria-expanded="false">Open all chapters</button>
+    </nav>
+    <div class="chapters__list">{''.join(chapters)}</div>
+  </section>
+  {credits}
 </article>
 <section class="cta-band" aria-labelledby="cta-h">
   <h2 id="cta-h" class="cta-band__h">Need something like {e(p['title'])} for your brand?</h2>
@@ -536,7 +624,7 @@ def build_case(i, p):
 </nav>
 </main>
 {footer(root)}
-<dialog class="viewer" aria-label="Enlarged frame">
+<dialog class="viewer" aria-label="Enlarged image">
   <div class="viewer__scroll"><img class="viewer__img" alt=""></div>
   <div class="viewer__bar">
     <button type="button" data-v="prev">Previous</button>
@@ -552,6 +640,20 @@ def build_case(i, p):
     open(f"work/{p['slug']}/index.html", "w", encoding="utf-8").write(page)
 
 
+def build_checklist():
+    """Writes content/CONTENT-TODO.md: every placeholder still waiting for real information."""
+    lines = ["# Content still needed", "", "Generated by build.py. Fill these in content/projects.json (the `case` block of each project).",
+             "Anything starting with TODO is hidden on the site until you replace it.", ""]
+    for p in projects:
+        C = p["case"]
+        todo = [k for k in ("client", "industry", "engagement", "year", "context", "challenge", "direction", "system", "outcome", "credits")
+                if not filled(C.get(k))]
+        lines.append(f"## {p['title']}")
+        lines += [f"- [ ] `{k}`" + (f": {C[k][6:]}" if C.get(k) else ": optional, leave null to hide") for k in todo] or ["- Nothing missing"]
+        lines.append("")
+    open("content/CONTENT-TODO.md", "w", encoding="utf-8").write("\n".join(lines))
+
+
 def build_meta_files():
     urls = ["", "services/"] + [f"work/{p['slug']}/" for p in projects]
     sm = "\n".join(f"  <url><loc>{SITE['url']}/{u}</loc><lastmod>{BUILD_DATE}</lastmod></url>" for u in urls)
@@ -564,4 +666,5 @@ build_services()
 for i, p in enumerate(projects):
     build_case(i, p)
 build_meta_files()
+build_checklist()
 print("built", 2 + len(projects), "pages")

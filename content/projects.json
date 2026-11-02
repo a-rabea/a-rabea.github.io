@@ -5,10 +5,6 @@
     "arabic": "مزيد",
     "kind": "Brand system and campaigns",
     "line": "Visual direction and design system for a B2B accounting platform serving 1,000+ clients across the UAE and KSA.",
-    "intro": [
-      "mazeed sells accounting, tax and e-invoicing software to small and mid-size businesses in the UAE and Saudi Arabia. It had to look as trustworthy as a bank and move as fast as a startup.",
-      "I inherited the wordmark and the core colours. My job was everything around them: how the purple, the mint and the chevron behave across hundreds of assets in English and Arabic. That meant a creative direction for 2026 built on a competitive read of QuickBooks, Xero and Zoho Books, one layout for three products, a 16-icon service system, and bilingual ads that are mirrored for right-to-left reading rather than translated. Single campaign systems reached 80 assets across two languages and five formats."
-    ],
     "meta": [
       [
         "Role",
@@ -21,10 +17,6 @@
       [
         "Markets",
         "UAE and KSA, English and Arabic"
-      ],
-      [
-        "Years",
-        "2025 to 2026"
       ]
     ],
     "numbers": [
@@ -52,132 +44,77 @@
       "social",
       "app",
       "icons"
-    ]
-  },
-  {
-    "slug": "ideas-that-scale",
-    "title": "Ideas that scale",
-    "arabic": "أفكار بتكبر",
-    "kind": "Social media systems",
-    "line": "Social systems for nine brands: one idea, a few hard rules, scaled across formats, languages and markets.",
-    "intro": [
-      "I treat a feed like a brand system. One idea, a few hard rules, then scale it across formats, languages and markets without losing the idea.",
-      "The first half is shipped work for mazeed, Bayantech, ATOP, Aureya and Reefer Zone, from a single SaaS idea built once and shipped in UAE English, UAE Arabic and Saudi Arabic, to refrigeration posts where the spec a buyer cares about is the headline. The second half is the ideas: four campaigns built on bilingual wordplay and two brands made from scratch."
     ],
-    "meta": [
-      [
-        "Role",
-        "Art direction and design"
+    "case": {
+      "client": "mazeed",
+      "industry": "B2B accounting and e-invoicing software",
+      "year": "2025 to 2026",
+      "engagement": null,
+      "context": "mazeed sells accounting, tax and e-invoicing software to small and mid-size businesses in the UAE and Saudi Arabia. It had to look as trustworthy as a bank and move as fast as a startup.",
+      "challenge": "TODO: the brief in one or two sentences. What problem did the client (or you) need solved?",
+      "direction": "I inherited the wordmark and the core colours. My job was everything around them: how the purple, the mint and the chevron behave across hundreds of assets in English and Arabic. That meant a creative direction for 2026 built on a competitive read of QuickBooks, Xero and Zoho Books, one layout for three products, a 16-icon service system, and bilingual ads that are mirrored for right-to-left reading rather than translated. Single campaign systems reached 80 assets across two languages and five formats.",
+      "system": "TODO: optional. The rules that make this a system: what stays fixed, what flexes.",
+      "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
+      "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
+      "highlights": [
+        9,
+        11,
+        19,
+        14,
+        7
       ],
-      [
-        "Scope",
-        "Social systems, campaigns, localisation"
-      ],
-      [
-        "Markets",
-        "UAE, KSA and Egypt"
-      ],
-      [
-        "Years",
-        "2023 to 2026"
+      "chapters": [
+        [
+          "Brief and direction",
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        [
+          "Identity and system",
+          [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        [
+          "Campaigns",
+          [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ]
+        ],
+        [
+          "Product and lifecycle",
+          [
+            19,
+            20,
+            21,
+            22
+          ]
+        ],
+        [
+          "Process",
+          [
+            23,
+            24
+          ]
+        ]
       ]
-    ],
-    "numbers": [
-      [
-        "9",
-        "brands"
-      ],
-      [
-        "3",
-        "markets: UAE, KSA and Egypt"
-      ],
-      [
-        "2",
-        "languages per post"
-      ],
-      [
-        "6",
-        "formats per post"
-      ]
-    ],
-    "color": "#3CCFAE",
-    "tags": [
-      "social",
-      "campaign"
-    ],
-    "skip_frames": [
-      24
-    ]
-  },
-  {
-    "slug": "aureya",
-    "title": "Aureya",
-    "arabic": "أوريا",
-    "kind": "Brand world and social campaign",
-    "line": "A bilingual brand world and weekly social system for a luxury skincare house in Saudi Arabia.",
-    "intro": [
-      "Aureya is a skincare house for the modern Gulf woman: rooted in ritual, quiet in its confidence, fluent in two languages. The brief was the complete visual world, from identity and product architecture to art direction, a campaign and a social system that can run every week without losing its poise.",
-      "The idea is golden hour, kept. The palette is the product line: three colours for three collections, so a customer can read the shelf and the feed by colour alone. Arabic leads, in one weight and without stretched kashida."
-    ],
-    "meta": [
-      [
-        "Role",
-        "Brand, art direction and design"
-      ],
-      [
-        "Scope",
-        "Bilingual identity, product line, campaign key visual, out-of-home, social system, motion"
-      ],
-      [
-        "Market",
-        "Saudi Arabia"
-      ]
-    ],
-    "video": {
-      "after": 20,
-      "caption": "Brand in motion: four story editions cut into one reel.",
-      "vertical": true
-    },
-    "color": "#D4A85A",
-    "tags": [
-      "identity",
-      "campaign",
-      "social",
-      "packaging"
-    ]
-  },
-  {
-    "slug": "pizza-rush",
-    "title": "Pizza Rush",
-    "arabic": "بيتزا رش",
-    "kind": "Brand identity and mascot",
-    "line": "A loud, fast pizza brand rebuilt from an old project of mine, with a mascot called Rushu.",
-    "intro": [
-      "Pizza Rush started as one of my earliest portfolio pieces. In 2026 I took it apart and rebuilt it, and the case study shows that jump from version one to version two.",
-      "The new system runs on a customised Arabic wordmark, a brandmark, and Rushu, a running slice who carries the tone of voice. It holds together across menu, box, delivery bag, storefront, app, social and out-of-home."
-    ],
-    "meta": [
-      [
-        "Role",
-        "Art direction and design"
-      ],
-      [
-        "Scope",
-        "Wordmark, brandmark, mascot, packaging, app, social, out-of-home"
-      ],
-      [
-        "Type",
-        "Arabic wordmark customised from Marhey, with Readex Pro and Bricolage Grotesque"
-      ]
-    ],
-    "color": "#FF5A36",
-    "tags": [
-      "identity",
-      "mascot",
-      "packaging",
-      "app",
-      "campaign"
-    ]
+    }
   },
   {
     "slug": "aywa",
@@ -185,10 +122,6 @@
     "arabic": "أيوة",
     "kind": "Brand identity for a fintech app",
     "line": "Identity for a card and money app for Egypt's 16 to 28 year olds. Aywa is the loud Egyptian yes.",
-    "intro": [
-      "AYWA opens an account in four minutes with no branch, then lets you tap to pay, send in seconds and split a bill in one tap. The identity runs on one rule, the Lean: everything tilts 10° forward. The custom wordmark has no vertical strokes, and the centre of the W breaks the cap line by 18%. That peak becomes the app symbol and the hero of the card.",
-      "The idea is money in colour. Your money splits into five pockets, and the colours from the photography become those pockets: pink for going out, volt for main, orange for food, blue for saving and chrome for bills. Each pocket gets its own virtual card, so you always see where your money goes."
-    ],
     "meta": [
       [
         "Role",
@@ -213,7 +146,88 @@
       "app",
       "campaign",
       "social"
-    ]
+    ],
+    "case": {
+      "client": null,
+      "industry": "Fintech, Gen Z banking",
+      "year": "TODO: year or years of the project",
+      "engagement": null,
+      "context": "TODO: optional. Who the client is and the situation before you started.",
+      "challenge": "TODO: the brief in one or two sentences. What problem did the client (or you) need solved?",
+      "direction": "The idea is money in colour. Your money splits into five pockets, and the colours from the photography become those pockets: pink for going out, volt for main, orange for food, blue for saving and chrome for bills. Each pocket gets its own virtual card, so you always see where your money goes.",
+      "system": "AYWA opens an account in four minutes with no branch, then lets you tap to pay, send in seconds and split a bill in one tap. The identity runs on one rule, the Lean: everything tilts 10° forward. The custom wordmark has no vertical strokes, and the centre of the W breaks the cap line by 18%. That peak becomes the app symbol and the hero of the card.",
+      "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
+      "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
+      "highlights": [
+        14,
+        18,
+        13,
+        7,
+        21
+      ],
+      "chapters": [
+        [
+          "The idea",
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        ],
+        [
+          "Identity",
+          [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        ],
+        [
+          "Cards and pockets",
+          [
+            13,
+            14,
+            15,
+            16
+          ]
+        ],
+        [
+          "Campaign",
+          [
+            17,
+            18,
+            19,
+            20
+          ]
+        ],
+        [
+          "Product",
+          [
+            21,
+            22
+          ]
+        ],
+        [
+          "Social and world",
+          [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        ]
+      ]
+    }
   },
   {
     "slug": "vult",
@@ -221,10 +235,6 @@
     "arabic": "ڤولت",
     "kind": "Brand identity and packaging",
     "line": "An Arabic identity for an energy drink named after a unit of voltage.",
-    "intro": [
-      "In Arabic, jahd (جهد) means both electrical voltage and human effort. VULT sits exactly between the two, and the whole identity is built on that coincidence.",
-      "The old Latin wordmark with its gradient was replaced by an Arabic wordmark: four letters carried on a single wire, with a spark drawn into the lam. Six flat colours, no gradients, and a set of single-word Arabic headlines carry it from can to poster to the feed. The case study itself is written in Arabic, on purpose."
-    ],
     "meta": [
       [
         "Role",
@@ -254,18 +264,202 @@
       "lettering",
       "packaging",
       "campaign"
-    ]
+    ],
+    "case": {
+      "client": null,
+      "industry": "Energy drinks",
+      "year": "TODO: year or years of the project",
+      "engagement": null,
+      "context": "TODO: optional. Who the client is and the situation before you started.",
+      "challenge": "TODO: the brief in one or two sentences. What problem did the client (or you) need solved?",
+      "direction": "In Arabic, jahd (جهد) means both electrical voltage and human effort. VULT sits exactly between the two, and the whole identity is built on that coincidence.",
+      "system": "The old Latin wordmark with its gradient was replaced by an Arabic wordmark: four letters carried on a single wire, with a spark drawn into the lam. Six flat colours, no gradients, and a set of single-word Arabic headlines carry it from can to poster to the feed. The case study itself is written in Arabic, on purpose.",
+      "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
+      "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
+      "highlights": [
+        22,
+        6,
+        17,
+        25,
+        12
+      ],
+      "chapters": [
+        [
+          "The idea",
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        [
+          "Wordmark",
+          [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        ],
+        [
+          "Colour and type",
+          [
+            10,
+            11,
+            12,
+            13,
+            14
+          ]
+        ],
+        [
+          "System",
+          [
+            15,
+            16,
+            17,
+            18
+          ]
+        ],
+        [
+          "Packaging",
+          [
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        ],
+        [
+          "Campaign",
+          [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        ]
+      ]
+    }
   },
   {
-    "slug": "qinwan",
-    "title": "Qinwan",
-    "arabic": "قنوان",
-    "kind": "Brand identity and company profile",
-    "line": "Brand identity and a 31-page company profile for a family house of dates and coffee.",
-    "intro": [
-      "Qinwan is a house of dates, coffee and gifting, presented the way a family business in the Gulf would present itself: as a company profile.",
-      "The profile walks from the family letter and the collection to corporate gifting, hospitality, the seasons, the boutique and the app, and closes with the construction of the Arabic wordmark and brandmark. The identity is red, ink and paper, with a woven Sadu band and a seal you can stamp on a box."
+    "slug": "aureya",
+    "title": "Aureya",
+    "arabic": "أوريا",
+    "kind": "Brand world and social campaign",
+    "line": "A bilingual brand world and weekly social system for a luxury skincare house in Saudi Arabia.",
+    "meta": [
+      [
+        "Role",
+        "Brand, art direction and design"
+      ],
+      [
+        "Scope",
+        "Bilingual identity, product line, campaign key visual, out-of-home, social system, motion"
+      ],
+      [
+        "Market",
+        "Saudi Arabia"
+      ]
     ],
+    "video": {
+      "after": 20,
+      "caption": "Brand in motion: four story editions cut into one reel.",
+      "vertical": true
+    },
+    "color": "#D4A85A",
+    "tags": [
+      "identity",
+      "campaign",
+      "social",
+      "packaging"
+    ],
+    "case": {
+      "client": null,
+      "industry": "Luxury skincare",
+      "year": "TODO: year or years of the project",
+      "engagement": null,
+      "context": "Aureya is a skincare house for the modern Gulf woman: rooted in ritual, quiet in its confidence, fluent in two languages. The brief was the complete visual world, from identity and product architecture to art direction, a campaign and a social system that can run every week without losing its poise.",
+      "challenge": "TODO: the brief in one or two sentences. What problem did the client (or you) need solved?",
+      "direction": "The idea is golden hour, kept. The palette is the product line: three colours for three collections, so a customer can read the shelf and the feed by colour alone. Arabic leads, in one weight and without stretched kashida.",
+      "system": "TODO: optional. The rules that make this a system: what stays fixed, what flexes.",
+      "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
+      "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
+      "highlights": [
+        12,
+        13,
+        8,
+        5,
+        14
+      ],
+      "chapters": [
+        [
+          "Brief and idea",
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        [
+          "Identity",
+          [
+            4,
+            5,
+            6,
+            7
+          ]
+        ],
+        [
+          "Art direction",
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        [
+          "Campaign",
+          [
+            12,
+            13
+          ]
+        ],
+        [
+          "Social system",
+          [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ]
+        ],
+        [
+          "Digital",
+          [
+            22,
+            23
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "slug": "ideas-that-scale",
+    "title": "Ideas that scale",
+    "arabic": "أفكار بتكبر",
+    "kind": "Social media systems",
+    "line": "Social systems for nine brands: one idea, a few hard rules, scaled across formats, languages and markets.",
     "meta": [
       [
         "Role",
@@ -273,20 +467,103 @@
       ],
       [
         "Scope",
-        "Wordmark, brandmark, packaging, stationery, company profile"
+        "Social systems, campaigns, localisation"
       ],
       [
-        "Market",
-        "Gulf"
+        "Markets",
+        "UAE, KSA and Egypt"
       ]
     ],
-    "color": "#E5483F",
+    "numbers": [
+      [
+        "9",
+        "brands"
+      ],
+      [
+        "3",
+        "markets: UAE, KSA and Egypt"
+      ],
+      [
+        "2",
+        "languages per post"
+      ],
+      [
+        "6",
+        "formats per post"
+      ]
+    ],
+    "color": "#3CCFAE",
     "tags": [
-      "identity",
-      "lettering",
-      "packaging",
-      "deck"
-    ]
+      "social",
+      "campaign"
+    ],
+    "skip_frames": [
+      24
+    ],
+    "case": {
+      "client": "mazeed, Bayantech, ATOP, Aureya, Reefer Zone and others",
+      "industry": "SaaS, language services, healthcare, beauty, refrigeration",
+      "year": "2023 to 2026",
+      "engagement": null,
+      "context": "The first half is shipped work for mazeed, Bayantech, ATOP, Aureya and Reefer Zone, from a single SaaS idea built once and shipped in UAE English, UAE Arabic and Saudi Arabic, to refrigeration posts where the spec a buyer cares about is the headline. The second half is the ideas: four campaigns built on bilingual wordplay and two brands made from scratch.",
+      "challenge": "TODO: the brief in one or two sentences. What problem did the client (or you) need solved?",
+      "direction": "TODO: the core idea behind the visual direction.",
+      "system": "I treat a feed like a brand system. One idea, a few hard rules, then scale it across formats, languages and markets without losing the idea.",
+      "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
+      "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
+      "highlights": [
+        3,
+        4,
+        16,
+        22,
+        6
+      ],
+      "chapters": [
+        [
+          "Shipped work",
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        ],
+        [
+          "Campaign ideas",
+          [
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        ],
+        [
+          "Row Seven",
+          [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ]
+        ],
+        [
+          "Slow Matter",
+          [
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        ]
+      ]
+    }
   },
   {
     "slug": "sheikh-khalifa-hospital",
@@ -294,10 +571,6 @@
     "arabic": "",
     "kind": "Company profile design",
     "line": "A company profile redesign for a specialist hospital on the UAE's East Coast.",
-    "intro": [
-      "A dense brief, made readable in seconds: 222 beds, 31 specialties and three centres of excellence for Sheikh Khalifa Hospital Fujairah.",
-      "The Clinical Light direction uses cool whites, deep forest green and one emerald accent. A filled medical icon system and big-number layouts carry the facts, and a chapter rail in the footer replaces the usual page counter. Nothing was invented: the new slides re-present the client's own facts."
-    ],
     "meta": [
       [
         "Role",
@@ -306,10 +579,6 @@
       [
         "Scope",
         "30-page bilingual profile, icon system, cover directions"
-      ],
-      [
-        "Client",
-        "Sheikh Khalifa Hospital Fujairah (Mubadarat)"
       ],
       [
         "Type",
@@ -337,7 +606,91 @@
     "tags": [
       "deck",
       "icons"
-    ]
+    ],
+    "case": {
+      "client": "Sheikh Khalifa Hospital Fujairah (Mubadarat)",
+      "industry": "Healthcare",
+      "year": "TODO: year or years of the project",
+      "engagement": null,
+      "context": "A dense brief, made readable in seconds: 222 beds, 31 specialties and three centres of excellence for Sheikh Khalifa Hospital Fujairah.",
+      "challenge": "TODO: the brief in one or two sentences. What problem did the client (or you) need solved?",
+      "direction": "The Clinical Light direction uses cool whites, deep forest green and one emerald accent. A filled medical icon system and big-number layouts carry the facts, and a chapter rail in the footer replaces the usual page counter. Nothing was invented: the new slides re-present the client's own facts.",
+      "system": "TODO: optional. The rules that make this a system: what stays fixed, what flexes.",
+      "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
+      "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
+      "highlights": [
+        3,
+        13,
+        39,
+        32,
+        38
+      ],
+      "chapters": [
+        [
+          "In use",
+          [
+            2,
+            3,
+            13,
+            23,
+            31,
+            32,
+            38,
+            39
+          ]
+        ],
+        [
+          "About the hospital",
+          [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        ],
+        [
+          "Facilities and centres",
+          [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        ],
+        [
+          "Clinical institutes",
+          [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ]
+        ],
+        [
+          "Commitments",
+          [
+            33,
+            34,
+            35,
+            36,
+            37
+          ]
+        ]
+      ]
+    }
   },
   {
     "slug": "roava",
@@ -345,10 +698,6 @@
     "arabic": "",
     "kind": "Brand identity and packaging",
     "line": "A specialty coffee brand that is calm and loud at once: soft lavender, broken by one lime accent.",
-    "intro": [
-      "The brief: a coffee brand that feels calm and loud at once. The answer was a system of restraint. Three soft purples do the quiet work, ink carries the type, and lime appears once per composition, never twice.",
-      "The rounded wordmark hides a coffee bean inside the o, with three strokes of steam above it. An arcade pattern borrowed from the shopfront is built from one module and always rises from the bottom edge, across cups, pouches, bags, signage and the feed."
-    ],
     "meta": [
       [
         "Role",
@@ -369,6 +718,284 @@
       "packaging",
       "campaign",
       "social"
-    ]
+    ],
+    "case": {
+      "client": null,
+      "industry": "Specialty coffee",
+      "year": "TODO: year or years of the project",
+      "engagement": null,
+      "context": "The brief: a coffee brand that feels calm and loud at once. The answer was a system of restraint. Three soft purples do the quiet work, ink carries the type, and lime appears once per composition, never twice.",
+      "challenge": "TODO: the brief in one or two sentences. What problem did the client (or you) need solved?",
+      "direction": "TODO: the core idea behind the visual direction.",
+      "system": "The rounded wordmark hides a coffee bean inside the o, with three strokes of steam above it. An arcade pattern borrowed from the shopfront is built from one module and always rises from the bottom edge, across cups, pouches, bags, signage and the feed.",
+      "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
+      "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
+      "highlights": [
+        8,
+        10,
+        3,
+        7,
+        12
+      ],
+      "chapters": [
+        [
+          "Identity",
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        ],
+        [
+          "Pattern",
+          [
+            7
+          ]
+        ],
+        [
+          "Campaign",
+          [
+            8,
+            9
+          ]
+        ],
+        [
+          "Applications",
+          [
+            10,
+            11,
+            12
+          ]
+        ],
+        [
+          "Social",
+          [
+            13,
+            14
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "slug": "qinwan",
+    "title": "Qinwan",
+    "arabic": "قنوان",
+    "kind": "Brand identity and company profile",
+    "line": "Brand identity and a 31-page company profile for a family house of dates and coffee.",
+    "meta": [
+      [
+        "Role",
+        "Art direction and design"
+      ],
+      [
+        "Scope",
+        "Wordmark, brandmark, packaging, stationery, company profile"
+      ],
+      [
+        "Market",
+        "Gulf"
+      ]
+    ],
+    "color": "#E5483F",
+    "tags": [
+      "identity",
+      "lettering",
+      "packaging",
+      "deck"
+    ],
+    "case": {
+      "client": null,
+      "industry": "Dates, coffee and gifting",
+      "year": "TODO: year or years of the project",
+      "engagement": null,
+      "context": "Qinwan is a house of dates, coffee and gifting, presented the way a family business in the Gulf would present itself: as a company profile.",
+      "challenge": "TODO: the brief in one or two sentences. What problem did the client (or you) need solved?",
+      "direction": "The profile walks from the family letter and the collection to corporate gifting, hospitality, the seasons, the boutique and the app, and closes with the construction of the Arabic wordmark and brandmark. The identity is red, ink and paper, with a woven Sadu band and a seal you can stamp on a box.",
+      "system": "TODO: optional. The rules that make this a system: what stays fixed, what flexes.",
+      "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
+      "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
+      "highlights": [
+        16,
+        14,
+        26,
+        27,
+        20
+      ],
+      "chapters": [
+        [
+          "The house",
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        ],
+        [
+          "The collection",
+          [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ]
+        ],
+        [
+          "Corporate and hospitality",
+          [
+            17,
+            18,
+            19,
+            20,
+            21
+          ]
+        ],
+        [
+          "Retail and digital",
+          [
+            22,
+            23,
+            24
+          ]
+        ],
+        [
+          "Identity",
+          [
+            25,
+            26,
+            27,
+            28
+          ]
+        ],
+        [
+          "Closing",
+          [
+            29,
+            30,
+            31
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "slug": "pizza-rush",
+    "title": "Pizza Rush",
+    "arabic": "بيتزا رش",
+    "kind": "Brand identity and mascot",
+    "line": "A loud, fast pizza brand rebuilt from an old project of mine, with a mascot called Rushu.",
+    "meta": [
+      [
+        "Role",
+        "Art direction and design"
+      ],
+      [
+        "Scope",
+        "Wordmark, brandmark, mascot, packaging, app, social, out-of-home"
+      ],
+      [
+        "Type",
+        "Arabic wordmark customised from Marhey, with Readex Pro and Bricolage Grotesque"
+      ]
+    ],
+    "color": "#FF5A36",
+    "tags": [
+      "identity",
+      "mascot",
+      "packaging",
+      "app",
+      "campaign"
+    ],
+    "case": {
+      "client": null,
+      "industry": "Food and delivery",
+      "year": "2026",
+      "engagement": null,
+      "context": "Pizza Rush started as one of my earliest portfolio pieces. In 2026 I took it apart and rebuilt it, and the case study shows that jump from version one to version two.",
+      "challenge": "TODO: the brief in one or two sentences. What problem did the client (or you) need solved?",
+      "direction": "TODO: the core idea behind the visual direction.",
+      "system": "The new system runs on a customised Arabic wordmark, a brandmark, and Rushu, a running slice who carries the tone of voice. It holds together across menu, box, delivery bag, storefront, app, social and out-of-home.",
+      "outcome": "TODO: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.",
+      "credits": "TODO: optional. Team, agency, photographer, copywriter, or how the imagery was produced.",
+      "highlights": [
+        11,
+        20,
+        23,
+        26,
+        8
+      ],
+      "chapters": [
+        [
+          "Strategy",
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        ],
+        [
+          "Logo",
+          [
+            7,
+            8,
+            9,
+            10
+          ]
+        ],
+        [
+          "Mascot",
+          [
+            11,
+            12,
+            13
+          ]
+        ],
+        [
+          "System",
+          [
+            14,
+            15,
+            16,
+            17,
+            18
+          ]
+        ],
+        [
+          "Applications",
+          [
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        ],
+        [
+          "Campaign",
+          [
+            25,
+            26,
+            27,
+            28
+          ]
+        ]
+      ]
+    }
   }
 ]

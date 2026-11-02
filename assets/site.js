@@ -76,8 +76,9 @@
   const dlg = document.querySelector('.viewer');
   if (!dlg) return;
   const pic = dlg.querySelector('.viewer__img'), count = dlg.querySelector('.viewer__count');
-  const btns = [...document.querySelectorAll('.frame__zoom')];
-  let i = 0, opener = null;
+  // Prev/next stay inside the group you opened from: the highlights, or one chapter
+  const all = [...document.querySelectorAll('.frame__zoom')];
+  let btns = all, i = 0, opener = null;
   const show = n => {
     i = (n + btns.length) % btns.length;
     pic.src = btns[i].dataset.full;
@@ -86,7 +87,11 @@
     dlg.classList.remove('is-zoomed');
     dlg.querySelector('.viewer__scroll').scrollTo(0, 0);
   };
-  btns.forEach((b, n) => b.addEventListener('click', () => { opener = b; show(n); dlg.showModal(); }));
+  all.forEach(b => b.addEventListener('click', () => {
+    const group = b.closest('.bento, .chapter__body');
+    btns = group ? [...group.querySelectorAll('.frame__zoom')] : all;
+    opener = b; show(btns.indexOf(b)); dlg.showModal();
+  }));
   dlg.addEventListener('click', ev => {
     const v = ev.target.dataset && ev.target.dataset.v;
     if (v === 'prev') show(i - 1);
@@ -101,17 +106,27 @@
   dlg.addEventListener('close', () => { pic.removeAttribute('src'); opener && opener.focus(); });
 })();
 
-// "Show all frames" on long slide case studies.
+// Case-study chapters: links in the chapter list open their chapter; one button opens or closes them all.
 (() => {
-  const b = document.querySelector('[data-more]');
-  if (!b) return;
-  b.addEventListener('click', () => {
-    const wrap = document.querySelector('.frames.is-folded');
-    const first = wrap.querySelector('.is-extra');
-    wrap.classList.remove('is-folded');
-    b.parentElement.remove();
-    first && first.querySelector('button').focus({ preventScroll: true });
+  const chapters = [...document.querySelectorAll('.chapter')];
+  if (!chapters.length) return;
+  document.querySelectorAll('[data-open]').forEach(a => a.addEventListener('click', () => {
+    const d = document.getElementById(a.dataset.open); if (d) d.open = true;
+  }));
+  const allBtn = document.querySelector('[data-all]');
+  const sync = () => {
+    if (!allBtn) return;
+    const open = chapters.every(c => c.open);
+    allBtn.textContent = open ? 'Close all chapters' : 'Open all chapters';
+    allBtn.setAttribute('aria-expanded', String(open));
+  };
+  allBtn && allBtn.addEventListener('click', () => {
+    const open = !chapters.every(c => c.open);
+    chapters.forEach(c => (c.open = open)); sync();
   });
+  chapters.forEach(c => c.addEventListener('toggle', sync));
+  const fromHash = () => { const d = location.hash && document.querySelector('.chapter' + location.hash); if (d) d.open = true; };
+  fromHash(); addEventListener('hashchange', fromHash);
 })();
 
 // Enquiry form: writes the email for the client, nothing is stored or sent from here.
@@ -156,11 +171,17 @@
   }));
 })();
 
+// "Ask about this" on the services page ticks the matching box in the form.
+document.querySelectorAll('[data-need]').forEach(a => a.addEventListener('click', () => {
+  const box = [...document.querySelectorAll('.start__form input[name="need"]')].find(i => i.value === a.dataset.need);
+  if (box) box.checked = true;
+}));
+
 // Work filters: tap a label to see only that kind of project.
 (() => {
   const chips = [...document.querySelectorAll('.fchip')];
   if (!chips.length) return;
-  const items = [...document.querySelectorAll('.rows .item')];
+  const items = [...document.querySelectorAll('.feats .item, .rows .item')];
   const status = document.querySelector('.filters__status');
   chips.forEach(c => c.addEventListener('click', () => {
     const f = c.dataset.filter;

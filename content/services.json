@@ -19,7 +19,8 @@
         "pizza-rush",
         "vult"
       ],
-      "price": null
+      "price": null,
+      "timeline": null
     },
     {
       "id": "brand-guidelines",
@@ -38,7 +39,8 @@
         "roava",
         "mazeed"
       ],
-      "price": null
+      "price": null,
+      "timeline": null
     },
     {
       "id": "social-media",
@@ -57,7 +59,8 @@
         "mazeed",
         "aureya"
       ],
-      "price": null
+      "price": null,
+      "timeline": null
     },
     {
       "id": "presentation-design",
@@ -75,7 +78,8 @@
         "sheikh-khalifa-hospital",
         "qinwan"
       ],
-      "price": null
+      "price": null,
+      "timeline": null
     },
     {
       "id": "creative-direction",
@@ -93,7 +97,8 @@
         "mazeed",
         "ideas-that-scale"
       ],
-      "price": null
+      "price": null,
+      "timeline": null
     }
   ],
   "process": [
@@ -176,5 +181,36 @@
       "price": null
     }
   ],
-  "price_note": "Pricing: add a value to any service's \"price\" (for example \"From USD 2,500\") to show it on the site. Leave it null to hide it."
+  "price_note": "Pricing and timelines: put text in any service's \"price\" or \"timeline\" (e.g. \"From USD 2,500\", \"4 to 6 weeks\") to show it. null hides it.",
+  "start": [
+    {
+      "id": "start-review",
+      "icon": "audit",
+      "name": "Start with a review",
+      "summary": "A focused session or written audit when you need direction rather than production.",
+      "examples": [
+        "brand-audit"
+      ],
+      "need": "A review or small project"
+    },
+    {
+      "id": "start-project",
+      "icon": "campaign",
+      "name": "A defined project",
+      "summary": "A new identity, a campaign, a guidelines document or a deck, with a clear scope and end date.",
+      "examples": [
+        "social-kit",
+        "deck-refresh"
+      ],
+      "need": "Not sure yet"
+    },
+    {
+      "id": "start-monthly",
+      "icon": "direction",
+      "name": "Monthly design support",
+      "summary": "A set amount of design time each month for teams that need steady, on-brand output.",
+      "examples": [],
+      "need": "Creative direction and ongoing design support"
+    }
+  ]
 }

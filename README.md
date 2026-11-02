@@ -7,20 +7,25 @@ Static site, no framework. Live at https://a-rabea.github.io (GitHub Pages, depl
 - Home page, about and contact text: `build.py` (`build_home`).
 - Then run `python3 build.py` and commit.
 
-## Add a project
-1. Add its cover and frames to `assets_manifest.py`.
-2. `python3 process_images.py`, then `python3 make_extras.py` (share cards, light-frame flags) (makes WebP at 1800 / 1000 px into `assets/img/<slug>`).
-3. Add an entry to `content/projects.json` (order = order on the site).
-4. `python3 build.py`.
+## Add a project (case-study template)
+1. Add its cover and frames to `assets_manifest.py`, then run `python3 process_images.py` (WebP at 1800 / 1000 px plus 480 px thumbnails) and `python3 make_extras.py` (share card, light-frame flags).
+2. Add an entry to `content/projects.json`. Order in the file = order on the site. Copy an existing entry and change:
+   - `title`, `arabic`, `kind`, `line`, `color`, `tags`, `meta` (Role, Scope, Market, Type).
+   - `case`: `client`, `industry`, `engagement`, `year`, `context`, `challenge`, `direction`, `system`, `outcome`, `credits`,
+     `highlights` (5 frame numbers: the first is shown large) and `chapters` (`[["Chapter name", [frame numbers]], ...]`).
+   - Any `case` text that starts with `TODO` or is `null` is hidden on the site.
+3. To feature it on the home page, put its slug in `FEATURED` in `build.py` (three projects).
+4. Run `python3 build.py`. It also rewrites `content/CONTENT-TODO.md`, the list of every placeholder still waiting for your input.
 
 ## Custom domain
 Add a `CNAME` file containing the domain (e.g. `ahmedrabea.com`), point the domain's DNS to GitHub Pages, and update `SITE["url"]` in `build.py`.
 
 Fonts: Archivo and Readex Pro (SIL Open Font License), self-hosted in `assets/fonts`.
 
-## Pricing (off until approved)
-Every service and quick start in `content/services.json` has a `"price"` field set to `null`, which hides it.
-Put text in it (for example `"From USD 2,500"`) and run `python3 build.py` to show it on the services page.
+## Pricing and timelines (off until approved)
+Every service in `content/services.json` has `"price"` and `"timeline"` set to `null`, which hides them. Quick starts have `"price"` too.
+Put text in them (for example `"From USD 2,500"`, `"4 to 6 weeks"`) and run `python3 build.py` to show them on the services page.
+The three "Ways to start" cards are the `start` list in the same file.
 
 ## Analytics
 - GoatCounter (cookie-free page views and click events) and Cloudflare Web Analytics (cookie-free visits and Core Web Vitals).
