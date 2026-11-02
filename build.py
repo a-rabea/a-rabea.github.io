@@ -17,15 +17,15 @@ SITE = {
     "tel": "+201010579844",
     "whatsapp": "https://wa.me/201010579844",
 }
-# Free, cookie-free analytics. GoatCounter: account code "a-rabea" (a-rabea.goatcounter.com).
+# Free, cookie-free analytics. GoatCounter: account code "alpattex" (alpattex.goatcounter.com).
 # Cloudflare Web Analytics: paste the site token from dash.cloudflare.com > Analytics > Web Analytics.
-GOATCOUNTER_CODE = "a-rabea"
-CLOUDFLARE_TOKEN = ""
+GOATCOUNTER_CODE = "alpattex"
+CLOUDFLARE_TOKEN = "db5cdda8de86485ea56156e62e3d35a8"
 ANALYTICS = ""
 if GOATCOUNTER_CODE:
     ANALYTICS += f'\n<script data-goatcounter="https://{GOATCOUNTER_CODE}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
 if CLOUDFLARE_TOKEN:
-    ANALYTICS += f"""\n<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "{CLOUDFLARE_TOKEN}"}}'></script>"""
+    ANALYTICS += f"""\n<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "{CLOUDFLARE_TOKEN}"}}'></script>"""
 projects = json.load(open("content/projects.json", encoding="utf-8"))
 services = json.load(open("content/services.json", encoding="utf-8"))
 by_slug = {p["slug"]: p for p in projects}
