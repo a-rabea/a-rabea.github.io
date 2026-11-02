@@ -226,7 +226,7 @@ def build_home():
   <div class="wall" aria-hidden="true"><div class="wall__tilt">{wall_html(root)}</div></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__top">
-    <p class="hello"><img class="hello__face" src="assets/img/about/avatar.webp" width="40" height="40" alt="">Hi, I'm Ahmed.<br>Brand designer and art director in Cairo</p>
+    <p>Hi, I'm Ahmed.<br>Brand designer and art director in Cairo</p>
     <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select projects</p>
   </div>
   <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span></h1>
