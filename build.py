@@ -189,9 +189,9 @@ def enquiry(root, heading="Start a project", lead=None):
 
 def row(p, root):
     ar = f'<span class="row__ar" lang="ar" dir="rtl">{e(p["arabic"])}</span>' if p["arabic"] else '<span class="row__ar"></span>'
-    thumb = img(meta[p["slug"]]["cover"], root, "100vw", "", cls="row__thumb")
+    thumb = img(meta[p["slug"]]["cover"], root, "(max-width: 860px) 100vw, 45vw", "", cls="row__thumb")
     return f"""<li class="item" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
-  <a class="row" href="{root}work/{p['slug']}/index.html" data-peek="{cover_small(p['slug'], root)}" aria-label="{e(p['title'])}: {e(p['kind'])}. View case study">
+  <a class="row" href="{root}work/{p['slug']}/index.html" aria-label="{e(p['title'])}: {e(p['kind'])}. View case study">
     {thumb}
     <span class="row__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
     <span class="row__info"><span class="row__kind">{e(p['kind'])}</span>{e(p['line'])}<span class="tags">{tag_chips(p)}</span></span>
