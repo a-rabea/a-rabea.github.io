@@ -17,6 +17,15 @@ SITE = {
     "tel": "+201010579844",
     "whatsapp": "https://wa.me/201010579844",
 }
+# Free, cookie-free analytics. GoatCounter: account code "a-rabea" (a-rabea.goatcounter.com).
+# Cloudflare Web Analytics: paste the site token from dash.cloudflare.com > Analytics > Web Analytics.
+GOATCOUNTER_CODE = "a-rabea"
+CLOUDFLARE_TOKEN = ""
+ANALYTICS = ""
+if GOATCOUNTER_CODE:
+    ANALYTICS += f'\n<script data-goatcounter="https://{GOATCOUNTER_CODE}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+if CLOUDFLARE_TOKEN:
+    ANALYTICS += f"""\n<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "{CLOUDFLARE_TOKEN}"}}'></script>"""
 projects = json.load(open("content/projects.json", encoding="utf-8"))
 services = json.load(open("content/services.json", encoding="utf-8"))
 by_slug = {p["slug"]: p for p in projects}
@@ -106,7 +115,7 @@ def head(title, desc, root, og, path="", ld=None):
 <link rel="apple-touch-icon" href="{root}assets/apple-touch-icon.png">
 <link rel="preload" href="{root}assets/fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{root}assets/site.css?v={VER}">
-<script src="{root}assets/site.js?v={VER}" defer></script>{lds}
+<script src="{root}assets/site.js?v={VER}" defer></script>{lds}{ANALYTICS}
 </head>
 """
 
