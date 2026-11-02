@@ -20,7 +20,14 @@
         "vult"
       ],
       "price": "From USD 3,000",
-      "timeline": "3 to 4 weeks"
+      "timeline": "3 to 4 weeks",
+      "short": "Logo, colour, type and core brand assets",
+      "image": [
+        "roava",
+        4
+      ],
+      "label": "Brand identity",
+      "timeline_short": "3–4 weeks"
     },
     {
       "id": "brand-guidelines",
@@ -40,7 +47,14 @@
         "mazeed"
       ],
       "price": "From USD 1,500",
-      "timeline": "2 to 3 weeks"
+      "timeline": "2 to 3 weeks",
+      "short": "Rules, components and templates your team can follow",
+      "image": [
+        "aureya",
+        6
+      ],
+      "label": "Guidelines & systems",
+      "timeline_short": "2–3 weeks"
     },
     {
       "id": "social-media",
@@ -60,7 +74,14 @@
         "aureya"
       ],
       "price": "From USD 1,200",
-      "timeline": "2 weeks for the system, then monthly"
+      "timeline": "2 weeks for the system, then monthly",
+      "short": "Templates, key visuals and monthly content",
+      "image": [
+        "ideas-that-scale",
+        3
+      ],
+      "label": "Social & campaigns",
+      "timeline_short": "2 weeks, then monthly"
     },
     {
       "id": "presentation-design",
@@ -79,7 +100,14 @@
         "qinwan"
       ],
       "price": "From USD 900",
-      "timeline": "1 week for a presentation, 1 to 2 weeks for a company profile"
+      "timeline": "1 week for a presentation, 1 to 2 weeks for a company profile",
+      "short": "Pitch decks, sales decks and company profiles",
+      "image": [
+        "sheikh-khalifa-hospital",
+        6
+      ],
+      "label": "Decks & profiles",
+      "timeline_short": "1–2 weeks"
     },
     {
       "id": "creative-direction",
@@ -98,7 +126,14 @@
         "ideas-that-scale"
       ],
       "price": "From USD 1,200 a month",
-      "timeline": "Monthly, or a one-off review"
+      "timeline": "Monthly, or a one-off review",
+      "short": "Audits, direction and monthly design support",
+      "image": [
+        "mazeed",
+        4
+      ],
+      "label": "Creative direction",
+      "timeline_short": "Monthly or one-off"
     }
   ],
   "process": [

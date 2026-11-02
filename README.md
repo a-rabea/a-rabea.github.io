@@ -14,7 +14,7 @@ Static site, no framework. Live at https://a-rabea.github.io (GitHub Pages, depl
    - `case`: `client`, `industry`, `engagement`, `year`, `context`, `challenge`, `direction`, `system`, `outcome`, `credits`,
      `highlights` (5 frame numbers: the first is shown large) and `chapters` (`[["Chapter name", [frame numbers]], ...]`).
    - Any `case` text that starts with `TODO` or is `null` is hidden on the site.
-3. To feature it on the home page, put its slug in `FEATURED` in `build.py` (three projects).
+3. To feature it on the home page, put its slug in `FEATURED` in `build.py` (three projects). Add `"card_frame": N` to use frame N as its home card image instead of the cover.
 4. Run `python3 build.py`. It also rewrites `content/CONTENT-TODO.md`, the list of every placeholder still waiting for your input.
 
 ## Custom domain

@@ -224,7 +224,11 @@ def row(p, root):
 
 def feature_card(p, root, big=False):
     sizes = "(max-width: 860px) 100vw, (max-width: 1100px) 50vw, 33vw"
-    pic = img(meta[p["slug"]]["cover"], root, sizes, "", cls="feat__img")
+    # "card_frame" in projects.json swaps the home card image for one of the project's frames (keeps the three cards visually distinct)
+    src = meta[p["slug"]]["frames"][p["card_frame"] - 1] if p.get("card_frame") else meta[p["slug"]]["cover"]
+    pic = img(src, root, sizes, "", cls="feat__img")
+    if p.get("card_pos"):  # optional crop anchor, e.g. "left center"
+        pic = pic.replace("<img ", f'<img style="object-position:{p["card_pos"]}" ', 1)
     return f"""<li class="item feat{' feat--big' if big else ''}" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
   <a class="feat__link" href="{root}work/{p['slug']}/index.html">
     <span class="feat__media">{pic}</span>
@@ -298,7 +302,18 @@ def build_home():
     feats = "\n".join(feature_card(by_slug[s], root, k == 0) for k, s in enumerate(FEATURED))
     rows = "\n".join(row(p, root) for p in projects if p["slug"] not in FEATURED)
     portrait = img(meta["portrait"], root, "(max-width: 760px) 90vw, 34vw", "Portrait of Ahmed Rabea, brand designer and art director in Cairo")
-    svc = "\n".join(f'<li><a href="services/index.html#{s["id"]}">{icon(s["icon"])}<span class="svc__name">{e(s["name"])}</span><span class="svc__sum">{e(s["summary"])}</span></a></li>' for s in services["services"])
+    def svc_row(n, s):
+        sl, fn = s["image"]
+        pic = img(frame_of(sl, fn), root, "(max-width: 860px) 30vw, 300px", "", cls="sv__img")
+        meta_line = " · ".join(x for x in (s.get("price"), s.get("timeline_short")) if x)
+        return f"""<li class="sv" style="--c:{by_slug[sl]['color']}"><a class="sv__link" href="services/index.html#{s['id']}">
+  <span class="sv__n">{n:02d}</span>
+  <span class="sv__main"><span class="sv__name">{e(s.get('label') or s['name'])}</span><span class="sv__short">{e(s['short'])}</span></span>
+  <span class="sv__meta">{e(meta_line)}<span class="sv__proof">Seen in {e(by_slug[sl]['title'])}</span></span>
+  <span class="sv__media">{pic}</span>
+  <span class="row__go" aria-hidden="true">{icon('arrow')}</span>
+</a></li>"""
+    svc = "\n".join(svc_row(n, s) for n, s in enumerate(services["services"], 1))
     page = head(f"Ahmed Rabea | {ROLE}, Cairo",
                 "Senior brand designer and art director in Cairo. Brand identities, design systems, campaigns and pitch decks for Gulf and Egyptian companies, in English and Arabic.",
                 root, "home", "", [person_ld(), website_ld()], og_alt="Ahmed Rabea, Senior Brand Designer and Art Director, over a grid of his project covers") + f"""<body class="home">
@@ -337,7 +352,7 @@ def build_home():
 
 <section class="svc" aria-labelledby="svc-h">
   <div class="sec-head"><h2 id="svc-h">Services</h2><p><a href="services/index.html">All services and how I work</a></p></div>
-  <ul class="svc__list" role="list">
+  <ul class="svs" role="list">
 {svc}
   </ul>
   <p class="svc__quick">Want to start small? Try a <a href="services/index.html#quick">brand audit, a social media template kit or a deck refresh</a>.</p>
