@@ -47,3 +47,55 @@
   });
   addEventListener('scroll', () => { if (on) { on = false; peek.classList.remove('is-on'); } }, { passive: true });
 })();
+
+// Pause the hero wall when it's off-screen (saves battery).
+(() => {
+  const wall = document.querySelector('.wall');
+  if (!wall || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([en]) => wall.classList.toggle('is-paused', !en.isIntersecting)).observe(wall);
+})();
+
+// Page transition: the clicked project's cover morphs into the case-study cover.
+(() => {
+  document.querySelectorAll('a.row').forEach(a => a.addEventListener('click', () => {
+    const peek = document.querySelector('.peek.is-on img');
+    const thumb = a.querySelector('.row__thumb');
+    const el = peek || (thumb && thumb.offsetParent ? thumb : null);
+    if (el) {
+      document.querySelectorAll('.case__cover').forEach(c => c.style.viewTransitionName = 'none');
+      el.style.viewTransitionName = 'hero-cover';
+    }
+  }));
+  // undo if the person comes back with the back button
+  addEventListener('pageshow', () => document.querySelectorAll('[style*="view-transition-name"]').forEach(el => el.style.viewTransitionName = ''));
+})();
+
+// Frame viewer: tap a frame to see it full size, tap again to zoom, arrows to move.
+(() => {
+  const dlg = document.querySelector('.viewer');
+  if (!dlg) return;
+  const pic = dlg.querySelector('.viewer__img'), count = dlg.querySelector('.viewer__count');
+  const btns = [...document.querySelectorAll('.frame__zoom')];
+  let i = 0, opener = null;
+  const show = n => {
+    i = (n + btns.length) % btns.length;
+    pic.src = btns[i].dataset.full;
+    pic.alt = btns[i].querySelector('img').alt;
+    count.textContent = `${i + 1} / ${btns.length}`;
+    dlg.classList.remove('is-zoomed');
+    dlg.querySelector('.viewer__scroll').scrollTo(0, 0);
+  };
+  btns.forEach((b, n) => b.addEventListener('click', () => { opener = b; show(n); dlg.showModal(); }));
+  dlg.addEventListener('click', ev => {
+    const v = ev.target.dataset && ev.target.dataset.v;
+    if (v === 'prev') show(i - 1);
+    else if (v === 'next') show(i + 1);
+    else if (v === 'close') dlg.close();
+    else if (ev.target === pic) dlg.classList.toggle('is-zoomed');
+  });
+  dlg.addEventListener('keydown', ev => {
+    if (ev.key === 'ArrowRight') show(i + 1);
+    if (ev.key === 'ArrowLeft') show(i - 1);
+  });
+  dlg.addEventListener('close', () => { pic.removeAttribute('src'); opener && opener.focus(); });
+})();

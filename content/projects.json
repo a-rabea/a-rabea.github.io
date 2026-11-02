@@ -26,6 +26,24 @@
         "Years",
         "2025 to 2026"
       ]
+    ],
+    "numbers": [
+      [
+        "1,000+",
+        "clients served across the UAE and KSA"
+      ],
+      [
+        "395",
+        "tasks and deliverables shipped in one tracked window"
+      ],
+      [
+        "80",
+        "assets from a single campaign system"
+      ],
+      [
+        "16",
+        "icons in the service system"
+      ]
     ]
   },
   {
@@ -55,6 +73,24 @@
         "Years",
         "2023 to 2026"
       ]
+    ],
+    "numbers": [
+      [
+        "9",
+        "brands"
+      ],
+      [
+        "3",
+        "markets: UAE, KSA and Egypt"
+      ],
+      [
+        "2",
+        "languages per post"
+      ],
+      [
+        "6",
+        "formats per post"
+      ]
     ]
   },
   {
@@ -83,7 +119,7 @@
     ],
     "video": {
       "after": 20,
-      "caption": "Stories reel, four motion editions cut into one.",
+      "caption": "Brand in motion: four story editions cut into one reel.",
       "vertical": true
     }
   },
@@ -171,7 +207,7 @@
     ],
     "video": {
       "after": 1,
-      "caption": "Brand in motion. Sound on.",
+      "caption": "Brand in motion: the identity system animated.",
       "vertical": false
     }
   },
@@ -227,6 +263,23 @@
         "Type",
         "Inter Tight, IBM Plex Sans Arabic, Instrument Serif"
       ]
+    ],
+    "numbers": [
+      [
+        "30",
+        "pages in the profile"
+      ],
+      [
+        "72",
+        "icons in the medical set"
+      ],
+      [
+        "222",
+        "beds, 31 specialties and 3 centres made readable"
+      ]
+    ],
+    "skip_frames": [
+      1
     ]
   },
   {

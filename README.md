@@ -9,7 +9,7 @@ Static site, no framework. Live at https://a-rabea.github.io (GitHub Pages, depl
 
 ## Add a project
 1. Add its cover and frames to `assets_manifest.py`.
-2. `python3 process_images.py` (makes WebP at 1800 / 1000 px into `assets/img/<slug>`).
+2. `python3 process_images.py`, then `python3 make_extras.py` (share cards, light-frame flags) (makes WebP at 1800 / 1000 px into `assets/img/<slug>`).
 3. Add an entry to `content/projects.json` (order = order on the site).
 4. `python3 build.py`.
 
