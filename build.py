@@ -35,7 +35,7 @@ def track(name, title=""):
 
 
 ROLE = "Senior Brand Designer & Art Director"
-FEATURED = ["mazeed", "aywa", "vult"]  # led on the home page, in this order
+FEATURED = ["mazeed", "qinwan", "aywa"]  # led on the home page, in this order
 BUILD_DATE = __import__("datetime").date.today().isoformat()
 projects = json.load(open("content/projects.json", encoding="utf-8"))
 services = json.load(open("content/services.json", encoding="utf-8"))
