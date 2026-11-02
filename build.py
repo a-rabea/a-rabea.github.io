@@ -53,6 +53,7 @@ def head(title, desc, root, og, path=""):
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="p:domain_verify" content="021ae1545cf424912b139af6310727fe"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
