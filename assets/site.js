@@ -183,3 +183,36 @@
   const set = () => bar.classList.toggle('is-solid', scrollY > 40);
   addEventListener('scroll', set, { passive: true }); set();
 })();
+
+// Custom cursor (from V2): a dot that grows over links and says "View" over work, "Zoom" over images.
+(() => {
+  const cur = document.querySelector('.cursor');
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!cur || !fine || still) return;
+  document.body.classList.add('has-cursor');
+  const label = cur.querySelector('.cursor__label');
+  let x = -100, y = -100, cx = -100, cy = -100;
+  addEventListener('mousemove', ev => { x = ev.clientX; y = ev.clientY; cur.classList.add('is-on'); }, { passive: true });
+  document.addEventListener('mouseleave', () => cur.classList.remove('is-on'));
+  const loop = () => { cx += (x - cx) * .25; cy += (y - cy) * .25; cur.style.transform = `translate3d(${cx}px, ${cy}px, 0)`; requestAnimationFrame(loop); };
+  loop();
+  // A modal <dialog> sits in the top layer, so carry the dot inside it while it is open.
+  document.querySelectorAll('dialog').forEach(d => {
+    new MutationObserver(() => (d.open ? d : document.body).appendChild(cur)).observe(d, { attributes: true, attributeFilter: ['open'] });
+  });
+  const textFor = t => {
+    if (!t) return '';
+    if (t.dataset.cursor) return t.dataset.cursor;
+    if (t.matches('.frame__zoom')) return 'Zoom';
+    const h = t.getAttribute('href') || '';
+    if (/(^|\/)work\/[^/#]+\/(index\.html)?$/.test(h) && !t.closest('.bar, .foot')) return 'View';
+    return '';
+  };
+  document.addEventListener('mouseover', ev => {
+    const t = ev.target.closest('[data-cursor], a, button, summary, label');
+    const txt = textFor(t);
+    cur.classList.toggle('is-label', !!txt); cur.classList.toggle('is-link', !!t && !txt);
+    label.textContent = txt;
+  });
+})();

@@ -125,6 +125,7 @@ def header(root, here=""):
   </nav>
 </header>
 <div class="peek" aria-hidden="true"><img alt=""></div>
+<div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
 """
 
 

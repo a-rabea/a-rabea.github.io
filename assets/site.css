@@ -472,9 +472,18 @@ p { margin: 0 0 1em; }
   .wall__run { gap: 10px; }
   .hero__name { font-size: clamp(4.6rem, 27vw, 9rem); }
 }
-@media (hover: none), (pointer: coarse) { .peek { display: none; } }
+/* Custom cursor (fine pointers only) */
+.cursor { position: fixed; left: 0; top: 0; z-index: 40; pointer-events: none; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--teal); opacity: 0; transition: width .3s var(--ease), height .3s var(--ease), margin .3s var(--ease), opacity .3s, background .3s; display: grid; place-items: center; }
+.cursor.is-on { opacity: 1; }
+.cursor.is-link { width: 44px; height: 44px; margin: -22px 0 0 -22px; background: color-mix(in srgb, var(--teal) 25%, transparent); border: 1px solid var(--teal); }
+.cursor.is-label { width: 78px; height: 78px; margin: -39px 0 0 -39px; background: var(--teal); }
+.cursor__label { font-size: .78rem; font-weight: 800; color: #0D100F; opacity: 0; transition: opacity .2s; }
+.cursor.is-label .cursor__label { opacity: 1; }
+@media (hover: hover) and (pointer: fine) { body.has-cursor, body.has-cursor a, body.has-cursor button, body.has-cursor summary, body.has-cursor label { cursor: none; } body.has-cursor input, body.has-cursor textarea, body.has-cursor select { cursor: auto; } }
+@media (hover: none), (pointer: coarse) { .peek, .cursor { display: none; } }
 
 @media (prefers-reduced-motion: reduce) {
+  .cursor { display: none; }
   .float { animation: none; }
   @view-transition { navigation: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
