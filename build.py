@@ -23,9 +23,19 @@ GOATCOUNTER_CODE = "alpattex"
 CLOUDFLARE_TOKEN = "db5cdda8de86485ea56156e62e3d35a8"
 ANALYTICS = ""
 if GOATCOUNTER_CODE:
-    ANALYTICS += f'\n<script data-goatcounter="https://{GOATCOUNTER_CODE}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+    ANALYTICS += f'\n<script data-goatcounter="https://{GOATCOUNTER_CODE}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>'
 if CLOUDFLARE_TOKEN:
     ANALYTICS += f"""\n<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{"token": "{CLOUDFLARE_TOKEN}"}}'></script>"""
+
+def track(name, title=""):
+    """GoatCounter click event: shows up under the "events" list in the dashboard. No cookies, no personal data."""
+    if not GOATCOUNTER_CODE: return ""
+    t = f' data-goatcounter-title="{title}"' if title else ""
+    return f' data-goatcounter-click="{name}"{t}'
+
+
+ROLE = "Senior Brand Designer & Art Director"
+BUILD_DATE = __import__("datetime").date.today().isoformat()
 projects = json.load(open("content/projects.json", encoding="utf-8"))
 services = json.load(open("content/services.json", encoding="utf-8"))
 by_slug = {p["slug"]: p for p in projects}
@@ -85,9 +95,10 @@ def cover_small(slug, root):
     return f"{root}{meta[slug]['cover']['files']['800']}"
 
 
-def head(title, desc, root, og, path="", ld=None):
+def head(title, desc, root, og, path="", ld=None, kind="website", og_alt=None):
     url = f"{SITE['url']}/{path}"
     og_url = f"{SITE['url']}/assets/og/{og}.jpg"
+    og_alt = og_alt or f"{title}"
     lds = "".join(f'\n<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (ld or []))
     return f"""<!doctype html>
 <html lang="en">
@@ -102,15 +113,20 @@ def head(title, desc, root, og, path="", ld=None):
 <meta property="og:site_name" content="Ahmed Rabea">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{kind}">
+<meta property="og:locale" content="en_US">
+<meta name="author" content="Ahmed Rabea">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{og_url}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{e(og_alt)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{e(title)}">
 <meta name="twitter:description" content="{e(desc)}">
 <meta name="twitter:image" content="{og_url}">
+<meta name="twitter:image:alt" content="{e(og_alt)}">
 <link rel="icon" href="{root}assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{root}assets/apple-touch-icon.png">
 <link rel="preload" href="{root}assets/fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin>
@@ -139,31 +155,32 @@ def header(root, here=""):
 
 
 def footer(root):
-    return f"""<a class="float" href="{root}services/index.html#start" aria-label="Start a project with Ahmed">
-  <span class="float__mark">AR</span><span>Start a project</span><span class="float__arrow" aria-hidden="true">&rarr;</span>
-</a>
-<footer class="foot">
-  <p>Ahmed Rabea, brand designer and art director, Cairo</p>
-  <p><a href="{root}services/index.html">Services</a><a href="mailto:{SITE['email']}">Email</a><a href="{SITE['whatsapp']}">WhatsApp</a><a href="tel:{SITE['tel']}">{SITE['phone']}</a><a href="{SITE['linkedin']}">LinkedIn</a><a href="{SITE['behance']}">Behance</a></p>
+    return f"""<footer class="foot">
+  <a class="float" href="{root}services/index.html#start"{track("cta-float", "Floating Start a project")}>
+    <span class="float__mark" aria-hidden="true">AR</span><span>Start a project</span><span class="float__arrow" aria-hidden="true">&rarr;</span>
+  </a>
+  <p>Ahmed Rabea, senior brand designer and art director, Cairo. Taking on select freelance projects.</p>
+  <p><a href="{root}services/index.html">Services</a><a href="mailto:{SITE['email']}"{track("contact-email", "Email link, footer")}>Email</a><a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, footer")}>WhatsApp</a><a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, footer")}>{SITE['phone']}</a><a href="{SITE['linkedin']}"{track("out-linkedin", "LinkedIn")}>LinkedIn</a><a href="{SITE['behance']}"{track("out-behance", "Behance")}>Behance</a></p>
+  <p class="foot__small">Visits are counted anonymously, without cookies.</p>
 </footer>
 """
 
 
 def enquiry(root, heading="Start a project", lead=None):
     """A short form that writes the enquiry email for the client. No server needed."""
-    lead = lead or "Tell me a little about what you need. Pressing the button opens your email app with everything filled in, ready to send."
+    lead = lead or "Tell me a little about what you need, then send it by email or WhatsApp. Either way your message is written for you, ready to send."
     boxes = "".join(f'<label class="chip"><input type="checkbox" name="need" value="{e(s["name"])}"><span>{e(s["name"])}</span></label>' for s in services["services"])
     return f"""<section id="start" class="start" aria-labelledby="start-h">
   <div class="start__intro">
     <h2 id="start-h">{e(heading)}</h2>
     <p>{e(lead)}</p>
     <ul class="start__alt" role="list">
-      <li>Email <a href="mailto:{SITE['email']}">{SITE['email']}</a> <button type="button" class="copy" data-copy="{SITE['email']}">Copy</button></li>
-      <li>WhatsApp <a href="{SITE['whatsapp']}">Message me on WhatsApp</a></li>
-      <li>Phone <a href="tel:{SITE['tel']}">{SITE['phone']}</a></li>
+      <li>Email <a href="mailto:{SITE['email']}"{track("contact-email", "Email link, contact section")}>{SITE['email']}</a> <button type="button" class="copy" data-copy="{SITE['email']}"{track("contact-email-copy", "Copied email address")}>Copy</button></li>
+      <li>WhatsApp <a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, contact section")}>Message me on WhatsApp</a></li>
+      <li>Phone <a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, contact section")}>{SITE['phone']}</a></li>
     </ul>
   </div>
-  <form class="start__form" data-email="{SITE['email']}">
+  <form class="start__form" data-email="{SITE['email']}" data-wa="{SITE['tel'].lstrip('+')}">
     <fieldset>
       <legend>What do you need?</legend>
       <div class="chips">{boxes}<label class="chip"><input type="checkbox" name="need" value="A quick start (audit, template kit or deck refresh)"><span>A quick start</span></label><label class="chip"><input type="checkbox" name="need" value="Not sure yet"><span>Not sure yet</span></label></div>
@@ -180,8 +197,11 @@ def enquiry(root, heading="Start a project", lead=None):
     </div>
     <label>About the project<textarea name="message" rows="4" placeholder="What are you making, and who is it for?"></textarea></label>
     <div class="start__send">
-      <button class="btn btn--big" type="submit">Write my email</button>
-      <p class="start__note" aria-live="polite">Opens your email app. Nothing is sent until you press send there.</p>
+      <div class="start__btns">
+        <button class="btn btn--big" type="submit" value="email">Write my email</button>
+        <button class="btn btn--big btn--wa" type="submit" value="whatsapp">Send on WhatsApp</button>
+      </div>
+      <p class="start__note" aria-live="polite">Opens your email app or WhatsApp with the message written. Nothing is sent until you press send there.</p>
     </div>
   </form>
 </section>"""
@@ -191,7 +211,7 @@ def row(p, root):
     ar = f'<span class="row__ar" lang="ar" dir="rtl">{e(p["arabic"])}</span>' if p["arabic"] else '<span class="row__ar"></span>'
     thumb = img(meta[p["slug"]]["cover"], root, "(max-width: 860px) 100vw, 45vw", "", cls="row__thumb")
     return f"""<li class="item" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
-  <a class="row" href="{root}work/{p['slug']}/index.html" aria-label="{e(p['title'])}: {e(p['kind'])}. View case study">
+  <a class="row" href="{root}work/{p['slug']}/index.html">
     {thumb}
     <span class="row__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
     <span class="row__info"><span class="row__kind">{e(p['kind'])}</span>{e(p['line'])}<span class="tags">{tag_chips(p)}</span></span>
@@ -219,43 +239,67 @@ def wall_html(root):
     cols = [order[i::5] for i in range(5)]
     out = []
     for col in cols:
-        imgs = "".join(f'<img src="{root}{p}" width="{w}" height="{h}" alt="" decoding="async">' for p, w, h, _ in col)
+        # 320 px for phones and standard screens, 520 px for high-density desktops (columns are 30vw wide, 52vw on phones)
+        imgs = "".join(f'<img src="{root}{p}" srcset="{root}{p.replace(".webp", "-320.webp")} 320w, {root}{p} 520w" sizes="(max-width: 860px) 52vw, 30vw" width="{w}" height="{h}" alt="" decoding="async">' for p, w, h, _ in col)
         out.append(f'<div class="wall__col"><div class="wall__run">{imgs}{imgs}</div></div>')
     return "".join(out)
 
 
+PERSON_ID = SITE["url"] + "/#person"
+
+
 def person_ld():
-    return {"@context": "https://schema.org", "@type": "Person", "name": "Ahmed Rabea",
-            "jobTitle": "Brand designer and art director",
+    return {"@context": "https://schema.org", "@type": "Person", "@id": PERSON_ID, "name": "Ahmed Rabea",
+            "jobTitle": "Senior Brand Designer and Art Director", "image": SITE["url"] + "/assets/og/home.jpg",
+            "description": "Senior brand designer and art director in Cairo, working on brand identities, design systems, campaigns and creative direction in English and Arabic.",
+            "knowsLanguage": ["en", "ar"], "areaServed": ["United Arab Emirates", "Saudi Arabia", "Egypt"],
             "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
             "url": SITE["url"] + "/", "email": "mailto:" + SITE["email"], "telephone": SITE["tel"],
             "knowsAbout": [s["name"] for s in services["services"]] + ["Arabic typography", "Bilingual design"],
             "sameAs": [SITE["linkedin"], SITE["behance"]]}
 
 
+def website_ld():
+    return {"@context": "https://schema.org", "@type": "WebSite", "@id": SITE["url"] + "/#website", "name": "Ahmed Rabea",
+            "alternateName": "Ahmed Rabea, brand designer", "url": SITE["url"] + "/", "inLanguage": "en", "publisher": {"@id": PERSON_ID}}
+
+
+def crumbs_ld(*items):
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": n, "name": name, "item": SITE["url"] + "/" + path} for n, (name, path) in enumerate(items, 1)]}
+
+
+def services_for(slug):
+    """Services whose proof list includes this project, so case studies link back to what was offered."""
+    tag_map = {"identity": "brand-identity", "social": "social-media", "campaign": "social-media", "deck": "presentation-design"}
+    from_tags = {tag_map[t] for t in by_slug[slug]["tags"] if t in tag_map}
+    return [s for s in services["services"] if slug in s["proof"] or s["id"] in from_tags]
+
+
 def build_home():
     root = ""
     rows = "\n".join(row(p, root) for p in projects)
-    portrait = img(meta["portrait"], root, "(max-width: 760px) 90vw, 34vw", "Portrait of Ahmed Rabea")
+    portrait = img(meta["portrait"], root, "(max-width: 760px) 90vw, 34vw", "Portrait of Ahmed Rabea, brand designer and art director in Cairo")
     svc = "\n".join(f'<li><a href="services/index.html#{s["id"]}">{icon(s["icon"])}<span class="svc__name">{e(s["name"])}</span><span class="svc__sum">{e(s["summary"])}</span></a></li>' for s in services["services"])
-    page = head("Ahmed Rabea | Brand identity designer and art director, Cairo",
-                "Brand designer and art director in Cairo. Brand identity, social media design, campaigns, brand guidelines and pitch deck design for companies in the UAE, Saudi Arabia and Egypt, in English and Arabic.",
-                root, "home", "", [person_ld()]) + f"""<body class="home">
+    page = head(f"Ahmed Rabea | {ROLE}, Cairo",
+                "Senior brand designer and art director in Cairo. Brand identities, design systems, campaigns and pitch decks for Gulf and Egyptian companies, in English and Arabic.",
+                root, "home", "", [person_ld(), website_ld()], og_alt="Ahmed Rabea, Senior Brand Designer and Art Director, over a grid of his project covers") + f"""<body class="home">
 {header(root)}
 <main id="main">
 <section class="hero" aria-labelledby="hero-name">
   <div class="wall" aria-hidden="true"><div class="wall__tilt">{wall_html(root)}</div></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__top">
-    <p>Hi, I'm Ahmed.<br>Brand designer and art director in Cairo</p>
-    <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select projects</p>
+    <p>Hi, I'm Ahmed.<br>Senior brand designer and art director, Cairo</p>
+    <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select freelance projects</p>
   </div>
-  <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span></h1>
+  <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span><span class="visually-hidden">, {ROLE}</span></h1>
   <div class="hero__foot">
-    <p class="hero__lede">I design brand identities, campaign systems and guidelines for companies across the Gulf and Egypt, built to hold up long after launch day.</p>
+    <p class="hero__lede">I build brand identities and the design systems behind them, then direct the campaigns that put them to work. In English and Arabic, for companies across the Gulf and Egypt.</p>
     <div class="hero__ctas">
-      <a class="btn btn--big" href="services/index.html#start">Start a project</a>
+      <a class="btn btn--big" href="services/index.html#start"{track("cta-hero", "Hero Start a project")}>Start a project</a>
       <a class="hero__cue" href="#work">See the work</a>
+      <a class="hero__cue hero__cue--wa" href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, hero")}>WhatsApp</a>
     </div>
   </div>
 </section>
@@ -282,7 +326,7 @@ def build_home():
   <div class="about__grid">
     <div class="about__img">{portrait}</div>
     <div class="about__body">
-      <p>I'm a brand designer and art director in Cairo with more than five years across B2B SaaS, healthcare, language services and consumer brands. I've run creative for five brands at once, led a team of designers, and built the guidelines and workflows that keep a brand consistent at volume. Alongside that, I take on a small number of independent projects.</p>
+      <p>I'm a senior brand designer and art director in Cairo with more than five years across B2B SaaS, healthcare, language services and consumer brands. I've run creative for five brands at once, led a team of designers, and built the guidelines and workflows that keep a brand consistent at volume. Most of my work ships in both English and Arabic. Alongside my role, I take on a small number of freelance projects.</p>
       <h3>Background</h3>
       <ol class="cv" role="list">
         <li><span>2026 to now</span><span>Senior Brand Designer, ELIXIR MD</span></li>
@@ -309,12 +353,13 @@ def build_services():
     S = services
     blocks = []
     for s in S["services"]:
-        proof = "".join(f"""<a class="proof" style="--c:{by_slug[x]['color']}" href="{root}work/{x}/index.html">{img(meta[x]['cover'], root, '(max-width: 860px) 45vw, 220px', by_slug[x]['title'] + ' cover')}<span>{e(by_slug[x]['title'])}</span></a>""" for x in s["proof"])
+        proof = "".join(f"""<a class="proof" style="--c:{by_slug[x]['color']}" href="{root}work/{x}/index.html">{img(meta[x]['cover'], root, '(max-width: 860px) 45vw, 220px', '')}<span>{e(by_slug[x]['title'])}</span></a>""" for x in s["proof"])
+        price = f'<p class="service__price">{e(s["price"])}</p>' if s.get("price") else ""
         inc = "".join(f"<li>{e(i)}</li>" for i in s["includes"])
         blocks.append(f"""<article class="service" id="{s['id']}">
   <div class="service__head">{icon(s['icon'], 'icon icon--big')}<h2>{e(s['name'])}</h2></div>
   <div class="service__body">
-    <p class="service__sum">{e(s['summary'])}</p>
+    <p class="service__sum">{e(s['summary'])}</p>{price}
     <div class="service__cols">
       <div><h3>What you get</h3><ul class="ticks">{inc}</ul></div>
       <div><h3>Good for</h3><p>{e(s['for'])}</p></div>
@@ -325,22 +370,24 @@ def build_services():
     steps = "".join(f"<li><span class='step__n'>{n}</span><h3>{e(t)}</h3><p>{e(d)}</p></li>" for n, (t, d) in enumerate(S["process"], 1))
     ways = "".join(f"<li><h3>{e(t)}</h3><p>{e(d)}</p></li>" for t, d in S["ways"])
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in S["faq"])
-    quick = "".join(f'<li id="{q["id"]}">{icon(q["icon"])}<h3>{e(q["name"])}</h3><p>{e(q["summary"])}</p><p class="quick__get">{e(q["get"])}</p><a class="quick__cta" href="#start">Ask about this</a></li>' for q in S["quick"])
+    quick = "".join(f'<li id="{q["id"]}">{icon(q["icon"])}<h3>{e(q["name"])}</h3><p>{e(q["summary"])}</p><p class="quick__get">{e(q["get"])}</p>{f'<p class="service__price">{e(q["price"])}</p>' if q.get("price") else ""}<a class="quick__cta" href="#start">Ask about this</a></li>' for q in S["quick"])
     jump = "".join(f'<li><a href="#{s["id"]}">{icon(s["icon"])}<span>{e(s["name"])}</span></a></li>' for s in S["services"])
     ld = [
         {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Ahmed Rabea, brand design",
          "url": SITE["url"] + "/services/", "image": SITE["url"] + "/assets/og/home.jpg", "email": SITE["email"], "telephone": SITE["tel"],
          "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
          "areaServed": ["United Arab Emirates", "Saudi Arabia", "Egypt"], "availableLanguage": ["English", "Arabic"],
-         "founder": {"@type": "Person", "name": "Ahmed Rabea"},
+         "founder": {"@id": PERSON_ID}, "provider": {"@id": PERSON_ID}, "priceRange": None,
          "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Brand design services", "itemListElement": [
              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": s["name"], "description": s["summary"]}} for s in S["services"] + S["quick"]]}},
         {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in S["faq"]]},
+        person_ld(), crumbs_ld(("Home", ""), ("Services", "services/")),
     ]
-    page = head("Brand design services: identity, campaigns, guidelines and pitch decks | Ahmed Rabea",
-                "Freelance brand identity design, social media design and campaigns, brand guidelines and pitch deck design for companies in the UAE, Saudi Arabia and Egypt, in English and Arabic. Based in Cairo.",
-                root, "home", "services/", ld) + f"""<body class="services-page">
+    ld[0] = {k: v for k, v in ld[0].items() if v is not None}
+    page = head("Brand identity, design systems and campaign design services | Ahmed Rabea",
+                "Freelance brand identity, brand guidelines and design systems, social media and campaign systems, and pitch deck and company profile design. English and Arabic, from Cairo.",
+                root, "home", "services/", ld, og_alt="Ahmed Rabea brand design services") + f"""<body class="services-page">
 {header(root, 'services')}
 <main id="main">
 <section class="s-hero">
@@ -389,9 +436,10 @@ def build_services():
 def frame_html(p, n, f, root, cls):
     light = " frame--light" if f.get("light") else ""
     full = f"{root}{f['files']['1800']}"
+    alt = f"{p['title']} {p['kind'].lower()}, image {n}"
+    sizes = "(max-width: 860px) 100vw, 50vw" if "grid" in cls else "(max-width: 1160px) 100vw, 1160px"
     return (f'<figure class="frame{light}{cls}"><button class="frame__zoom" type="button" data-full="{full}" '
-            f'aria-label="Enlarge frame {n} of {e(p["title"])}">'
-            f'{img(f, root, "(max-width: 860px) 100vw, 50vw" if "grid" in cls else "(max-width: 1160px) 100vw, 1160px", p["title"] + ", " + p["kind"].lower() + ", frame " + str(n))}</button></figure>')
+            f'aria-label="Enlarge {e(alt)}">{img(f, root, sizes, alt)}</button></figure>')
 
 
 def nav_row(q, root, label):
@@ -436,11 +484,18 @@ def build_case(i, p):
     if p.get("numbers"):
         nums = '<ul class="nums" role="list" aria-label="In numbers">' + "".join(
             f'<li><span class="nums__n">{e(n)}</span><span class="nums__l">{e(l)}</span></li>' for n, l in p["numbers"]) + "</ul>"
-    cover = img(m["cover"], root, "(max-width: 1680px) 100vw, 1680px", p["title"] + " cover", cls="case__cover", eager=True)
-    ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": p["title"], "about": p["kind"],
-           "description": p["line"], "creator": {"@type": "Person", "name": "Ahmed Rabea"},
-           "image": f"{SITE['url']}/assets/og/{p['slug']}.jpg", "url": f"{SITE['url']}/work/{p['slug']}/"}]
-    page = head(f"{p['title']}: {p['kind'].lower()} | Ahmed Rabea", p["line"], root, p["slug"], f"work/{p['slug']}/", ld) + f"""<body class="case-page" style="--c:{p['color']}">
+    cover = img(m["cover"], root, "(max-width: 1680px) 100vw, 1680px", f"{p['title']} cover: {p['line']}", cls="case__cover", eager=True)
+    svc = services_for(p["slug"])
+    svc_links = "".join(f'<a href="{root}services/index.html#{s["id"]}">{icon(s["icon"])}{e(s["name"])}</a>' for s in svc)
+    svc_block = f'<div class="case__svc"><h2 class="case__svc-h">Services behind this project</h2><p class="case__svc-list">{svc_links}</p></div>' if svc else ""
+    ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": p["title"], "about": p["kind"], "genre": p["kind"],
+           "description": p["line"], "creator": {"@id": PERSON_ID, "@type": "Person", "name": "Ahmed Rabea", "url": SITE["url"] + "/"},
+           "keywords": ", ".join(TAGS[t][0] for t in p["tags"]), "inLanguage": "en",
+           "image": f"{SITE['url']}/assets/og/{p['slug']}.jpg", "url": f"{SITE['url']}/work/{p['slug']}/"},
+          crumbs_ld(("Home", ""), ("Work", "#work"), (p["title"], f"work/{p['slug']}/"))]
+    desc = f"{p['line']} Case study by Ahmed Rabea, senior brand designer and art director."
+    page = head(f"{p['title']}: {p['kind'].lower()} | Ahmed Rabea", desc, root, p["slug"], f"work/{p['slug']}/", ld,
+                kind="article", og_alt=f"{p['title']} {p['kind'].lower()} by Ahmed Rabea") + f"""<body class="case-page" style="--c:{p['color']}">
 <div class="progress" aria-hidden="true"></div>
 {header(root, 'work')}
 <main id="main">
@@ -450,6 +505,7 @@ def build_case(i, p):
     <h1 class="case__title"><span><img class="logo logo--case" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="">{e(p['title'])}</span>{ar}</h1>
   </header>
   <div class="case__coverwrap">{cover}</div>
+  <h2 class="visually-hidden">Overview</h2>
   <div class="case__intro">
     <div class="case__text">
       <p class="case__kind">{e(p['kind'])}</p>
@@ -457,19 +513,24 @@ def build_case(i, p):
       <p class="case__line">{e(p['line'])}</p>
       {intro}
     </div>
-    <dl class="case__meta">{dl}</dl>
+    <div class="case__side"><dl class="case__meta">{dl}</dl>{svc_block}</div>
   </div>
   {nums}
+  <h2 class="visually-hidden">Project images</h2>
   <div class="frames{' frames--grid' if wide else ''}{' is-folded' if folding else ''}">
 {chr(10).join(frames)}
   </div>
   {more}
 </article>
-<section class="cta-band" aria-label="Start a project">
-  <p>Need something like {e(p['title'])} for your brand?</p>
-  <a class="btn btn--big" href="{root}services/index.html#start">Start a project</a>
+<section class="cta-band" aria-labelledby="cta-h">
+  <h2 id="cta-h" class="cta-band__h">Need something like {e(p['title'])} for your brand?</h2>
+  <div class="cta-band__btns">
+    <a class="btn btn--big" href="{root}services/index.html#start"{track("cta-case", "Case study Start a project")}>Start a project</a>
+    <a class="btn btn--big btn--ghost" href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, case study")}>WhatsApp me</a>
+  </div>
 </section>
-<nav class="pn" aria-label="More projects">
+<nav class="pn" aria-labelledby="pn-h">
+  <h2 id="pn-h" class="visually-hidden">More projects</h2>
   {nav_row(prv, root, "Previous project")}
   {nav_row(nxt, root, "Next project")}
 </nav>
@@ -493,7 +554,7 @@ def build_case(i, p):
 
 def build_meta_files():
     urls = ["", "services/"] + [f"work/{p['slug']}/" for p in projects]
-    sm = "\n".join(f"  <url><loc>{SITE['url']}/{u}</loc></url>" for u in urls)
+    sm = "\n".join(f"  <url><loc>{SITE['url']}/{u}</loc><lastmod>{BUILD_DATE}</lastmod></url>" for u in urls)
     open("sitemap.xml", "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sm}\n</urlset>\n')
     open("robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE['url']}/sitemap.xml\n")
 

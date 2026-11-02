@@ -121,8 +121,10 @@
     catch { b.textContent = 'Select and copy'; }
     setTimeout(() => (b.textContent = 'Copy'), 2000);
   }));
+  const count = (path, title) => { try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({ path, title, event: true }); } catch {} };
   document.querySelectorAll('.start__form').forEach(f => f.addEventListener('submit', ev => {
     ev.preventDefault();
+    const viaWa = ev.submitter && ev.submitter.value === 'whatsapp';
     const d = new FormData(f);
     const needs = d.getAll('need');
     const name = (d.get('name') || '').trim();
@@ -137,9 +139,20 @@
       'Thanks,', name
     ];
     const subject = `New project: ${needs[0] && needs[0] !== 'Not sure yet' ? needs[0] : 'enquiry'}${company ? ' for ' + company : ''}`;
+    const note = f.querySelector('.start__note');
+    if (viaWa) {
+      // WhatsApp: same message, without the email greeting/sign-off lines doubling up
+      const url = `https://wa.me/${f.dataset.wa}?text=${encodeURIComponent(lines.join('\n'))}`;
+      count('form-whatsapp', 'Enquiry form sent via WhatsApp');
+      const a = Object.assign(document.createElement('a'), { href: url, target: '_blank', rel: 'noopener' });
+      document.body.appendChild(a); a.click(); a.remove();
+      note.textContent = "WhatsApp should open with your message ready. If it didn't, use the WhatsApp link next to the form.";
+      return;
+    }
     const url = `mailto:${f.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+    count('form-email', 'Enquiry form sent by email');
     (window.__mailto || (u => { location.href = u; }))(url);
-    f.querySelector('.start__note').textContent = "Your email app should open now. If nothing happened, use the Copy button next to my email address.";
+    note.textContent = "Your email app should open now. If nothing happened, use the Copy button next to my email address.";
   }));
 })();
 

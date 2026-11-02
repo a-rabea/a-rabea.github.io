@@ -280,7 +280,7 @@ p { margin: 0 0 1em; }
 .btn--big { font-size: 1.05rem; padding: 16px 30px; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .cta-band { max-width: var(--max); margin: clamp(60px, 8vw, 110px) auto 0; padding: clamp(28px, 4vw, 48px) var(--gutter); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.cta-band p { margin: 0; font-size: var(--step-2); font-weight: 600; font-stretch: 80%; max-width: 22em; }
+.cta-band p, .cta-band__h { margin: 0; font-size: var(--step-2); font-weight: 600; font-stretch: 80%; max-width: 22em; }
 
 /* ---------- Enquiry form ---------- */
 .start { max-width: var(--max); margin: 0 auto; padding: clamp(80px, 11vw, 160px) var(--gutter); border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 100px); }
@@ -520,3 +520,28 @@ p { margin: 0 0 1em; }
 .start__alt li { color: var(--muted); }
 .foot p:last-child { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .foot a { margin-inline-start: 0; }
+
+/* ---------- Audit additions (Nov 2026) ---------- */
+/* Two ways to send the enquiry; WhatsApp gets WhatsApp's own green so it reads instantly */
+.start__btns, .cta-band__btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn--wa { background: #25D366; border-color: #25D366; color: #08130C; }
+.btn--wa:hover { background: #3BE07A; border-color: #3BE07A; color: #08130C; }
+.btn--ghost { background: transparent; color: var(--fg); border-color: rgba(232,236,233,.35); }
+.btn--ghost:hover { border-color: var(--teal); color: var(--fg); }
+.hero__cue--wa { color: var(--fg); }
+/* Services behind a case study: links back to the services page */
+.case__side { display: grid; gap: 28px; align-content: start; }
+.case__svc { padding-top: 10px; border-top: 1px solid var(--line); }
+.case__svc-h { margin: 0 0 10px; color: var(--muted); font-size: var(--step--1); font-weight: 400; }
+.case__svc-list { margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.case__svc-list a { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px 7px 10px; border: 1px solid var(--line); border-radius: 999px;
+  text-decoration: none; font-size: var(--step--1); color: var(--fg); transition: border-color .25s, color .25s; }
+.case__svc-list a:hover { border-color: var(--c, var(--teal)); color: var(--c, var(--teal)); }
+.case__svc-list .icon { width: 16px; height: 16px; }
+.service__price { margin: 10px 0 0; font-weight: 700; color: var(--teal); }
+.foot__small { flex-basis: 100%; font-size: .78rem; }
+/* Keyboard users get the same row highlight as mouse users */
+.row:focus-visible .row__title { color: var(--c); transform: translateX(14px); }
+.row:focus-visible .row__ar { color: var(--c); }
+.row:focus-visible .row__go { background: var(--c); border-color: var(--c); color: #0D100F; }
+.float:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; transform: none; opacity: 1; }

@@ -17,3 +17,20 @@ Static site, no framework. Live at https://a-rabea.github.io (GitHub Pages, depl
 Add a `CNAME` file containing the domain (e.g. `ahmedrabea.com`), point the domain's DNS to GitHub Pages, and update `SITE["url"]` in `build.py`.
 
 Fonts: Archivo and Readex Pro (SIL Open Font License), self-hosted in `assets/fonts`.
+
+## Pricing (off until approved)
+Every service and quick start in `content/services.json` has a `"price"` field set to `null`, which hides it.
+Put text in it (for example `"From USD 2,500"`) and run `python3 build.py` to show it on the services page.
+
+## Analytics
+- GoatCounter (cookie-free page views and click events) and Cloudflare Web Analytics (cookie-free visits and Core Web Vitals).
+  Settings at the top of `build.py`: `GOATCOUNTER_CODE`, `CLOUDFLARE_TOKEN`. Empty string turns either off.
+- Click events, listed under "Events" in GoatCounter:
+  `contact-email`, `contact-email-copy`, `contact-whatsapp`, `contact-phone`, `out-linkedin`, `out-behance`,
+  `cta-hero`, `cta-case`, `cta-float`, `form-email`, `form-whatsapp`.
+- No cookies are set, so no cookie banner is needed.
+
+## Backups
+- `v1-nov-2`: the live site as it was on 2 November 2026, before the SEO and conversion pass.
+- `v1-live`: the first V1 snapshot. `v2`: the archived V2 redesign (not live).
+To restore one, ask for that branch to be merged or reset onto `main`.

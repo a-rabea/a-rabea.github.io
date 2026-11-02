@@ -1,6 +1,6 @@
 {
   "title": "Brand design services",
-  "intro": "Brand identity, campaign systems, guidelines and presentation design for companies across the Gulf and Egypt, in English and Arabic. Built so the hundredth asset still looks like the first.",
+  "intro": "Brand identities, design systems and guidelines, campaign systems and presentation design for companies across the Gulf and Egypt, in English and Arabic. Built so the hundredth asset still looks like the first.",
   "services": [
     {
       "id": "brand-identity",
@@ -18,13 +18,33 @@
         "aywa",
         "pizza-rush",
         "vult"
-      ]
+      ],
+      "price": null
+    },
+    {
+      "id": "brand-guidelines",
+      "icon": "guidelines",
+      "name": "Brand guidelines and design systems",
+      "summary": "Guidelines and a design system your team will actually use: foundations, usage rules, components and templates, written so the next designer needs no briefing.",
+      "includes": [
+        "Guidelines document, from foundations to usage",
+        "Design system: colour, type, grids and reusable components",
+        "Arabic typography rules alongside English",
+        "Template library for everyday assets"
+      ],
+      "for": "Growing teams working with several designers, agencies or markets.",
+      "proof": [
+        "aureya",
+        "roava",
+        "mazeed"
+      ],
+      "price": null
     },
     {
       "id": "social-media",
       "icon": "social",
-      "name": "Social media and campaigns",
-      "summary": "Social media design and campaigns built on one strong idea, so every post, story and ad looks like it came from the same brand.",
+      "name": "Social media and campaign systems",
+      "summary": "Social media and campaigns built as a system around one strong idea, so every post, story and ad looks like it came from the same brand.",
       "includes": [
         "Social media templates and grid direction",
         "Monthly content design for Instagram, LinkedIn, X and TikTok",
@@ -36,31 +56,14 @@
         "ideas-that-scale",
         "mazeed",
         "aureya"
-      ]
-    },
-    {
-      "id": "brand-guidelines",
-      "icon": "guidelines",
-      "name": "Brand guidelines",
-      "summary": "Guidelines your team will actually open: foundations, usage rules and templates, written so the next designer needs no briefing.",
-      "includes": [
-        "Guidelines document, from foundations to usage",
-        "Arabic typography rules alongside English",
-        "Do and don't examples",
-        "Template library for everyday assets"
       ],
-      "for": "Growing teams working with several designers, agencies or markets.",
-      "proof": [
-        "aureya",
-        "roava",
-        "mazeed"
-      ]
+      "price": null
     },
     {
       "id": "presentation-design",
       "icon": "deck",
-      "name": "Pitch and presentation design",
-      "summary": "Decks that make dense information readable in seconds, for investors, leadership, tenders and sales.",
+      "name": "Presentation and company profile design",
+      "summary": "Pitch decks and company profiles that make dense information readable in seconds, for investors, leadership, tenders and sales.",
       "includes": [
         "Investor and leadership decks",
         "Company profiles",
@@ -71,24 +74,26 @@
       "proof": [
         "sheikh-khalifa-hospital",
         "qinwan"
-      ]
+      ],
+      "price": null
     },
     {
       "id": "creative-direction",
       "icon": "direction",
-      "name": "Creative direction and consulting",
-      "summary": "A senior eye on your brand: where it stands, where it should go, and how your team gets it there.",
+      "name": "Creative direction and ongoing design support",
+      "summary": "A senior eye on your brand, as a one-off review or a set amount of design time each month: where the brand stands, where it should go, and the work that gets it there.",
       "includes": [
         "Brand and competitor audit",
         "Visual direction for the year ahead",
-        "Design feedback and QA",
-        "Workflows and asset management for in-house teams"
+        "Monthly design support for steady, on-brand output",
+        "Design feedback, QA and workflows for in-house teams"
       ],
-      "for": "Founders and in-house teams who need direction more than extra hands.",
+      "for": "Founders and in-house teams who need direction, or a senior designer on call without a full-time hire.",
       "proof": [
         "mazeed",
         "ideas-that-scale"
-      ]
+      ],
+      "price": null
     }
   ],
   "process": [
@@ -151,21 +156,25 @@
       "icon": "audit",
       "name": "Brand audit",
       "summary": "A written review of how your brand shows up today, with clear fixes in order of impact.",
-      "get": "A short report and a call to walk through it."
+      "get": "A short report and a call to walk through it.",
+      "price": null
     },
     {
       "id": "social-kit",
       "icon": "campaign",
       "name": "Social media template kit",
       "summary": "A set of on-brand, editable post and story templates your team can fill in every week.",
-      "get": "Editable templates and a one-page usage guide."
+      "get": "Editable templates and a one-page usage guide.",
+      "price": null
     },
     {
       "id": "deck-refresh",
       "icon": "deck",
       "name": "Deck refresh",
       "summary": "Your existing pitch or company deck, redesigned so it reads in seconds.",
-      "get": "A redesigned deck plus a reusable master template."
+      "get": "A redesigned deck plus a reusable master template.",
+      "price": null
     }
-  ]
+  ],
+  "price_note": "Pricing: add a value to any service's \"price\" (for example \"From USD 2,500\") to show it on the site. Leave it null to hide it."
 }
