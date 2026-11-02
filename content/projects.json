@@ -135,8 +135,20 @@
           23,
           24
         ]
+      ],
+      "idea": "It had to look as trustworthy as a bank and move as fast as a startup."
+    },
+    "primary_service": "brand-guidelines",
+    "related": [
+      [
+        "ideas-that-scale",
+        "mazeed is one of the brands in this social system"
+      ],
+      [
+        "sheikh-khalifa-hospital",
+        "Also bilingual work for a Gulf organisation"
       ]
-    }
+    ]
   },
   {
     "slug": "aywa",
@@ -280,9 +292,21 @@
           26,
           29
         ]
-      ]
+      ],
+      "idea": "The identity runs on one rule, the Lean: everything tilts 10° forward."
     },
-    "self_initiated": true
+    "self_initiated": true,
+    "primary_service": "brand-identity",
+    "related": [
+      [
+        "vult",
+        "Also an identity built on one idea"
+      ],
+      [
+        "pizza-rush",
+        "Also an identity carried into an app and a campaign"
+      ]
+    ]
   },
   {
     "slug": "vult",
@@ -434,9 +458,21 @@
           24,
           28
         ]
-      ]
+      ],
+      "idea": "In Arabic, jahd (جهد) means both electrical voltage and human effort."
     },
-    "self_initiated": true
+    "self_initiated": true,
+    "primary_service": "brand-identity",
+    "related": [
+      [
+        "qinwan",
+        "Also led by a custom Arabic wordmark"
+      ],
+      [
+        "aywa",
+        "Also a loud consumer identity"
+      ]
+    ]
   },
   {
     "slug": "aureya",
@@ -569,8 +605,20 @@
           22,
           23
         ]
+      ],
+      "idea": "The idea is golden hour, kept."
+    },
+    "primary_service": "brand-identity",
+    "related": [
+      [
+        "ideas-that-scale",
+        "Also a social system that runs every week"
+      ],
+      [
+        "qinwan",
+        "Also a Gulf brand where Arabic leads"
       ]
-    }
+    ]
   },
   {
     "slug": "ideas-that-scale",
@@ -705,8 +753,20 @@
           19,
           21
         ]
+      ],
+      "idea": "I treat a feed like a brand system."
+    },
+    "primary_service": "social-media",
+    "related": [
+      [
+        "mazeed",
+        "One of the brands in this system, in full"
+      ],
+      [
+        "aureya",
+        "Another social system, for skincare"
       ]
-    }
+    ]
   },
   {
     "slug": "sheikh-khalifa-hospital",
@@ -859,8 +919,20 @@
           34,
           35
         ]
+      ],
+      "idea": "A dense brief, made readable in seconds."
+    },
+    "primary_service": "presentation-design",
+    "related": [
+      [
+        "qinwan",
+        "Also a company profile"
+      ],
+      [
+        "mazeed",
+        "Also bilingual work for a Gulf organisation"
       ]
-    }
+    ]
   },
   {
     "slug": "roava",
@@ -968,9 +1040,21 @@
           13,
           14
         ]
-      ]
+      ],
+      "idea": "Lime appears once per composition, never twice."
     },
-    "self_initiated": true
+    "self_initiated": true,
+    "primary_service": "brand-identity",
+    "related": [
+      [
+        "pizza-rush",
+        "Also food and drink, from packaging to storefront"
+      ],
+      [
+        "qinwan",
+        "Also packaging and gifting"
+      ]
+    ]
   },
   {
     "slug": "qinwan",
@@ -1112,9 +1196,21 @@
           31,
           30
         ]
-      ]
+      ],
+      "idea": "The identity is red, ink and paper, with a woven Sadu band and a seal you can stamp on a box."
     },
-    "self_initiated": true
+    "self_initiated": true,
+    "primary_service": "brand-identity",
+    "related": [
+      [
+        "sheikh-khalifa-hospital",
+        "Also a company profile"
+      ],
+      [
+        "vult",
+        "Also led by a custom Arabic wordmark"
+      ]
+    ]
   },
   {
     "slug": "pizza-rush",
@@ -1255,8 +1351,20 @@
           27,
           28
         ]
-      ]
+      ],
+      "idea": "Rushu, a running slice who carries the tone of voice."
     },
-    "self_initiated": true
+    "self_initiated": true,
+    "primary_service": "brand-identity",
+    "related": [
+      [
+        "roava",
+        "Also food and drink, from packaging to storefront"
+      ],
+      [
+        "aywa",
+        "Also an identity carried into an app"
+      ]
+    ]
   }
 ]

@@ -1,3 +1,6 @@
+// Analytics helper: a named, anonymous event in GoatCounter. Does nothing if the script is blocked or not loaded.
+window.__event = (path, title) => { try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({ path, title: title || path, event: true }); } catch (e) {} };
+
 // Two effects: the hero wall of work drifts behind the name, and project covers follow the cursor.
 (() => {
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -145,7 +148,23 @@
     catch { b.textContent = 'Select and copy'; }
     setTimeout(() => (b.textContent = 'Copy'), 2000);
   }));
-  const count = (path, title) => { try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({ path, title, event: true }); } catch {} };
+  const count = window.__event;
+  // Coming from a case study? Pre-tick its service and mention the project. Everything stays editable.
+  const params = new URLSearchParams(location.search);
+  document.querySelectorAll('.start__form').forEach(f => {
+    const need = params.get('need'), from = params.get('from');
+    const titles = JSON.parse(f.dataset.projects || '{}');
+    let filledSomething = false;
+    if (need) { const box = [...f.querySelectorAll('input[name="need"]')].find(i => i.value === need); if (box) { box.checked = true; filledSomething = true; } }
+    const msg = f.querySelector('textarea[name="message"]');
+    if (from && titles[from] && msg && !msg.value) { msg.value = `I saw your ${titles[from]} case study and would like something similar.`; filledSomething = true; }
+    const note = f.querySelector('.start__prefill');
+    if (filledSomething && note) { note.hidden = false; note.querySelector('b').textContent = titles[from] || need; }
+    // Form start: first time someone types or ticks something, once per page
+    let started = false;
+    const start = () => { if (started) return; started = true; count('form-start', 'Enquiry form started'); };
+    f.addEventListener('input', start); f.addEventListener('change', start);
+  });
   document.querySelectorAll('.start__form').forEach(f => f.addEventListener('submit', ev => {
     ev.preventDefault();
     const viaWa = ev.submitter && ev.submitter.value === 'whatsapp';
@@ -171,12 +190,14 @@
       const a = Object.assign(document.createElement('a'), { href: url, target: '_blank', rel: 'noopener' });
       document.body.appendChild(a); a.click(); a.remove();
       note.textContent = "WhatsApp should open with your message ready. If it didn't, use the WhatsApp link next to the form.";
+      note.classList.add('is-sent');
       return;
     }
     const url = `mailto:${f.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
     count('form-email', 'Enquiry form sent by email');
     (window.__mailto || (u => { location.href = u; }))(url);
     note.textContent = "Your email app should open now. If nothing happened, use the Copy button next to my email address.";
+    note.classList.add('is-sent');
   }));
 })();
 
@@ -257,5 +278,41 @@ document.querySelectorAll('[data-need]').forEach(a => a.addEventListener('click'
     const txt = textFor(t);
     cur.classList.toggle('is-label', !!txt); cur.classList.toggle('is-link', !!t && !txt);
     label.textContent = txt;
+  });
+})();
+
+// Case-study engagement events: reached 75% of the page, opened a chapter, opened the image viewer. Each once per page view.
+(() => {
+  const slug = document.body.dataset.slug;
+  if (!slug) return;
+  const once = new Set();
+  const ev = (key, title) => { if (once.has(key)) return; once.add(key); window.__event(key, title); };
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (max > 0 && scrollY / max >= 0.75) ev(`case-75-${slug}`, `Case study read to 75%: ${slug}`);
+  }, { passive: true });
+  document.querySelectorAll('.chapter').forEach(d => d.addEventListener('toggle', () => { if (d.open) ev(`chapter-open-${slug}`, `Chapter opened: ${slug}`); }));
+  const dlg = document.querySelector('.viewer');
+  if (dlg) new MutationObserver(() => { if (dlg.open) ev(`viewer-open-${slug}`, `Image viewer opened: ${slug}`); }).observe(dlg, { attributes: true, attributeFilter: ['open'] });
+})();
+
+// Featured previews: on desktop, hovering a small image shows it in the card; leaving the card restores the cover.
+(() => {
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.querySelectorAll('.feat__link').forEach(card => {
+    const main = card.querySelector('.feat__img');
+    const strip = card.querySelectorAll('.feat__strip img');
+    if (!main || !strip.length) return;
+    const orig = { src: main.getAttribute('src'), srcset: main.getAttribute('srcset') };
+    let used = false;
+    strip.forEach(t => t.addEventListener('mouseenter', () => {
+      strip.forEach(x => x.classList.toggle('is-on', x === t));
+      main.removeAttribute('srcset'); main.src = t.dataset.full;
+      if (!used) { used = true; window.__event('feat-preview-' + card.getAttribute('href').split('/').slice(-2, -1)[0], 'Featured preview used'); }
+    }));
+    card.addEventListener('mouseleave', () => {
+      strip.forEach(x => x.classList.remove('is-on'));
+      main.src = orig.src; if (orig.srcset) main.setAttribute('srcset', orig.srcset);
+    });
   });
 })();
