@@ -34,6 +34,15 @@ def track(name, title=""):
     return f' data-goatcounter-click="{name}"{t}'
 
 
+def enquire_url(root, need=None, project=None):
+    """services/#start with optional ?need=<service name>&from=<project slug>; the form pre-ticks and pre-fills, all editable."""
+    q = {}
+    if need: q["need"] = need
+    if project: q["from"] = project
+    qs = ("?" + "&".join(f"{k}={__import__('urllib.parse').parse.quote(v)}" for k, v in q.items())) if q else ""
+    return f"{root}services/index.html{qs}#start"
+
+
 ROLE = "Senior Brand Designer & Art Director"
 FEATURED = ["mazeed", "qinwan", "aywa"]  # led on the home page, in this order
 BUILD_DATE = __import__("datetime").date.today().isoformat()
@@ -194,7 +203,8 @@ def enquiry(root, heading="Start a project", lead=None):
       <li>Phone <a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, contact section")}>{SITE['phone']}</a></li>
     </ul>
   </div>
-  <form class="start__form" data-email="{SITE['email']}" data-wa="{SITE['tel'].lstrip('+')}">
+  <form class="start__form" data-email="{SITE['email']}" data-wa="{SITE['tel'].lstrip('+')}" data-projects='{e(json.dumps({p["slug"]: p["title"] for p in projects}, ensure_ascii=False))}'>
+    <p class="start__prefill" hidden>Pre-filled from <b></b>. Change or clear anything you like.</p>
     <fieldset>
       <legend>What do you need?</legend>
       <div class="chips">{boxes}<label class="chip"><input type="checkbox" name="need" value="A review or small project"><span>A review or small project</span></label><label class="chip"><input type="checkbox" name="need" value="Not sure yet"><span>Not sure yet</span></label></div>
@@ -207,7 +217,9 @@ def enquiry(root, heading="Start a project", lead=None):
       <label>Timeline
         <select name="timeline"><option value="">Choose one</option><option>As soon as possible</option><option>Within a month</option><option>In 1 to 3 months</option><option>Just exploring</option></select>
       </label>
-      <label>Budget range<input name="budget" placeholder="Optional"></label>
+      <label>Budget range (optional)
+        <select name="budget"><option value="">Not sure yet</option><option>Under USD 1,000</option><option>USD 1,000 to 3,000</option><option>USD 3,000 to 6,000</option><option>Over USD 6,000</option></select>
+      </label>
     </div>
     <label>About the project<textarea name="message" rows="4" placeholder="What are you making, and who is it for?"></textarea></label>
     <div class="start__send">
@@ -223,9 +235,9 @@ def enquiry(root, heading="Start a project", lead=None):
 
 def row(p, root):
     ar = f'<span class="row__ar" lang="ar" dir="rtl">{e(p["arabic"])}</span>' if p["arabic"] else '<span class="row__ar"></span>'
-    thumb = img(meta[p["slug"]]["cover"], root, "(max-width: 860px) 100vw, 45vw", "", cls="row__thumb")
+    thumb = img(meta[p["slug"]]["cover"], root, "(max-width: 860px) 84px, 45vw", "", cls="row__thumb")
     return f"""<li class="item" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
-  <a class="row" href="{root}work/{p['slug']}/index.html">
+  <a class="row" href="{root}work/{p['slug']}/index.html"{track("row-" + p["slug"], "Work list: " + p["title"])}>
     {thumb}
     <span class="row__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
     <span class="row__info">{kind_html(p, 'row__kind')}{e(p['line'])}<span class="tags">{tag_chips(p)}</span></span>
@@ -233,6 +245,14 @@ def row(p, root):
     <span class="row__go" aria-hidden="true">{icon('arrow')}</span>
   </a>
 </li>"""
+
+
+def preview_strip(p, root):
+    """Three more images from the project (its highlights after the first). Decorative: the card link carries the meaning."""
+    nums = [n for n in p["case"]["highlights"] if n not in set(p.get("skip_frames", []))][1:4]
+    thumbs = "".join(f'<img src="{root}{frame_of(p["slug"], n)["thumb320"]}" data-full="{root}{frame_of(p["slug"], n)["files"]["1000"]}" '
+                     f'width="160" height="{round(160 * frame_of(p["slug"], n)["h"] / frame_of(p["slug"], n)["w"])}" alt="" loading="lazy" decoding="async">' for n in nums)
+    return f'<span class="feat__strip" aria-hidden="true">{thumbs}</span>'
 
 
 def feature_card(p, root, big=False):
@@ -243,8 +263,8 @@ def feature_card(p, root, big=False):
     if p.get("card_pos"):  # optional crop anchor, e.g. "left center"
         pic = pic.replace("<img ", f'<img style="object-position:{p["card_pos"]}" ', 1)
     return f"""<li class="item feat{' feat--big' if big else ''}" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
-  <a class="feat__link" href="{root}work/{p['slug']}/index.html">
-    <span class="feat__media">{pic}</span>
+  <a class="feat__link" href="{root}work/{p['slug']}/index.html"{track("feat-" + p["slug"], "Featured card: " + p["title"])}>
+    <span class="feat__media">{pic}{preview_strip(p, root)}</span>
     <span class="feat__body">
       <span class="feat__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
       {kind_html(p, 'feat__kind')}
@@ -319,7 +339,7 @@ def build_home():
         sl, fn = s["image"]
         pic = img(frame_of(sl, fn), root, "(max-width: 860px) 30vw, 300px", "", cls="sv__img")
         meta_line = " · ".join(x for x in (s.get("price"), s.get("timeline_short")) if x)
-        return f"""<li class="sv" style="--c:{by_slug[sl]['color']}"><a class="sv__link" href="services/index.html#{s['id']}">
+        return f"""<li class="sv" style="--c:{by_slug[sl]['color']}"><a class="sv__link" href="services/index.html#{s['id']}"{track("svc-row-" + s["id"], "Home services row: " + s["name"])}>
   <span class="sv__n">{n:02d}</span>
   <span class="sv__main"><span class="sv__name">{e(s.get('label') or s['name'])}</span><span class="sv__short">{e(s['short'])}</span></span>
   <span class="sv__meta">{e(meta_line)}<span class="sv__proof">Seen in {e(by_slug[sl]['title'])}</span></span>
@@ -341,11 +361,13 @@ def build_home():
   </div>
   <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span><span class="visually-hidden">, {ROLE}</span></h1>
   <div class="hero__foot">
-    <p class="hero__lede">I build brand identities and the design systems behind them, then direct the campaigns that put them to work. In English and Arabic, for companies across the Gulf and Egypt.</p>
+    <div class="hero__copy">
+      <p class="hero__lede">I build brand identities and the design systems behind them, then direct the campaigns that put them to work. In English and Arabic, for companies across the Gulf and Egypt.</p>
+      <p class="hero__proof">Owned creative direction for 5 brands at once, overseeing 250+ designs a month</p>
+    </div>
     <div class="hero__ctas">
       <a class="btn btn--big" href="services/index.html#start"{track("cta-hero", "Hero Start a project")}>Start a project</a>
       <a class="hero__cue" href="#work">See the work</a>
-      <a class="hero__cue hero__cue--wa" href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, hero")}>WhatsApp</a>
     </div>
   </div>
 </section>
@@ -434,6 +456,7 @@ def build_services():
       <div><h3>Good for</h3><p>{e(s['for'])}</p>{f'<h3>Typical timeline</h3><p>{e(s["timeline"])}</p>' if s.get("timeline") else ""}</div>
     </div>
     <div class="service__proof"><h3>See it in practice</h3><div class="proofs">{proof}</div></div>
+    <p class="service__ask"><a class="quick__cta" href="#start" data-need="{e(s['name'])}"{track("ask-" + s["id"], "Ask about: " + s["name"])}>Ask about {e(s['name'][0].lower() + s['name'][1:])}</a></p>
   </div>
 </article>""")
     steps = "".join(f"<li><span class='step__n'>{n}</span><h3>{e(t)}</h3><p>{e(d)}</p></li>" for n, (t, d) in enumerate(S["process"], 1))
@@ -446,7 +469,7 @@ def build_services():
             items.append(f'<li id="{q["id"]}"><b>{e(q["name"])}</b> {e(q["summary"])} <span class="quick__get">{e(q["get"])}</span>{price}</li>')
         ex = f'<ul class="start-opt__ex" role="list">{"".join(items)}</ul>' if items else ""
         return (f'<li class="start-opt" id="{o["id"]}">{icon(o["icon"])}<h3>{e(o["name"])}</h3><p>{e(o["summary"])}</p>{ex}'
-                f'<a class="quick__cta" href="#start" data-need="{e(o["need"])}">Ask about this</a></li>')
+                f'<a class="quick__cta" href="#start" data-need="{e(o["need"])}"{track(o["id"], "Ways to start: " + o["name"])}>Ask about this</a></li>')
     starts = "".join(start_card(o) for o in S["start"])
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in S["faq"])
     jump = "".join(f'<li><a href="#{s["id"]}">{icon(s["icon"])}<span>{e(s["name"])}</span></a></li>' for s in S["services"])
@@ -543,6 +566,26 @@ def nav_row(q, root, label):
   </div>"""
 
 
+svc_by_id = {s["id"]: s for s in services["services"]}
+
+
+def related_html(p, root):
+    """Hand-picked related projects, each with the reason it's related."""
+    items = []
+    for slug, why in p.get("related", []):
+        q = by_slug[slug]
+        ar = f'<span class="row__ar" lang="ar" dir="rtl">{e(q["arabic"])}</span>' if q["arabic"] else '<span class="row__ar"></span>'
+        items.append(f"""<div class="pn__item">
+    <p class="next__label">{e(why)}</p>
+    <a class="row row--next" href="{root}work/{slug}/index.html" data-peek="{cover_small(slug, root)}"{track(f"related-{p['slug']}-{slug}", f"Related: {p['title']} to {q['title']}")}>
+      <span class="row__title"><img class="logo" src="{root}assets/img/logos/{slug}.webp" width="120" height="120" alt="" loading="lazy">{e(q['title'])}</span>
+      <span class="row__info">{kind_html(q, 'row__kind')}{e(q['line'])}</span>
+      {ar}
+    </a>
+  </div>""")
+    return "".join(items)
+
+
 def build_case(i, p):
     """One template for every case study. Content comes from p["case"] in content/projects.json:
     facts strip, context / challenge / direction / system, five highlights, chapters, outcome, credits."""
@@ -624,7 +667,7 @@ def build_case(i, p):
     if filled(C.get("year")): ld[0]["dateCreated"] = C["year"][:4]
     desc = f"{p['line']} Case study by Ahmed Rabea, senior brand designer and art director."
     page = head(f"{p['title']}: {p['kind'].lower()} | Ahmed Rabea", desc, root, p["slug"], f"work/{p['slug']}/", ld,
-                kind="article", og_alt=f"{p['title']} {p['kind'].lower()} by Ahmed Rabea") + f"""<body class="case-page" style="--c:{p['color']}">
+                kind="article", og_alt=f"{p['title']} {p['kind'].lower()} by Ahmed Rabea") + f"""<body class="case-page" style="--c:{p['color']}" data-slug="{p['slug']}">
 <div class="progress" aria-hidden="true"></div>
 {header(root, 'work')}
 <main id="main">
@@ -633,6 +676,7 @@ def build_case(i, p):
     <p class="case__back"><a href="{root}index.html#work">All work</a></p>
     <h1 class="case__title"><span><img class="logo logo--case" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="">{e(p['title'])}</span>{ar}</h1>
   </header>
+  {f'<p class="case__idea"><span class="case__idea-k">The idea</span>{e(C["idea"])}</p>' if filled(C.get("idea")) else ""}
   <div class="case__coverwrap">{cover}</div>
 
   <section class="case__intro" aria-labelledby="ov-h">
@@ -665,14 +709,13 @@ def build_case(i, p):
 <section class="cta-band" aria-labelledby="cta-h">
   <h2 id="cta-h" class="cta-band__h">Need something like {e(p['title'])} for your brand?</h2>
   <div class="cta-band__btns">
-    <a class="btn btn--big" href="{root}services/index.html#start"{track("cta-case", "Case study Start a project")}>Start a project</a>
+    <a class="btn btn--big" href="{enquire_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-" + p["slug"], "Case study Start a project: " + p["title"])}>Start a project</a>
     <a class="btn btn--big btn--ghost" href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, case study")}>WhatsApp me</a>
   </div>
 </section>
 <nav class="pn" aria-labelledby="pn-h">
-  <h2 id="pn-h" class="visually-hidden">More projects</h2>
-  {nav_row(prv, root, "Previous project")}
-  {nav_row(nxt, root, "Next project")}
+  <div class="pn__head"><h2 id="pn-h" class="case-h">Related work</h2><a href="{root}index.html#work">All work</a></div>
+  {related_html(p, root)}
 </nav>
 </main>
 {footer(root)}
