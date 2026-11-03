@@ -22,6 +22,10 @@ for slug, s in SOURCES.items():
         if not os.path.exists(t):
             im = Image.open(fr["files"][1000]); im.resize((480, round(480 * im.height / im.width)), Image.LANCZOS).save(t, "WEBP", quality=78, method=6)
         fr["thumb"] = t
+        t2 = f"{d}/{i:02d}-320.webp"  # featured-card preview strip
+        if not os.path.exists(t2):
+            im = Image.open(fr["files"][1000]); im.resize((320, round(320 * im.height / im.width)), Image.LANCZOS).save(t2, "WEBP", quality=74, method=6)
+        fr["thumb320"] = t2
         m["frames"].append(fr)
     if "video" in s:
         os.makedirs("assets/video", exist_ok=True); v = f"assets/video/{slug}.mp4"

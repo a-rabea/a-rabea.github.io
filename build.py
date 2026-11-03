@@ -250,7 +250,7 @@ def row(p, root):
 def preview_strip(p, root):
     """Three more images from the project (its highlights after the first). Decorative: the card link carries the meaning."""
     nums = [n for n in p["case"]["highlights"] if n not in set(p.get("skip_frames", []))][1:4]
-    thumbs = "".join(f'<img src="{root}{frame_of(p["slug"], n)["thumb"]}" data-full="{root}{frame_of(p["slug"], n)["files"]["1000"]}" '
+    thumbs = "".join(f'<img src="{root}{frame_of(p["slug"], n)["thumb320"]}" data-full="{root}{frame_of(p["slug"], n)["files"]["1000"]}" '
                      f'width="160" height="{round(160 * frame_of(p["slug"], n)["h"] / frame_of(p["slug"], n)["w"])}" alt="" loading="lazy" decoding="async">' for n in nums)
     return f'<span class="feat__strip" aria-hidden="true">{thumbs}</span>'
 
