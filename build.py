@@ -465,6 +465,7 @@ def build_services():
         items = []
         for q in (qby[x] for x in o["examples"]):
             price = f' <span class="service__price">{e(q["price"])}</span>' if q.get("price") else ""
+            if q.get("timeline"): price += f' <span class="quick__time">{e(q["timeline"])}</span>'
             items.append(f'<li id="{q["id"]}"><b>{e(q["name"])}</b> {e(q["summary"])} <span class="quick__get">{e(q["get"])}</span>{price}</li>')
         ex = f'<ul class="start-opt__ex" role="list">{"".join(items)}</ul>' if items else ""
         return (f'<li class="start-opt" id="{o["id"]}">{icon(o["icon"])}<h3>{e(o["name"])}</h3><p>{e(o["summary"])}</p>{ex}'
@@ -477,7 +478,7 @@ def build_services():
          "url": SITE["url"] + "/services/", "image": SITE["url"] + "/assets/og/home.jpg", "email": SITE["email"], "telephone": SITE["tel"],
          "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
          "areaServed": ["United Arab Emirates", "Saudi Arabia", "Egypt"], "availableLanguage": ["English", "Arabic"],
-         "founder": {"@id": PERSON_ID}, "provider": {"@id": PERSON_ID}, "priceRange": "From USD 400",
+         "founder": {"@id": PERSON_ID}, "provider": {"@id": PERSON_ID},
          "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Brand design services", "itemListElement": [
              offer_ld(s) for s in S["services"] + S["quick"]]}},
         {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
