@@ -710,3 +710,4 @@ p { margin: 0 0 1em; }
   .chapter__picks { grid-template-columns: 1fr 1fr; gap: 8px; }
   .chapter__picks .frame:nth-of-type(3) { display: none; }
 }
+.quick__time { display: block; margin-top: 2px; color: var(--fg); font-weight: 600; }
