@@ -259,8 +259,14 @@ document.querySelectorAll('[data-need]').forEach(a => a.addEventListener('click'
   let x = -100, y = -100, cx = -100, cy = -100;
   addEventListener('mousemove', ev => { x = ev.clientX; y = ev.clientY; cur.classList.add('is-on'); }, { passive: true });
   document.addEventListener('mouseleave', () => cur.classList.remove('is-on'));
-  const loop = () => { cx += (x - cx) * .25; cy += (y - cy) * .25; cur.style.transform = `translate3d(${cx}px, ${cy}px, 0)`; requestAnimationFrame(loop); };
-  loop();
+  // Animate only while the dot is catching up with the mouse; stop when it has, so the page sits idle.
+  let raf = 0;
+  const loop = () => {
+    cx += (x - cx) * .25; cy += (y - cy) * .25;
+    cur.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+    raf = (Math.abs(x - cx) > .3 || Math.abs(y - cy) > .3) ? requestAnimationFrame(loop) : 0;
+  };
+  addEventListener('mousemove', () => { if (!raf) raf = requestAnimationFrame(loop); }, { passive: true });
   // A modal <dialog> sits in the top layer, so carry the dot inside it while it is open.
   document.querySelectorAll('dialog').forEach(d => {
     new MutationObserver(() => (d.open ? d : document.body).appendChild(cur)).observe(d, { attributes: true, attributeFilter: ['open'] });

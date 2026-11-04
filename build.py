@@ -40,7 +40,7 @@ def enquire_url(root, need=None, project=None):
     if need: q["need"] = need
     if project: q["from"] = project
     qs = ("?" + "&".join(f"{k}={__import__('urllib.parse').parse.quote(v)}" for k, v in q.items())) if q else ""
-    return f"{root}services/index.html{qs}#start"
+    return f"{root}services/{qs}#start"
 
 
 ROLE = "Senior Brand Designer & Art Director"
@@ -157,12 +157,12 @@ def header(root, here=""):
     cur = lambda k: ' aria-current="page"' if here == k else ""
     return f"""<a class="skip" href="#main">Skip to content</a>
 <header class="bar">
-  <a class="bar__name" href="{root}index.html">Ahmed Rabea</a>
+  <a class="bar__name" href="{root or './'}">Ahmed Rabea</a>
   <nav class="bar__nav" aria-label="Main">
-    <a href="{root}index.html#work"{cur('work')}>Work</a>
-    <a href="{root}services/index.html"{cur('services')}>Services</a>
-    <a href="{root}index.html#about">About</a>
-    <a class="bar__cta" href="{root}services/index.html#start">Start a project</a>
+    <a href="{root or './'}#work"{cur('work')}>Work</a>
+    <a href="{root}services/"{cur('services')}>Services</a>
+    <a href="{root or './'}#about">About</a>
+    <a class="bar__cta" href="{root}services/#start">Start a project</a>
   </nav>
 </header>
 <div class="peek" aria-hidden="true"><img alt=""></div>
@@ -172,11 +172,11 @@ def header(root, here=""):
 
 def footer(root):
     return f"""<footer class="foot">
-  <a class="float" href="{root}services/index.html#start"{track("cta-float", "Floating Start a project")}>
+  <a class="float" href="{root}services/#start"{track("cta-float", "Floating Start a project")}>
     <span class="float__mark" aria-hidden="true">AR</span><span>Start a project</span><span class="float__arrow" aria-hidden="true">&rarr;</span>
   </a>
   <p>Ahmed Rabea, senior brand designer and art director, Cairo. Taking on select freelance projects.</p>
-  <p class="foot__links"><a href="{root}services/index.html">Services</a><a href="mailto:{SITE['email']}"{track("contact-email", "Email link, footer")}>Email</a><a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, footer")}>WhatsApp</a><a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, footer")}>{SITE['phone']}</a><a href="{SITE['linkedin']}"{track("out-linkedin", "LinkedIn")}>LinkedIn</a><a href="{SITE['behance']}"{track("out-behance", "Behance")}>Behance</a></p>
+  <p class="foot__links"><a href="{root}services/">Services</a><a href="mailto:{SITE['email']}"{track("contact-email", "Email link, footer")}>Email</a><a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, footer")}>WhatsApp</a><a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, footer")}>{SITE['phone']}</a><a href="{SITE['linkedin']}"{track("out-linkedin", "LinkedIn")}>LinkedIn</a><a href="{SITE['behance']}"{track("out-behance", "Behance")}>Behance</a></p>
   <p class="foot__small">Visits are counted anonymously, without cookies.</p>
 </footer>
 """
@@ -237,7 +237,7 @@ def row(p, root):
     ar = f'<span class="row__ar" lang="ar" dir="rtl">{e(p["arabic"])}</span>' if p["arabic"] else '<span class="row__ar"></span>'
     thumb = img(meta[p["slug"]]["cover"], root, "(max-width: 860px) 84px, 45vw", "", cls="row__thumb")
     return f"""<li class="item" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
-  <a class="row" href="{root}work/{p['slug']}/index.html"{track("row-" + p["slug"], "Work list: " + p["title"])}>
+  <a class="row" href="{root}work/{p['slug']}/"{track("row-" + p["slug"], "Work list: " + p["title"])}>
     {thumb}
     <span class="row__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
     <span class="row__info">{kind_html(p, 'row__kind')}{e(p['line'])}<span class="tags">{tag_chips(p)}</span></span>
@@ -263,7 +263,7 @@ def feature_card(p, root, big=False):
     if p.get("card_pos"):  # optional crop anchor, e.g. "left center"
         pic = pic.replace("<img ", f'<img style="object-position:{p["card_pos"]}" ', 1)
     return f"""<li class="item feat{' feat--big' if big else ''}" style="--c:{p['color']}" data-tags="{' '.join(p['tags'])}">
-  <a class="feat__link" href="{root}work/{p['slug']}/index.html"{track("feat-" + p["slug"], "Featured card: " + p["title"])}>
+  <a class="feat__link" href="{root}work/{p['slug']}/"{track("feat-" + p["slug"], "Featured card: " + p["title"])}>
     <span class="feat__media">{pic}{preview_strip(p, root)}</span>
     <span class="feat__body">
       <span class="feat__title"><img class="logo" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(p['title'])}</span>
@@ -339,7 +339,7 @@ def build_home():
         sl, fn = s["image"]
         pic = img(frame_of(sl, fn), root, "(max-width: 860px) 30vw, 300px", "", cls="sv__img")
         meta_line = " · ".join(x for x in (s.get("price"), s.get("timeline_short")) if x)
-        return f"""<li class="sv" style="--c:{by_slug[sl]['color']}"><a class="sv__link" href="services/index.html#{s['id']}"{track("svc-row-" + s["id"], "Home services row: " + s["name"])}>
+        return f"""<li class="sv" style="--c:{by_slug[sl]['color']}"><a class="sv__link" href="services/#{s['id']}"{track("svc-row-" + s["id"], "Home services row: " + s["name"])}>
   <span class="sv__n">{n:02d}</span>
   <span class="sv__main"><span class="sv__name">{e(s.get('label') or s['name'])}</span><span class="sv__short">{e(s['short'])}</span></span>
   <span class="sv__meta">{e(meta_line)}<span class="sv__proof">Seen in {e(by_slug[sl]['title'])}</span></span>
@@ -348,7 +348,7 @@ def build_home():
 </a></li>"""
     svc = "\n".join(svc_row(n, s) for n, s in enumerate(services["services"], 1))
     page = head(f"Ahmed Rabea | {ROLE}, Cairo",
-                "Senior brand designer and art director in Cairo. Brand identities, design systems, campaigns and pitch decks for Gulf and Egyptian companies, in English and Arabic.",
+                "Senior brand designer and art director in Cairo. Brand identity, design systems, campaigns and decks for Gulf and Egyptian companies, in English and Arabic.",
                 root, "home", "", [person_ld(), website_ld()], og_alt="Ahmed Rabea, Senior Brand Designer and Art Director, over a grid of his project covers") + f"""<body class="home">
 {header(root)}
 <main id="main">
@@ -366,7 +366,7 @@ def build_home():
       <p class="hero__proof">Owned creative direction for 5 brands at once, overseeing 250+ designs a month</p>
     </div>
     <div class="hero__ctas">
-      <a class="btn btn--big" href="services/index.html#start"{track("cta-hero", "Hero Start a project")}>Start a project</a>
+      <a class="btn btn--big" href="services/#start"{track("cta-hero", "Hero Start a project")}>Start a project</a>
       <a class="hero__cue" href="#work">See the work</a>
     </div>
   </div>
@@ -386,11 +386,11 @@ def build_home():
 </section>
 
 <section class="svc" aria-labelledby="svc-h">
-  <div class="sec-head"><h2 id="svc-h">Services</h2><p><a href="services/index.html">All services and how I work</a></p></div>
+  <div class="sec-head"><h2 id="svc-h">Services</h2><p><a href="services/">All services and how I work</a></p></div>
   <ul class="svs" role="list">
 {svc}
   </ul>
-  <p class="svc__quick">Want to start small? Try a <a href="services/index.html#quick">brand audit, a social media template kit or a deck refresh</a>.</p>
+  <p class="svc__quick">Want to start small? Try a <a href="services/#quick">brand audit, a social media template kit or a deck refresh</a>.</p>
 </section>
 
 <section id="about" class="about" aria-labelledby="about-h">
@@ -442,7 +442,7 @@ def build_services():
     S = services
     blocks = []
     for s in S["services"]:
-        proof = "".join(f"""<a class="proof" style="--c:{by_slug[x]['color']}" href="{root}work/{x}/index.html">{img(meta[x]['cover'], root, '(max-width: 860px) 45vw, 220px', '')}<span>{e(by_slug[x]['title'])}</span></a>""" for x in s["proof"])
+        proof = "".join(f"""<a class="proof" style="--c:{by_slug[x]['color']}" href="{root}work/{x}/">{img(meta[x]['cover'], root, '(max-width: 860px) 45vw, 220px', '')}<span>{e(by_slug[x]['title'])}</span></a>""" for x in s["proof"])
         price = f'<p class="service__price">{e(s["price"])}</p>' if s.get("price") else ""
         if s.get("range"):  # optional "most projects" range shown under the starting price
             price += f'<p class="service__range">{e(s["range"])}</p>'
@@ -495,7 +495,7 @@ def build_services():
   <h1 class="s-hero__title">Brand design<br>services</h1>
   <div class="s-hero__foot">
     <p class="s-hero__lede">{e(S['intro'])}</p>
-    <div class="hero__ctas"><a class="btn btn--big" href="#start">Start a project</a><a class="hero__cue" href="{root}index.html#work">See the work</a></div>
+    <div class="hero__ctas"><a class="btn btn--big" href="#start">Start a project</a><a class="hero__cue" href="{root or './'}#work">See the work</a></div>
   </div>
   <ul class="jump" role="list">{jump}</ul>
 </section>
@@ -558,7 +558,7 @@ def nav_row(q, root, label):
     ar = f'<span class="row__ar" lang="ar" dir="rtl">{e(q["arabic"])}</span>' if q["arabic"] else '<span class="row__ar"></span>'
     return f"""<div class="pn__item">
     <p class="next__label">{label}</p>
-    <a class="row row--next" href="{root}work/{q['slug']}/index.html" data-peek="{cover_small(q['slug'], root)}">
+    <a class="row row--next" href="{root}work/{q['slug']}/" data-peek="{cover_small(q['slug'], root)}">
       <span class="row__title"><img class="logo" src="{root}assets/img/logos/{q['slug']}.webp" width="120" height="120" alt="" loading="lazy">{e(q['title'])}</span>
       <span class="row__info">{kind_html(q, 'row__kind')}{e(q['line'])}</span>
       {ar}
@@ -577,7 +577,7 @@ def related_html(p, root):
         ar = f'<span class="row__ar" lang="ar" dir="rtl">{e(q["arabic"])}</span>' if q["arabic"] else '<span class="row__ar"></span>'
         items.append(f"""<div class="pn__item">
     <p class="next__label">{e(why)}</p>
-    <a class="row row--next" href="{root}work/{slug}/index.html" data-peek="{cover_small(slug, root)}"{track(f"related-{p['slug']}-{slug}", f"Related: {p['title']} to {q['title']}")}>
+    <a class="row row--next" href="{root}work/{slug}/" data-peek="{cover_small(slug, root)}"{track(f"related-{p['slug']}-{slug}", f"Related: {p['title']} to {q['title']}")}>
       <span class="row__title"><img class="logo" src="{root}assets/img/logos/{slug}.webp" width="120" height="120" alt="" loading="lazy">{e(q['title'])}</span>
       <span class="row__info">{kind_html(q, 'row__kind')}{e(q['line'])}</span>
       {ar}
@@ -657,7 +657,7 @@ def build_case(i, p):
     ar = f'<span class="case__ar" lang="ar" dir="rtl">{e(p["arabic"])}</span>' if p["arabic"] else ""
     cover = img(m["cover"], root, "(max-width: 1680px) 100vw, 1680px", f"{p['title']} cover: {p['line']}", cls="case__cover", eager=True)
     svc = services_for(p["slug"])
-    svc_links = "".join(f'<a href="{root}services/index.html#{s["id"]}">{icon(s["icon"])}{e(s["name"])}</a>' for s in svc)
+    svc_links = "".join(f'<a href="{root}services/#{s["id"]}">{icon(s["icon"])}{e(s["name"])}</a>' for s in svc)
     svc_block = f'<div class="case__svc"><h2 class="case__svc-h">Services behind this project</h2><p class="case__svc-list">{svc_links}</p></div>' if svc else ""
     ld = [{"@context": "https://schema.org", "@type": "CreativeWork", "name": p["title"], "about": p["kind"], "genre": p["kind"],
            "description": p["line"], "creator": {"@id": PERSON_ID, "@type": "Person", "name": "Ahmed Rabea", "url": SITE["url"] + "/"},
@@ -673,7 +673,7 @@ def build_case(i, p):
 <main id="main">
 <article class="case">
   <header class="case__head">
-    <p class="case__back"><a href="{root}index.html#work">All work</a></p>
+    <p class="case__back"><a href="{root or './'}#work">All work</a></p>
     <h1 class="case__title"><span><img class="logo logo--case" src="{root}assets/img/logos/{p['slug']}.webp" width="120" height="120" alt="">{e(p['title'])}</span>{ar}</h1>
   </header>
   {f'<p class="case__idea"><span class="case__idea-k">The idea</span>{e(C["idea"])}</p>' if filled(C.get("idea")) else ""}
@@ -714,7 +714,7 @@ def build_case(i, p):
   </div>
 </section>
 <nav class="pn" aria-labelledby="pn-h">
-  <div class="pn__head"><h2 id="pn-h" class="case-h">Related work</h2><a href="{root}index.html#work">All work</a></div>
+  <div class="pn__head"><h2 id="pn-h" class="case-h">Related work</h2><a href="{root or './'}#work">All work</a></div>
   {related_html(p, root)}
 </nav>
 </main>
@@ -754,6 +754,11 @@ def build_meta_files():
     urls = ["", "services/"] + [f"work/{p['slug']}/" for p in projects]
     sm = "\n".join(f"  <url><loc>{SITE['url']}/{u}</loc><lastmod>{BUILD_DATE}</lastmod></url>" for u in urls)
     open("sitemap.xml", "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sm}\n</urlset>\n')
+    llms = [f"# Ahmed Rabea", "", f"> {ROLE} in Cairo. Brand identity, design systems, social and campaign systems, presentation design and creative direction, in English and Arabic, for companies in the Gulf and Egypt. Takes on select freelance projects.", "",
+            "## Pages", f"- [Home]({SITE['url']}/): selected work and about", f"- [Services]({SITE['url']}/services/): services, ways to start and enquiry form", "", "## Case studies"]
+    llms += [f"- [{p['title']}]({SITE['url']}/work/{p['slug']}/): {p['kind']}{' (self-initiated)' if p.get('self_initiated') else ''}. {p['line']}" for p in projects]
+    llms += ["", "## Contact", f"- Email: {SITE['email']}", f"- WhatsApp: {SITE['whatsapp']}", f"- LinkedIn: {SITE['linkedin']}", f"- Behance: {SITE['behance']}", ""]
+    open("llms.txt", "w", encoding="utf-8").write("\n".join(llms))
     open("robots.txt", "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE['url']}/sitemap.xml\n")
 
 
