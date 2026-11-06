@@ -20,7 +20,7 @@ SITE = {
 # Free, cookie-free analytics. GoatCounter: account code "alpattex" (alpattex.goatcounter.com).
 # Cloudflare Web Analytics: paste the site token from dash.cloudflare.com > Analytics > Web Analytics.
 GOATCOUNTER_CODE = "alpattex"
-CLOUDFLARE_TOKEN = "db5cdda8de86485ea56156e62e3d35a8"
+CLOUDFLARE_TOKEN = ""  # removed Nov 2026: GoatCounter covers visits and events; one analytics script only
 ANALYTICS = ""
 if GOATCOUNTER_CODE:
     ANALYTICS += f'\n<script data-goatcounter="https://{GOATCOUNTER_CODE}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>'
@@ -44,7 +44,7 @@ def enquire_url(root, need=None, project=None):
 
 
 ROLE = "Senior Brand Designer & Art Director"
-FEATURED = ["mazeed", "qinwan", "aywa"]  # led on the home page, in this order
+FEATURED = ["mazeed", "sheikh-khalifa-hospital", "ideas-that-scale"]  # client work leads the page
 BUILD_DATE = __import__("datetime").date.today().isoformat()
 projects = json.load(open("content/projects.json", encoding="utf-8"))
 services = json.load(open("content/services.json", encoding="utf-8"))
@@ -83,7 +83,7 @@ TAGS = {  # id: (label, icon)
 
 def kind_html(p, cls):
     """Project category, with a quiet marker on self-initiated concepts so they're never mistaken for client work."""
-    mark = ' <span class="si">Self-initiated</span>' if p.get("self_initiated") else ""
+    mark = ' <span class="si">Self-initiated</span>' if p.get("self_initiated") else (f' <span class="si">{e(p["marker"])}</span>' if p.get("marker") else "")
     return f'<span class="{cls}">{e(p["kind"])}{mark}</span>'
 
 
@@ -111,13 +111,13 @@ def cover_small(slug, root):
     return f"{root}{meta[slug]['cover']['files']['800']}"
 
 
-def head(title, desc, root, og, path="", ld=None, kind="website", og_alt=None):
+def head(title, desc, root, og, path="", ld=None, kind="website", og_alt=None, lang="en", alternates=None):
     url = f"{SITE['url']}/{path}"
     og_url = f"{SITE['url']}/assets/og/{og}.jpg"
     og_alt = og_alt or f"{title}"
     lds = "".join(f'\n<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in (ld or []))
     return f"""<!doctype html>
-<html lang="en">
+<html lang="{lang}"{' dir="rtl"' if lang == "ar" else ""}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -125,12 +125,12 @@ def head(title, desc, root, og, path="", ld=None, kind="website", og_alt=None):
 <meta name="description" content="{e(desc)}">
 <meta name="theme-color" content="#0D100F">
 <meta name="p:domain_verify" content="021ae1545cf424912b139af6310727fe"/>
-<link rel="canonical" href="{url}">
+<link rel="canonical" href="{url}">{"".join(f'\n<link rel="alternate" hreflang="{h}" href="{SITE["url"]}/{p}">' for h, p in (alternates or []))}
 <meta property="og:site_name" content="Ahmed Rabea">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:type" content="{kind}">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="{"ar_AR" if lang == "ar" else "en_US"}">
 <meta name="author" content="Ahmed Rabea">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:url" content="{url}">
@@ -176,7 +176,7 @@ def footer(root):
     <span class="float__mark" aria-hidden="true">AR</span><span>Start a project</span><span class="float__arrow" aria-hidden="true">&rarr;</span>
   </a>
   <p>Ahmed Rabea, senior brand designer and art director, Cairo. Taking on select freelance projects.</p>
-  <p class="foot__links"><a href="{root}services/">Services</a><a href="mailto:{SITE['email']}"{track("contact-email", "Email link, footer")}>Email</a><a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, footer")}>WhatsApp</a><a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, footer")}>{SITE['phone']}</a><a href="{SITE['linkedin']}"{track("out-linkedin", "LinkedIn")}>LinkedIn</a><a href="{SITE['behance']}"{track("out-behance", "Behance")}>Behance</a></p>
+  <p class="foot__links"><a href="{root}services/">Services</a><a href="mailto:{SITE['email']}"{track("contact-email", "Email link, footer")}>Email</a><a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, footer")}>WhatsApp</a><a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, footer")}>{SITE['phone']}</a><a href="{SITE['linkedin']}"{track("out-linkedin", "LinkedIn")}>LinkedIn</a><a href="{SITE['behance']}"{track("out-behance", "Behance")}>Behance</a><a href="{root}ar/" hreflang="ar" lang="ar"{track("lang-ar", "Arabic page link")}>العربية</a></p>
   <p class="foot__small">Visits are counted anonymously, without cookies.</p>
 </footer>
 """
@@ -306,7 +306,7 @@ def person_ld():
     return {"@context": "https://schema.org", "@type": "Person", "@id": PERSON_ID, "name": "Ahmed Rabea",
             "jobTitle": "Senior Brand Designer and Art Director", "image": SITE["url"] + "/assets/og/home.jpg",
             "description": "Senior brand designer and art director in Cairo, working on brand identities, design systems, campaigns and creative direction in English and Arabic.",
-            "knowsLanguage": ["en", "ar"], "areaServed": ["United Arab Emirates", "Saudi Arabia", "Egypt"],
+            "knowsLanguage": ["en", "ar"], "areaServed": ["United Arab Emirates", "Saudi Arabia", "Kuwait", "Qatar", "Bahrain", "Oman"],
             "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
             "url": SITE["url"] + "/", "email": "mailto:" + SITE["email"], "telephone": SITE["tel"],
             "knowsAbout": [s["name"] for s in services["services"]] + ["Arabic typography", "Bilingual design"],
@@ -333,7 +333,10 @@ def services_for(slug):
 def build_home():
     root = ""
     feats = "\n".join(feature_card(by_slug[s], root, k == 0) for k, s in enumerate(FEATURED))
-    rows = "\n".join(row(p, root) for p in projects if p["slug"] not in FEATURED)
+    client_rest = [p for p in projects if not p.get("self_initiated") and p["slug"] not in FEATURED]
+    concepts = [p for p in projects if p.get("self_initiated") and p["slug"] not in FEATURED]
+    client_rows = "\n".join(row(p, root) for p in client_rest)
+    concept_rows = "\n".join(row(p, root) for p in concepts)
     portrait = img(meta["portrait"], root, "(max-width: 760px) 90vw, 34vw", "Portrait of Ahmed Rabea, brand designer and art director in Cairo")
     def svc_row(n, s):
         sl, fn = s["image"]
@@ -347,22 +350,22 @@ def build_home():
   <span class="row__go" aria-hidden="true">{icon('arrow')}</span>
 </a></li>"""
     svc = "\n".join(svc_row(n, s) for n, s in enumerate(services["services"], 1))
-    page = head(f"Ahmed Rabea | {ROLE}, Cairo",
-                "Senior brand designer and art director in Cairo. Brand identity, design systems, campaigns and decks for Gulf and Egyptian companies, in English and Arabic.",
-                root, "home", "", [person_ld(), website_ld()], og_alt="Ahmed Rabea, Senior Brand Designer and Art Director, over a grid of his project covers") + f"""<body class="home">
+    page = head(f"Ahmed Rabea | {ROLE}",
+                "Senior brand designer and art director. Identity systems, brand guidelines, campaigns and decks for Gulf companies, designed in English and Arabic together.",
+                root, "home", "", [person_ld(), website_ld()], alternates=[("en", ""), ("ar", "ar/"), ("x-default", "")], og_alt="Ahmed Rabea, Senior Brand Designer and Art Director, over a grid of his project covers") + f"""<body class="home">
 {header(root)}
 <main id="main">
 <section class="hero" aria-labelledby="hero-name">
   <div class="wall" aria-hidden="true"><div class="wall__tilt">{wall_html(root)}</div></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__top">
-    <p class="hero__role">Hi, I'm Ahmed.<br><strong>Senior brand designer and art director</strong>, Cairo</p>
+    <p class="hero__role"><strong>Senior brand designer and art director</strong><br>Identity systems for Gulf companies, in English and Arabic</p>
     <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select freelance projects</p>
   </div>
   <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span><span class="visually-hidden">, {ROLE}</span></h1>
   <div class="hero__foot">
     <div class="hero__copy">
-      <p class="hero__lede">I build brand identities and the design systems behind them, then direct the campaigns that put them to work. In English and Arabic, for companies across the Gulf and Egypt.</p>
+      <p class="hero__lede">I build brand identities and the design systems behind them, then direct the campaigns that put them to work. Arabic and English are designed together, not translated, for companies across the Gulf.</p>
       <p class="hero__proof">Owned creative direction for 5 brands at once, overseeing 250+ designs a month</p>
     </div>
     <div class="hero__ctas">
@@ -376,13 +379,22 @@ def build_home():
   <div class="sec-head"><h2 id="work-h">Selected work</h2><p class="filters__status" aria-live="polite">{len(projects)} projects</p></div>
   <p class="work__thesis">A brand is judged by its hundredth asset, not its first. I design the system behind it.</p>
   {filter_bar()}
-  <ul class="feats" role="list">
+  <div class="band">
+    <h3 class="work__more">Client work</h3>
+    <ul class="feats" role="list">
 {feats}
-  </ul>
-  <h3 class="work__more">More work</h3>
-  <ul class="rows" role="list">
-{rows}
-  </ul>
+    </ul>
+    <ul class="rows rows--after" role="list">
+{client_rows}
+    </ul>
+  </div>
+  <div class="band">
+    <h3 class="work__more">Concepts and studies</h3>
+    <p class="work__note">Self-set briefs, with no client. They push type, colour and systems further than a commission usually allows, and they're always labelled as concepts.</p>
+    <ul class="rows" role="list">
+{concept_rows}
+    </ul>
+  </div>
 </section>
 
 <section class="svc" aria-labelledby="svc-h">
@@ -477,7 +489,7 @@ def build_services():
         {"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Ahmed Rabea, brand design",
          "url": SITE["url"] + "/services/", "image": SITE["url"] + "/assets/og/home.jpg", "email": SITE["email"], "telephone": SITE["tel"],
          "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
-         "areaServed": ["United Arab Emirates", "Saudi Arabia", "Egypt"], "availableLanguage": ["English", "Arabic"],
+         "areaServed": ["United Arab Emirates", "Saudi Arabia", "Kuwait", "Qatar", "Bahrain", "Oman"], "availableLanguage": ["English", "Arabic"],
          "founder": {"@id": PERSON_ID}, "provider": {"@id": PERSON_ID},
          "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Brand design services", "itemListElement": [
              offer_ld(s) for s in S["services"] + S["quick"]]}},
@@ -487,7 +499,7 @@ def build_services():
     ]
     ld[0] = {k: v for k, v in ld[0].items() if v is not None}
     page = head("Brand identity, design systems and campaign design services | Ahmed Rabea",
-                "Freelance brand identity, brand guidelines and design systems, social media and campaign systems, and pitch deck and company profile design. English and Arabic, from Cairo.",
+                "Freelance brand identity, brand guidelines and design systems, social media and campaign systems, and pitch deck and company profile design for Gulf companies, in English and Arabic.",
                 root, "home", "services/", ld, og_alt="Ahmed Rabea brand design services") + f"""<body class="services-page">
 {header(root, 'services')}
 <main id="main">
@@ -735,6 +747,112 @@ def build_case(i, p):
     open(f"work/{p['slug']}/index.html", "w", encoding="utf-8").write(page)
 
 
+# Arabic landing page (/ar/): generated with the rest of the site so it never drifts.
+AR_PROJECTS = {
+    "mazeed": "الاتجاه البصري ونظام التصميم لمنصة محاسبة وفوترة إلكترونية تخدم أكثر من 1,000 عميل في الإمارات والسعودية.",
+    "sheikh-khalifa-hospital": "إعادة تصميم الملف التعريفي لمستشفى تخصصي في الفجيرة: 30 صفحة بلغتين ومجموعة من 72 أيقونة طبية.",
+    "ideas-that-scale": "أنظمة محتوى لتسع علامات في ثلاثة أسواق: فكرة واحدة وقواعد قليلة واضحة، تتكرر في كل منشور وبكل لغة.",
+    "aureya": "عالم بصري ونظام محتوى أسبوعي لدار عناية بالبشرة في السعودية، بالعربية والإنجليزية.",
+    "aywa": "هوية لتطبيق بطاقات ومدفوعات موجّه للشباب، مبنية على قاعدة واحدة: كل شيء يميل عشر درجات إلى الأمام.",
+    "vult": "هوية عربية لمشروب طاقة، مبنية على معنى كلمة «جهد»: الجهد الكهربائي وجهد الإنسان.",
+    "qinwan": "هوية وملف تعريفي من 31 صفحة لبيت تمور وقهوة متخيَّل.",
+    "roava": "هوية لعلامة قهوة مختصة، هادئة وصاخبة في آن واحد.",
+    "pizza-rush": "هوية وشخصية تعبيرية لعلامة بيتزا سريعة، من العلبة إلى التطبيق.",
+}
+AR_TITLES = {"sheikh-khalifa-hospital": "مستشفى الشيخ خليفة", "roava": "روافا"}
+AR_SERVICES = [
+    ("brand-identity", "الهوية البصرية", "الشعار والألوان والخطوط العربية واللاتينية والعناصر الأساسية.", "3 إلى 4 أسابيع"),
+    ("brand-guidelines", "أدلة الهوية وأنظمة التصميم", "قواعد ومكوّنات وقوالب يطبّقها فريقك بثقة دون الرجوع إليّ.", "أسبوعان إلى 3 أسابيع"),
+    ("social-media", "أنظمة السوشيال ميديا والحملات", "قوالب ومفاتيح بصرية للحملات، ومحتوى شهري ضمن القواعد نفسها.", "أسبوعان، ثم شهرياً"),
+    ("presentation-design", "العروض التقديمية والملفات التعريفية", "عروض المستثمرين والمبيعات والمناقصات، والملفات التعريفية للشركات.", "أسبوع إلى أسبوعين"),
+    ("creative-direction", "الإدارة الفنية والدعم المستمر", "مراجعة للعلامة واتجاه واضح، أو أيام تصميم ثابتة كل شهر.", "شهرياً، أو مراجعة واحدة"),
+]
+
+
+def build_ar():
+    root = "../"
+    wa = SITE["whatsapp"] + "?text=" + __import__("urllib.parse").parse.quote("مرحباً أحمد، أودّ الحديث عن مشروع.")
+
+    def card(p, concept=False):
+        t = AR_TITLES.get(p["slug"]) or p["arabic"] or p["title"]
+        pic = img(meta[p["slug"]]["cover"], root, "(max-width: 860px) 100vw, 40vw" if not concept else "(max-width: 860px) 50vw, 25vw", "", cls="ar-card__img")
+        mark = '<span class="ar-card__mark">مفهوم ذاتي</span>' if concept else ('<span class="ar-card__mark">علامة لعميل، بتصوّر جديد</span>' if p.get("marker") else "")
+        return (f'<li class="ar-card{" ar-card--sm" if concept else ""}" style="--c:{p["color"]}"><a href="{root}work/{p["slug"]}/" lang="ar"'
+                f'{track("ar-work-" + p["slug"], "Arabic page: " + p["title"])}>'
+                f'<span class="ar-card__media">{pic}</span><span class="ar-card__body">'
+                f'<span class="ar-card__t">{e(t)} <span class="ar-card__en" lang="en" dir="ltr">{e(p["title"])}</span></span>{mark}'
+                f'<span class="ar-card__d">{e(AR_PROJECTS[p["slug"]])}</span>'
+                f'<span class="ar-card__go">دراسة الحالة بالإنجليزية&nbsp;←</span></span></a></li>')
+
+    client = [by_slug[s] for s in FEATURED] + [p for p in projects if not p.get("self_initiated") and p["slug"] not in FEATURED]
+    concepts = [p for p in projects if p.get("self_initiated")]
+    svc = "".join(f'<li><a href="{root}services/#{i}"><b>{n}</b><span>{d}</span><em>{t}</em></a></li>' for i, n, d, t in AR_SERVICES)
+    ld = [dict(person_ld(), **{"@context": "https://schema.org", "name": "أحمد ربيع", "alternateName": "Ahmed Rabea", "jobTitle": "مصمم هوية أول ومدير فني"}),
+          crumbs_ld(("الرئيسية", ""), ("العربية", "ar/"))]
+    page = head("أحمد ربيع | مصمم هوية أول ومدير فني",
+                "مصمم هوية أول ومدير فني. أنظمة هوية وأدلة استخدام وحملات وعروض تقديمية لشركات الخليج، بالعربية والإنجليزية معاً.",
+                root, "home", "ar/", ld, og_alt="أحمد ربيع، مصمم هوية أول ومدير فني", lang="ar",
+                alternates=[("ar", "ar/"), ("en", ""), ("x-default", "")]) + f"""<body class="ar-page">
+<a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+<header class="bar">
+  <a class="bar__name" href="./">أحمد ربيع</a>
+  <nav class="bar__nav" aria-label="القائمة">
+    <a href="#work">الأعمال</a>
+    <a href="{root}" hreflang="en" lang="en" dir="ltr">English</a>
+    <a class="bar__cta" href="{wa}"{track("contact-whatsapp", "WhatsApp link, Arabic header")}>ابدأ مشروعاً</a>
+  </nav>
+</header>
+<div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+<main id="main">
+<section class="ar-hero">
+  <p class="ar-hero__k"><span class="dot" aria-hidden="true"></span>أقبل عدداً محدوداً من المشاريع الحرة</p>
+  <h1 class="ar-hero__h">أنظمة هوية لشركات الخليج، بالعربية والإنجليزية <em>معاً</em>.</h1>
+  <p class="ar-hero__role"><strong>أحمد ربيع</strong>، مصمم هوية أول ومدير فني</p>
+  <p class="ar-hero__lede">أصمّم الهويات البصرية والأنظمة التي تقوم عليها، ثم أدير الحملات التي تضعها موضع العمل. العربية عندي تُصمَّم من البداية مع الإنجليزية، ولا تُترجَم في النهاية.</p>
+  <p class="hero__proof">أدرتُ الإخراج الفني لخمس علامات في الوقت نفسه، بإشراف على أكثر من 250 تصميماً في الشهر.</p>
+  <div class="hero__ctas">
+    <a class="btn btn--big btn--wa" href="{wa}"{track("contact-whatsapp", "WhatsApp link, Arabic hero")}>راسلني على واتساب</a>
+    <a class="hero__cue" href="#work">شاهد الأعمال</a>
+  </div>
+</section>
+
+<section id="work" class="ar-sec" aria-labelledby="w-h">
+  <h2 id="w-h" class="ar-h">أعمال لعملاء</h2>
+  <ul class="ar-cards" role="list">{''.join(card(p) for p in client)}</ul>
+  <h2 class="ar-h ar-h--2">مفاهيم ودراسات</h2>
+  <p class="ar-note">مشاريع بموجز ذاتي، دون عميل. أستخدمها لأدفع الخط واللون والأنظمة أبعد مما يسمح به التكليف عادة، وهي موسومة دائماً على أنها مفاهيم.</p>
+  <ul class="ar-cards ar-cards--sm" role="list">{''.join(card(p, True) for p in concepts)}</ul>
+  <p class="ar-note">دراسات الحالة الكاملة متاحة بالإنجليزية.</p>
+</section>
+
+<section class="ar-sec" aria-labelledby="s-h">
+  <h2 id="s-h" class="ar-h">الخدمات</h2>
+  <ul class="ar-svc" role="list">{svc}</ul>
+</section>
+
+<section class="ar-sec ar-contact" aria-labelledby="c-h">
+  <h2 id="c-h" class="ar-h">لنبدأ مشروعك</h2>
+  <p class="ar-hero__lede">أرسل لي فكرة سريعة عن مشروعك وموعدك المتوقع. أعود إليك بأسئلة، ثم بعرض واضح للنطاق والمدة قبل أن يبدأ أي عمل.</p>
+  <div class="hero__ctas">
+    <a class="btn btn--big btn--wa" href="{wa}"{track("contact-whatsapp", "WhatsApp link, Arabic contact")}>واتساب</a>
+    <a class="btn btn--big btn--ghost" href="mailto:{SITE['email']}"{track("contact-email", "Email link, Arabic contact")}>البريد الإلكتروني</a>
+    <a class="hero__cue" href="{root}services/#start"{track("ar-form", "Arabic page: English form")}>نموذج المشروع (بالإنجليزية)</a>
+  </div>
+  <p class="ar-mail" dir="ltr">{SITE['email']} <button type="button" class="copy" data-copy="{SITE['email']}">نسخ</button></p>
+</section>
+</main>
+<footer class="foot">
+  <p>أحمد ربيع، مصمم هوية أول ومدير فني. أقبل عدداً محدوداً من المشاريع الحرة.</p>
+  <p class="foot__links"><a href="{root}" hreflang="en" lang="en" dir="ltr">English</a><a href="{SITE['linkedin']}" dir="ltr">LinkedIn</a><a href="{SITE['behance']}" dir="ltr">Behance</a></p>
+  <p class="foot__small">تُحسب الزيارات دون ملفات تعريف ارتباط ودون بيانات شخصية.</p>
+</footer>
+</body>
+</html>
+"""
+    os.makedirs("ar", exist_ok=True)
+    open("ar/index.html", "w", encoding="utf-8").write(page)
+
+
 def build_checklist():
     """Writes content/CONTENT-TODO.md: every placeholder still waiting for real information."""
     lines = ["# Content still needed", "", "Generated by build.py. Fill these in content/projects.json (the `case` block of each project).",
@@ -751,10 +869,10 @@ def build_checklist():
 
 
 def build_meta_files():
-    urls = ["", "services/"] + [f"work/{p['slug']}/" for p in projects]
+    urls = ["", "ar/", "services/"] + [f"work/{p['slug']}/" for p in projects]
     sm = "\n".join(f"  <url><loc>{SITE['url']}/{u}</loc><lastmod>{BUILD_DATE}</lastmod></url>" for u in urls)
     open("sitemap.xml", "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sm}\n</urlset>\n')
-    llms = [f"# Ahmed Rabea", "", f"> {ROLE} in Cairo. Brand identity, design systems, social and campaign systems, presentation design and creative direction, in English and Arabic, for companies in the Gulf and Egypt. Takes on select freelance projects.", "",
+    llms = [f"# Ahmed Rabea", "", f"> {ROLE}, based in Cairo. Brand identity, design systems, social and campaign systems, presentation design and creative direction, in English and Arabic, for companies in the Gulf. Takes on select freelance projects. Arabic summary page: " + SITE["url"] + "/ar/.", "",
             "## Pages", f"- [Home]({SITE['url']}/): selected work and about", f"- [Services]({SITE['url']}/services/): services, ways to start and enquiry form", "", "## Case studies"]
     llms += [f"- [{p['title']}]({SITE['url']}/work/{p['slug']}/): {p['kind']}{' (self-initiated)' if p.get('self_initiated') else ''}. {p['line']}" for p in projects]
     llms += ["", "## Contact", f"- Email: {SITE['email']}", f"- WhatsApp: {SITE['whatsapp']}", f"- LinkedIn: {SITE['linkedin']}", f"- Behance: {SITE['behance']}", ""]
@@ -766,6 +884,7 @@ build_home()
 build_services()
 for i, p in enumerate(projects):
     build_case(i, p)
+build_ar()
 build_meta_files()
 build_checklist()
-print("built", 2 + len(projects), "pages")
+print("built", 3 + len(projects), "pages")

@@ -224,6 +224,7 @@ document.querySelectorAll('[data-need]').forEach(a => a.addEventListener('click'
       if (show) { n++; void it.offsetWidth; it.classList.add('is-in'); }
     });
     if (status) status.textContent = f === 'all' ? `${n} projects` : `${n} of ${items.length} projects`;
+    document.querySelectorAll('.band').forEach(bd => bd.classList.toggle('is-empty', !bd.querySelector('.item:not(.is-hidden)')));
   }));
 })();
 
