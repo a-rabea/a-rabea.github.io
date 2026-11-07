@@ -419,11 +419,14 @@ p { margin: 0 0 1em; }
   }
 .float.is-on { animation: float-spin 1.6s var(--ease) 1; }
 @keyframes float-spin { to { --spin: 360deg; } }
-.float__mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%;
-  background: radial-gradient(circle at 30% 25%, #1E2A27, #0B0E0D); box-shadow: inset 0 0 0 1px rgba(255,255,255,.07);
-  font-weight: 800; font-stretch: 62%; font-size: 1rem; letter-spacing: .01em; color: transparent; }
-.float__mark { background-clip: padding-box; }
-.float__mark { -webkit-text-fill-color: transparent; background-image: linear-gradient(135deg, #B8FFE4, #3CCFAE 50%, #2A7FD6), radial-gradient(circle at 30% 25%, #1E2A27, #0B0E0D); -webkit-background-clip: text, padding-box; background-clip: text, padding-box; }
+.float__mark { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #1E2A27, #0B0E0D); box-shadow: inset 0 0 0 1px rgba(184,255,228,.14); }
+.float__ar { font-family: var(--latin); font-weight: 800; font-stretch: 75%; font-size: .95rem; line-height: 1; letter-spacing: .02em;
+  color: #B8FFE4; transform: translateY(.02em); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .float__ar { background: linear-gradient(135deg, #B8FFE4, #3CCFAE 55%, #2A7FD6); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent; }
+}
 .float__arrow { color: var(--teal); transition: transform .3s var(--ease); }
 .float.is-on { transform: none; opacity: 1; }
 .float:hover { color: var(--fg); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,.55), 0 0 40px rgba(60,207,174,.32); }

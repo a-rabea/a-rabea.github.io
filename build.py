@@ -173,7 +173,7 @@ def header(root, here=""):
 def footer(root):
     return f"""<footer class="foot">
   <a class="float" href="{root}services/#start"{track("cta-float", "Floating Start a project")}>
-    <span class="float__mark" aria-hidden="true">AR</span><span>Start a project</span><span class="float__arrow" aria-hidden="true">&rarr;</span>
+    <span class="float__mark" aria-hidden="true"><span class="float__ar">AR</span></span><span>Start a project</span><span class="float__arrow" aria-hidden="true">&rarr;</span>
   </a>
   <p>Ahmed Rabea, senior brand designer and art director, Cairo. Taking on select freelance projects.</p>
   <p class="foot__links"><a href="{root}services/">Services</a><a href="mailto:{SITE['email']}"{track("contact-email", "Email link, footer")}>Email</a><a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, footer")}>WhatsApp</a><a href="tel:{SITE['tel']}"{track("contact-phone", "Phone link, footer")}>{SITE['phone']}</a><a href="{SITE['linkedin']}"{track("out-linkedin", "LinkedIn")}>LinkedIn</a><a href="{SITE['behance']}"{track("out-behance", "Behance")}>Behance</a><a href="{root}ar/" hreflang="ar" lang="ar"{track("lang-ar", "Arabic page link")}>العربية</a></p>
