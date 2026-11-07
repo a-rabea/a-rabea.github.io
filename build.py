@@ -44,7 +44,7 @@ def enquire_url(root, need=None, project=None):
 
 
 ROLE = "Senior Brand Designer & Art Director"
-FEATURED = ["mazeed", "sheikh-khalifa-hospital", "ideas-that-scale"]  # client work leads the page
+FEATURED = ["mazeed", "qinwan", "aywa"]  # led on the home page, in this order
 BUILD_DATE = __import__("datetime").date.today().isoformat()
 projects = json.load(open("content/projects.json", encoding="utf-8"))
 services = json.load(open("content/services.json", encoding="utf-8"))
@@ -333,10 +333,7 @@ def services_for(slug):
 def build_home():
     root = ""
     feats = "\n".join(feature_card(by_slug[s], root, k == 0) for k, s in enumerate(FEATURED))
-    client_rest = [p for p in projects if not p.get("self_initiated") and p["slug"] not in FEATURED]
-    concepts = [p for p in projects if p.get("self_initiated") and p["slug"] not in FEATURED]
-    client_rows = "\n".join(row(p, root) for p in client_rest)
-    concept_rows = "\n".join(row(p, root) for p in concepts)
+    rows = "\n".join(row(p, root) for p in projects if p["slug"] not in FEATURED)
     portrait = img(meta["portrait"], root, "(max-width: 760px) 90vw, 34vw", "Portrait of Ahmed Rabea, brand designer and art director in Cairo")
     def svc_row(n, s):
         sl, fn = s["image"]
@@ -351,7 +348,7 @@ def build_home():
 </a></li>"""
     svc = "\n".join(svc_row(n, s) for n, s in enumerate(services["services"], 1))
     page = head(f"Ahmed Rabea | {ROLE}",
-                "Senior brand designer and art director. Identity systems, brand guidelines, campaigns and decks for Gulf companies, designed in English and Arabic together.",
+                "Senior brand designer and art director. Brand identities, design systems, campaigns and decks for companies across the Gulf.",
                 root, "home", "", [person_ld(), website_ld()], alternates=[("en", ""), ("ar", "ar/"), ("x-default", "")], og_alt="Ahmed Rabea, Senior Brand Designer and Art Director, over a grid of his project covers") + f"""<body class="home">
 {header(root)}
 <main id="main">
@@ -359,13 +356,13 @@ def build_home():
   <div class="wall" aria-hidden="true"><div class="wall__tilt">{wall_html(root)}</div></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__top">
-    <p class="hero__role"><strong>Senior brand designer and art director</strong><br>Identity systems for Gulf companies, in English and Arabic</p>
+    <p class="hero__role">Hi, I'm Ahmed.<br><strong>Senior brand designer and art director</strong></p>
     <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select freelance projects</p>
   </div>
   <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span><span class="visually-hidden">, {ROLE}</span></h1>
   <div class="hero__foot">
     <div class="hero__copy">
-      <p class="hero__lede">I build brand identities and the design systems behind them, then direct the campaigns that put them to work. Arabic and English are designed together, not translated, for companies across the Gulf.</p>
+      <p class="hero__lede">I build brand identities and the design systems behind them, then direct the campaigns that put them to work, for companies across the Gulf.</p>
       <p class="hero__proof">Owned creative direction for 5 brands at once, overseeing 250+ designs a month</p>
     </div>
     <div class="hero__ctas">
@@ -379,22 +376,13 @@ def build_home():
   <div class="sec-head"><h2 id="work-h">Selected work</h2><p class="filters__status" aria-live="polite">{len(projects)} projects</p></div>
   <p class="work__thesis">A brand is judged by its hundredth asset, not its first. I design the system behind it.</p>
   {filter_bar()}
-  <div class="band">
-    <h3 class="work__more">Client work</h3>
-    <ul class="feats" role="list">
+  <ul class="feats" role="list">
 {feats}
-    </ul>
-    <ul class="rows rows--after" role="list">
-{client_rows}
-    </ul>
-  </div>
-  <div class="band">
-    <h3 class="work__more">Concepts and studies</h3>
-    <p class="work__note">Self-set briefs, with no client. They push type, colour and systems further than a commission usually allows, and they're always labelled as concepts.</p>
-    <ul class="rows" role="list">
-{concept_rows}
-    </ul>
-  </div>
+  </ul>
+  <h3 class="work__more">More work</h3>
+  <ul class="rows" role="list">
+{rows}
+  </ul>
 </section>
 
 <section class="svc" aria-labelledby="svc-h">
@@ -790,7 +778,7 @@ def build_ar():
     ld = [dict(person_ld(), **{"@context": "https://schema.org", "name": "أحمد ربيع", "alternateName": "Ahmed Rabea", "jobTitle": "مصمم هوية أول ومدير فني"}),
           crumbs_ld(("الرئيسية", ""), ("العربية", "ar/"))]
     page = head("أحمد ربيع | مصمم هوية أول ومدير فني",
-                "مصمم هوية أول ومدير فني. أنظمة هوية وأدلة استخدام وحملات وعروض تقديمية لشركات الخليج، بالعربية والإنجليزية معاً.",
+                "مصمم هوية أول ومدير فني. هويات بصرية وأنظمة تصميم وحملات وعروض تقديمية لشركات في أنحاء الخليج.",
                 root, "home", "ar/", ld, og_alt="أحمد ربيع، مصمم هوية أول ومدير فني", lang="ar",
                 alternates=[("ar", "ar/"), ("en", ""), ("x-default", "")]) + f"""<body class="ar-page">
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
@@ -806,9 +794,9 @@ def build_ar():
 <main id="main">
 <section class="ar-hero">
   <p class="ar-hero__k"><span class="dot" aria-hidden="true"></span>أقبل عدداً محدوداً من المشاريع الحرة</p>
-  <h1 class="ar-hero__h">أنظمة هوية لشركات الخليج، بالعربية والإنجليزية <em>معاً</em>.</h1>
+  <h1 class="ar-hero__h">هويات بصرية وأنظمة تصميم <em>تُبنى لتدوم</em>.</h1>
   <p class="ar-hero__role"><strong>أحمد ربيع</strong>، مصمم هوية أول ومدير فني</p>
-  <p class="ar-hero__lede">أصمّم الهويات البصرية والأنظمة التي تقوم عليها، ثم أدير الحملات التي تضعها موضع العمل. العربية عندي تُصمَّم من البداية مع الإنجليزية، ولا تُترجَم في النهاية.</p>
+  <p class="ar-hero__lede">أصمّم الهويات البصرية والأنظمة التي تقوم عليها، ثم أدير الحملات التي تضعها موضع العمل، لشركات في أنحاء الخليج.</p>
   <p class="hero__proof">أدرتُ الإخراج الفني لخمس علامات في الوقت نفسه، بإشراف على أكثر من 250 تصميماً في الشهر.</p>
   <div class="hero__ctas">
     <a class="btn btn--big btn--wa" href="{wa}"{track("contact-whatsapp", "WhatsApp link, Arabic hero")}>راسلني على واتساب</a>
@@ -817,11 +805,9 @@ def build_ar():
 </section>
 
 <section id="work" class="ar-sec" aria-labelledby="w-h">
-  <h2 id="w-h" class="ar-h">أعمال لعملاء</h2>
-  <ul class="ar-cards" role="list">{''.join(card(p) for p in client)}</ul>
-  <h2 class="ar-h ar-h--2">مفاهيم ودراسات</h2>
-  <p class="ar-note">مشاريع بموجز ذاتي، دون عميل. أستخدمها لأدفع الخط واللون والأنظمة أبعد مما يسمح به التكليف عادة، وهي موسومة دائماً على أنها مفاهيم.</p>
-  <ul class="ar-cards ar-cards--sm" role="list">{''.join(card(p, True) for p in concepts)}</ul>
+  <h2 id="w-h" class="ar-h">أعمال مختارة</h2>
+  <ul class="ar-cards" role="list">{''.join(card(by_slug[s], by_slug[s].get("self_initiated")) for s in FEATURED)}</ul>
+  <ul class="ar-cards ar-cards--sm" role="list">{''.join(card(p, p.get("self_initiated")) for p in projects if p["slug"] not in FEATURED)}</ul>
   <p class="ar-note">دراسات الحالة الكاملة متاحة بالإنجليزية.</p>
 </section>
 
