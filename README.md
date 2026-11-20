@@ -18,7 +18,7 @@ Static site, no framework. Live at https://a-rabea.github.io (GitHub Pages, depl
 4. Run `python3 build.py`. It also rewrites `content/CONTENT-TODO.md`, the list of every placeholder still waiting for your input.
 
 ## Booking link
-Put a Cal.com or Calendly URL in `SITE["booking"]` in `build.py` and run `python3 build.py`. While it is empty, every "Book a call" button opens the enquiry form.
+Off by default: the site never asks for a call. If you ever want one as a quiet option, put a Cal.com or Calendly URL in `SITE["booking"]` in `build.py` and run `python3 build.py`; a small "Prefer a quick call?" line then appears under the case-study buttons. The main action stays "Start a project".
 
 ## Custom domain
 Add a `CNAME` file containing the domain (e.g. `ahmedrabea.com`), point the domain's DNS to GitHub Pages, and update `SITE["url"]` in `build.py`.
@@ -39,7 +39,7 @@ The three "Ways to start" cards are the `start` list in the same file. A service
 - No cookies are set, so no cookie banner is needed.
 
 ## Backups
-- `v1-nov-20`: the live site on 20 November 2026, before the Design Ops positioning pass (new hero, featured order, Book a call).
+- `v1-nov-20`: the live site on 20 November 2026, before the Design Ops positioning pass (new hero, featured order).
 - `v1-nov-2`: the live site as it was on 2 November 2026, before the SEO and conversion pass.
 - `v1-live`: the first V1 snapshot. `v2`: the archived V2 redesign (not live).
 To restore one, ask for that branch to be merged or reset onto `main`.

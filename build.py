@@ -45,9 +45,10 @@ def enquire_url(root, need=None, project=None):
     return f"{root}services/{qs}#start"
 
 
-def book_url(root, need=None, project=None):
-    """The "Book a call" link: the booking page if SITE["booking"] is set, otherwise the enquiry form."""
-    return SITE.get("booking") or enquire_url(root, need, project)
+def call_option(lead="Prefer a quick call?"):
+    """Optional, low-key call link. Shows nothing unless SITE["booking"] is set."""
+    b = SITE.get("booking")
+    return f' <span class="call-opt">{lead} <a href="{b}"{track("cta-call-option", "Optional call link")}>Book one here</a>.</span>' if b else ""
 
 
 ROLE = "Design Ops & Bilingual Brand Systems Lead"
@@ -169,7 +170,7 @@ def header(root, here=""):
     <a href="{root or './'}#work"{cur('work')}>Work</a>
     <a href="{root}services/"{cur('services')}>Services</a>
     <a href="{root or './'}#about">About</a>
-    <a class="bar__cta" href="{book_url(root)}"{track("cta-bar-book", "Header Book a call")}>Book a call</a>
+    <a class="bar__cta" href="{root}services/#start">Start a project</a>
   </nav>
 </header>
 <div class="peek" aria-hidden="true"><img alt=""></div>
@@ -377,7 +378,7 @@ def build_home():
       </ul>
     </div>
     <div class="hero__ctas">
-      <a class="btn btn--big" href="{book_url(root)}"{track("cta-hero-book", "Hero Book a call")}>Book a 20-min intro call</a>
+      <a class="btn btn--big" href="services/#start"{track("cta-hero", "Hero Start a project")}>Start a project</a>
       <a class="hero__cue" href="#work">See the systems work</a>
     </div>
   </div>
@@ -705,9 +706,8 @@ def build_case(i, p):
   </section>
 
   <aside class="case__nudge" aria-label="Start a similar project">
-    <p>Need a system like {e(p['title'])}? I scope it with you in one 20-minute call.</p>
-    <a class="btn" href="{book_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-mid-" + p["slug"], "Case study mid Book a call: " + p["title"])}>Book a call</a>
-    <a class="hero__cue" href="{enquire_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-brief-" + p["slug"], "Case study mid Send a brief: " + p["title"])}>Send a brief instead</a>
+    <p>Need a system like {e(p['title'])}? Send a short brief and I'll come back with questions, scope and a proposal.</p>
+    <a class="btn" href="{enquire_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-mid-" + p["slug"], "Case study mid Start a project: " + p["title"])}>Start a project</a>
   </aside>
 
   {outcome}
@@ -725,10 +725,10 @@ def build_case(i, p):
 <section class="cta-band" aria-labelledby="cta-h">
   <h2 id="cta-h" class="cta-band__h">Need something like {e(p['title'])} for your brand?</h2>
   <div class="cta-band__btns">
-    <a class="btn btn--big" href="{book_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-" + p["slug"], "Case study Book a call: " + p["title"])}>Book a 20-min call</a>
-    <a class="btn btn--big btn--ghost" href="{enquire_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-brief-end-" + p["slug"], "Case study Send a brief: " + p["title"])}>Send a brief</a>
+    <a class="btn btn--big" href="{enquire_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-" + p["slug"], "Case study Start a project: " + p["title"])}>Start a project</a>
+    <a class="btn btn--big btn--ghost" href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, case study")}>WhatsApp me</a>
   </div>
-  <p class="cta-band__alt">Prefer WhatsApp? <a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, case study")}>Message me there</a>.</p>
+  {('<p class="cta-band__alt">' + call_option().strip() + '</p>') if SITE.get("booking") else ""}
 </section>
 <nav class="pn" aria-labelledby="pn-h">
   <div class="pn__head"><h2 id="pn-h" class="case-h">Related work</h2><a href="{root or './'}#work">All work</a></div>
