@@ -31,6 +31,34 @@
       "range": null
     },
     {
+      "id": "identity-packaging-sprint",
+      "icon": "packaging",
+      "name": "Identity and packaging sprint",
+      "summary": "A fixed-scope sprint for a new product or brand: identity, packaging system and launch assets, delivered together so the shelf and the screen match from day one.",
+      "includes": [
+        "Logo, colour and type, in English and Arabic",
+        "Packaging system: primary pack, range variants and dielines handed off for print",
+        "Mini guidelines your printer and team can follow",
+        "Launch assets for social and sales"
+      ],
+      "for": "Founders launching a product, or a B2B brand moving into retail.",
+      "proof": [
+        "vult",
+        "roava",
+        "qinwan"
+      ],
+      "price": null,
+      "timeline": "3 to 4 weeks, fixed scope",
+      "short": "Identity, packaging and launch assets in one fixed sprint",
+      "image": [
+        "vult",
+        19
+      ],
+      "label": "Identity + packaging sprint",
+      "timeline_short": "3–4 weeks",
+      "range": null
+    },
+    {
       "id": "brand-guidelines",
       "icon": "guidelines",
       "name": "Brand guidelines and design systems",
@@ -116,27 +144,27 @@
     {
       "id": "creative-direction",
       "icon": "direction",
-      "name": "Creative direction and ongoing design support",
-      "summary": "A senior eye on your brand, as a one-off review or a set amount of design time each month: where the brand stands, where it should go, and the work that gets it there.",
+      "name": "Fractional brand lead",
+      "summary": "A senior brand lead on retainer: I own the brand's standards, direction and production workflow each month, without you making a full-time hire.",
       "includes": [
-        "Brand and competitor audit",
-        "Visual direction for the year ahead",
-        "Monthly design support for steady, on-brand output",
-        "Design feedback, QA and workflows for in-house teams"
+        "Brand and competitor audit to start",
+        "Visual direction and priorities for the quarter ahead",
+        "A set amount of design and art direction each month",
+        "Templates, QA and workflows so your team ships on-brand work at volume"
       ],
-      "for": "Founders and in-house teams who need direction, or a senior designer on call without a full-time hire.",
+      "for": "Founders and in-house teams who need a brand owner, not another freelancer.",
       "proof": [
         "mazeed",
         "ideas-that-scale"
       ],
       "price": null,
       "timeline": "Monthly, or a one-off review",
-      "short": "Audits, direction and monthly design support",
+      "short": "Brand standards, direction and output on a monthly retainer",
       "image": [
         "mazeed",
         4
       ],
-      "label": "Creative direction",
+      "label": "Fractional brand lead",
       "timeline_short": "Monthly or one-off",
       "range": null
     }
@@ -253,7 +281,7 @@
       "name": "Monthly design support",
       "summary": "A set amount of design time each month for teams that need steady, on-brand output.",
       "examples": [],
-      "need": "Creative direction and ongoing design support"
+      "need": "Fractional brand lead"
     }
   ]
 }

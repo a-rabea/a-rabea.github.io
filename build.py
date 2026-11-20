@@ -16,6 +16,8 @@ SITE = {
     "phone": "+20 101 057 9844",
     "tel": "+201010579844",
     "whatsapp": "https://wa.me/201010579844",
+    # Cal.com / Calendly link for "Book a call". Empty = buttons go to the enquiry form instead.
+    "booking": "",
 }
 # Free, cookie-free analytics. GoatCounter: account code "alpattex" (alpattex.goatcounter.com).
 # Cloudflare Web Analytics: paste the site token from dash.cloudflare.com > Analytics > Web Analytics.
@@ -43,8 +45,13 @@ def enquire_url(root, need=None, project=None):
     return f"{root}services/{qs}#start"
 
 
-ROLE = "Senior Brand Designer & Art Director"
-FEATURED = ["mazeed", "qinwan", "aywa"]  # led on the home page, in this order
+def book_url(root, need=None, project=None):
+    """The "Book a call" link: the booking page if SITE["booking"] is set, otherwise the enquiry form."""
+    return SITE.get("booking") or enquire_url(root, need, project)
+
+
+ROLE = "Design Ops & Bilingual Brand Systems Lead"
+FEATURED = ["mazeed", "ideas-that-scale", "qinwan"]  # led on the home page, in this order
 BUILD_DATE = __import__("datetime").date.today().isoformat()
 projects = json.load(open("content/projects.json", encoding="utf-8"))
 services = json.load(open("content/services.json", encoding="utf-8"))
@@ -162,7 +169,7 @@ def header(root, here=""):
     <a href="{root or './'}#work"{cur('work')}>Work</a>
     <a href="{root}services/"{cur('services')}>Services</a>
     <a href="{root or './'}#about">About</a>
-    <a class="bar__cta" href="{root}services/#start">Start a project</a>
+    <a class="bar__cta" href="{book_url(root)}"{track("cta-bar-book", "Header Book a call")}>Book a call</a>
   </nav>
 </header>
 <div class="peek" aria-hidden="true"><img alt=""></div>
@@ -218,7 +225,7 @@ def enquiry(root, heading="Start a project", lead=None):
         <select name="timeline"><option value="">Choose one</option><option>As soon as possible</option><option>Within a month</option><option>In 1 to 3 months</option><option>Just exploring</option></select>
       </label>
       <label>Budget range (optional)
-        <select name="budget"><option value="">Not sure yet</option><option>Under USD 1,000</option><option>USD 1,000 to 3,000</option><option>USD 3,000 to 6,000</option><option>Over USD 6,000</option></select>
+        <select name="budget"><option value="">Not sure yet</option><option>USD 2,500 to 5,000</option><option>USD 5,000 to 10,000</option><option>Over USD 10,000</option><option>Monthly retainer</option></select>
       </label>
     </div>
     <label>About the project<textarea name="message" rows="4" placeholder="What are you making, and who is it for?"></textarea></label>
@@ -304,7 +311,7 @@ PERSON_ID = SITE["url"] + "/#person"
 
 def person_ld():
     return {"@context": "https://schema.org", "@type": "Person", "@id": PERSON_ID, "name": "Ahmed Rabea",
-            "jobTitle": "Senior Brand Designer and Art Director", "image": SITE["url"] + "/assets/og/home.jpg",
+            "jobTitle": ROLE, "image": SITE["url"] + "/assets/og/home.jpg",
             "description": "Senior brand designer and art director in Cairo, working on brand identities, design systems, campaigns and creative direction in English and Arabic.",
             "knowsLanguage": ["en", "ar"], "areaServed": ["United Arab Emirates", "Saudi Arabia", "Kuwait", "Qatar", "Bahrain", "Oman"],
             "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
@@ -348,34 +355,37 @@ def build_home():
 </a></li>"""
     svc = "\n".join(svc_row(n, s) for n, s in enumerate(services["services"], 1))
     page = head(f"Ahmed Rabea | {ROLE}",
-                "Senior brand designer and art director. Brand identities, design systems, campaigns and decks for companies across the Gulf.",
-                root, "home", "", [person_ld(), website_ld()], alternates=[("en", ""), ("ar", "ar/"), ("x-default", "")], og_alt="Ahmed Rabea, Senior Brand Designer and Art Director, over a grid of his project covers") + f"""<body class="home">
+                "Design ops and bilingual brand systems lead. Brand identities, guidelines and the production workflow behind them, in English and Arabic, for Gulf companies.",
+                root, "home", "", [person_ld(), website_ld()], alternates=[("en", ""), ("ar", "ar/"), ("x-default", "")], og_alt="Ahmed Rabea, Design Ops and Bilingual Brand Systems Lead, over a grid of his project covers") + f"""<body class="home">
 {header(root)}
 <main id="main">
-<section class="hero" aria-labelledby="hero-name">
+<section class="hero" aria-labelledby="hero-h">
   <div class="wall" aria-hidden="true"><div class="wall__tilt">{wall_html(root)}</div></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__top">
-    <p class="hero__role">Hi, I'm Ahmed.<br><strong>Senior brand designer and art director</strong></p>
-    <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select freelance projects</p>
+    <p class="hero__role"><strong>Ahmed Rabea</strong> · {e(ROLE)}</p>
+    <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select projects</p>
   </div>
-  <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span><span class="visually-hidden">, {ROLE}</span></h1>
+  <h1 id="hero-h" class="hero__h">Brand systems that still hold at the <em>250th</em> asset.</h1>
   <div class="hero__foot">
     <div class="hero__copy">
-      <p class="hero__lede">I build brand identities and the design systems behind them, then direct the campaigns that put them to work, for companies across the Gulf.</p>
-      <p class="hero__proof">Owned creative direction for 5 brands at once, overseeing 250+ designs a month</p>
+      <p class="hero__lede">I build the identity, the guidelines and the production workflow behind them, in English and Arabic, so your team ships on-brand work every week without a designer checking every file.</p>
+      <ul class="hero__stats" role="list">
+        <li><b>5</b>brands run at once</li>
+        <li><b>250+</b>designs a month, one standard</li>
+        <li><b>1,000+</b>client B2B SaaS brand</li>
+      </ul>
     </div>
     <div class="hero__ctas">
-      <a class="btn btn--big" href="services/#start"{track("cta-hero", "Hero Start a project")}>Start a project</a>
-      <a class="hero__cue" href="#work">See the work</a>
+      <a class="btn btn--big" href="{book_url(root)}"{track("cta-hero-book", "Hero Book a call")}>Book a 20-min intro call</a>
+      <a class="hero__cue" href="#work">See the systems work</a>
     </div>
   </div>
 </section>
 
 <section id="work" class="work" aria-labelledby="work-h">
   <div class="sec-head"><h2 id="work-h">Selected work</h2><p class="filters__status" aria-live="polite">{len(projects)} projects</p></div>
-  <p class="work__thesis">A brand is judged by its hundredth asset, not its first. I design the system behind it.</p>
-  {filter_bar()}
+  <p class="work__thesis">A brand is judged by its hundredth asset, not its first. I design the system, then the pipeline that keeps it consistent.</p>
   <ul class="feats" role="list">
 {feats}
   </ul>
@@ -694,6 +704,12 @@ def build_case(i, p):
     <div class="bento bento--{'wide' if wide_set else 'tall'}">{bento}</div>
   </section>
 
+  <aside class="case__nudge" aria-label="Start a similar project">
+    <p>Need a system like {e(p['title'])}? I scope it with you in one 20-minute call.</p>
+    <a class="btn" href="{book_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-mid-" + p["slug"], "Case study mid Book a call: " + p["title"])}>Book a call</a>
+    <a class="hero__cue" href="{enquire_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-brief-" + p["slug"], "Case study mid Send a brief: " + p["title"])}>Send a brief instead</a>
+  </aside>
+
   {outcome}
 
   <section class="chapters" aria-labelledby="chapters-h">
@@ -709,9 +725,10 @@ def build_case(i, p):
 <section class="cta-band" aria-labelledby="cta-h">
   <h2 id="cta-h" class="cta-band__h">Need something like {e(p['title'])} for your brand?</h2>
   <div class="cta-band__btns">
-    <a class="btn btn--big" href="{enquire_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-" + p["slug"], "Case study Start a project: " + p["title"])}>Start a project</a>
-    <a class="btn btn--big btn--ghost" href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, case study")}>WhatsApp me</a>
+    <a class="btn btn--big" href="{book_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-" + p["slug"], "Case study Book a call: " + p["title"])}>Book a 20-min call</a>
+    <a class="btn btn--big btn--ghost" href="{enquire_url(root, svc_by_id[p['primary_service']]['name'], p['slug'])}"{track("cta-case-brief-end-" + p["slug"], "Case study Send a brief: " + p["title"])}>Send a brief</a>
   </div>
+  <p class="cta-band__alt">Prefer WhatsApp? <a href="{SITE['whatsapp']}"{track("contact-whatsapp", "WhatsApp link, case study")}>Message me there</a>.</p>
 </section>
 <nav class="pn" aria-labelledby="pn-h">
   <div class="pn__head"><h2 id="pn-h" class="case-h">Related work</h2><a href="{root or './'}#work">All work</a></div>
@@ -750,10 +767,11 @@ AR_PROJECTS = {
 AR_TITLES = {"sheikh-khalifa-hospital": "مستشفى الشيخ خليفة", "roava": "روافا"}
 AR_SERVICES = [
     ("brand-identity", "الهوية البصرية", "الشعار والألوان والخطوط العربية واللاتينية والعناصر الأساسية.", "3 إلى 4 أسابيع"),
+    ("identity-packaging-sprint", "الهوية والتغليف في دورة واحدة", "هوية وتغليف وأصول إطلاق بنطاق ثابت، ليتطابق الرف مع الشاشة من اليوم الأول.", "3 إلى 4 أسابيع"),
     ("brand-guidelines", "أدلة الهوية وأنظمة التصميم", "قواعد ومكوّنات وقوالب يطبّقها فريقك بثقة دون الرجوع إليّ.", "أسبوعان إلى 3 أسابيع"),
     ("social-media", "أنظمة السوشيال ميديا والحملات", "قوالب ومفاتيح بصرية للحملات، ومحتوى شهري ضمن القواعد نفسها.", "أسبوعان، ثم شهرياً"),
     ("presentation-design", "العروض التقديمية والملفات التعريفية", "عروض المستثمرين والمبيعات والمناقصات، والملفات التعريفية للشركات.", "أسبوع إلى أسبوعين"),
-    ("creative-direction", "الإدارة الفنية والدعم المستمر", "مراجعة للعلامة واتجاه واضح، أو أيام تصميم ثابتة كل شهر.", "شهرياً، أو مراجعة واحدة"),
+    ("creative-direction", "إدارة العلامة باشتراك شهري", "أتولّى معايير العلامة واتجاهها وسير إنتاجها كل شهر، دون توظيف بدوام كامل.", "شهرياً"),
 ]
 
 

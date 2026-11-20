@@ -8,11 +8,31 @@ Anything starting with TODO is hidden on the site until you replace it.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
-## AYWA
-- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "A self-set brief: an identity for a Gen Z money app that feels as quick and direct as the product it imagines, with four minutes to open an account and one tap to pay, send or split a bill."
+## Ideas that scale
+- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "Keep nine brands recognisable across three markets, two languages and every format, at weekly volume, without each post turning into a one-off."
+- [ ] `direction`: the core idea behind the visual direction.
+- [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
+- [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
+
+## Qinwan
+- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "A self-set brief: show how a Gulf family business of dates, coffee and gifting would present itself, from the family letter through corporate gifting, hospitality, retail and the app."
 - [ ] `client`: optional, leave null to hide
 - [ ] `year`: year or years of the project
+- [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
+- [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
+- [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
+
+## Sheikh Khalifa Hospital
+- [ ] `year`: year or years of the project
 - [ ] `context`: optional. Who the client is and the situation before you started.
+- [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
+- [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
+- [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
+
+## Aureya
+- [ ] `client`: optional, leave null to hide
+- [ ] `year`: year or years of the project
+- [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
@@ -24,26 +44,6 @@ Anything starting with TODO is hidden on the site until you replace it.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
-## Aureya
-- [ ] `client`: optional, leave null to hide
-- [ ] `year`: year or years of the project
-- [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
-- [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
-- [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
-
-## Ideas that scale
-- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "Keep nine brands recognisable across three markets, two languages and every format, at weekly volume, without each post turning into a one-off."
-- [ ] `direction`: the core idea behind the visual direction.
-- [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
-- [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
-
-## Sheikh Khalifa Hospital
-- [ ] `year`: year or years of the project
-- [ ] `context`: optional. Who the client is and the situation before you started.
-- [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
-- [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
-- [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
-
 ## roava
 - [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "A self-set brief: a specialty coffee brand that feels calm and loud at once."
 - [ ] `client`: optional, leave null to hide
@@ -52,11 +52,11 @@ Anything starting with TODO is hidden on the site until you replace it.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
-## Qinwan
-- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "A self-set brief: show how a Gulf family business of dates, coffee and gifting would present itself, from the family letter through corporate gifting, hospitality, retail and the app."
+## AYWA
+- [ ] `challenge` is a draft I wrote from your existing copy. Review or replace: "A self-set brief: an identity for a Gen Z money app that feels as quick and direct as the product it imagines, with four minutes to open an account and one tap to pay, send or split a bill."
 - [ ] `client`: optional, leave null to hide
 - [ ] `year`: year or years of the project
-- [ ] `system`: optional. The rules that make this a system: what stays fixed, what flexes.
+- [ ] `context`: optional. Who the client is and the situation before you started.
 - [ ] `outcome`: what happened after launch? Real results only: adoption, usage, sales, feedback, or 'concept, not launched'.
 - [ ] `credits`: optional. Team, agency, photographer, copywriter, or how the imagery was produced.
 
