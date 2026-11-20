@@ -51,7 +51,7 @@ def call_option(lead="Prefer a quick call?"):
     return f' <span class="call-opt">{lead} <a href="{b}"{track("cta-call-option", "Optional call link")}>Book one here</a>.</span>' if b else ""
 
 
-ROLE = "Design Ops & Bilingual Brand Systems Lead"
+ROLE = "Senior Brand Designer & Art Director"
 FEATURED = ["mazeed", "ideas-that-scale", "qinwan"]  # led on the home page, in this order
 BUILD_DATE = __import__("datetime").date.today().isoformat()
 projects = json.load(open("content/projects.json", encoding="utf-8"))
@@ -312,7 +312,7 @@ PERSON_ID = SITE["url"] + "/#person"
 
 def person_ld():
     return {"@context": "https://schema.org", "@type": "Person", "@id": PERSON_ID, "name": "Ahmed Rabea",
-            "jobTitle": ROLE, "image": SITE["url"] + "/assets/og/home.jpg",
+            "jobTitle": "Senior Brand Designer and Art Director", "image": SITE["url"] + "/assets/og/home.jpg",
             "description": "Senior brand designer and art director in Cairo, working on brand identities, design systems, campaigns and creative direction in English and Arabic.",
             "knowsLanguage": ["en", "ar"], "areaServed": ["United Arab Emirates", "Saudi Arabia", "Kuwait", "Qatar", "Bahrain", "Oman"],
             "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
@@ -356,18 +356,18 @@ def build_home():
 </a></li>"""
     svc = "\n".join(svc_row(n, s) for n, s in enumerate(services["services"], 1))
     page = head(f"Ahmed Rabea | {ROLE}",
-                "Design ops and bilingual brand systems lead. Brand identities, guidelines and the production workflow behind them, in English and Arabic, for Gulf companies.",
-                root, "home", "", [person_ld(), website_ld()], alternates=[("en", ""), ("ar", "ar/"), ("x-default", "")], og_alt="Ahmed Rabea, Design Ops and Bilingual Brand Systems Lead, over a grid of his project covers") + f"""<body class="home">
+                "Senior brand designer and art director. Brand identities, design systems, campaigns and decks for companies across the Gulf.",
+                root, "home", "", [person_ld(), website_ld()], alternates=[("en", ""), ("ar", "ar/"), ("x-default", "")], og_alt="Ahmed Rabea, Senior Brand Designer and Art Director, over a grid of his project covers") + f"""<body class="home">
 {header(root)}
 <main id="main">
-<section class="hero" aria-labelledby="hero-h">
+<section class="hero" aria-labelledby="hero-name">
   <div class="wall" aria-hidden="true"><div class="wall__tilt">{wall_html(root)}</div></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__top">
-    <p class="hero__role"><strong>Ahmed Rabea</strong> · {e(ROLE)}</p>
+    <p class="hero__role">Hi, I'm Ahmed.<br><strong>Senior brand designer and art director</strong></p>
     <p class="hero__open"><span class="dot" aria-hidden="true"></span>Taking on select projects</p>
   </div>
-  <h1 id="hero-h" class="hero__h">Brand systems that still hold at the <em>250th</em> asset.</h1>
+  <h1 id="hero-name" class="hero__name"><span>Ahmed</span><span>Rabea</span><span class="visually-hidden">, {ROLE}</span></h1>
   <div class="hero__foot">
     <div class="hero__copy">
       <p class="hero__lede">I build the identity, the guidelines and the production workflow behind them, in English and Arabic, so your team ships on-brand work every week without a designer checking every file.</p>
@@ -379,7 +379,7 @@ def build_home():
     </div>
     <div class="hero__ctas">
       <a class="btn btn--big" href="services/#start"{track("cta-hero", "Hero Start a project")}>Start a project</a>
-      <a class="hero__cue" href="#work">See the systems work</a>
+      <a class="hero__cue" href="#work">See the work</a>
     </div>
   </div>
 </section>
